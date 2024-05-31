@@ -1,0 +1,41 @@
+/* customcol.css for the custom buttons within the tableview columns */
+
+
+/* View Button Styles */
+.button-view, .button-update {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-font-weight: bold;
+    -fx-font-family: "FontAwesome";
+    -fx-font-size: 12px;
+    -fx-padding: 5px;
+    -fx-cursor: hand;
+}
+
+.button-view:hover, .button-update:hover {
+    -fx-effect: dropshadow(three-pass-box, #000000, 20, 0, 0, 0);
+}
+
+/* Custom circle styles */
+.square-true {
+    -fx-background-color: #06b006;
+    -fx-min-width: 10px;
+    -fx-min-height: 10px;
+    -fx-max-width: 10px;
+    -fx-max-height: 10px;
+    -fx-background-radius: 50%;
+}
+
+.square-false {
+    -fx-background-color: red;
+    -fx-min-width: 10px;
+    -fx-min-height: 10px;
+    -fx-max-width: 10px;
+    -fx-max-height: 10px;
+    -fx-background-radius: 50%;
+}
+
+
+
+
+

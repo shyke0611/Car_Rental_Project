@@ -1,0 +1,12 @@
+/* confirmation.css for the confrimation fxml */
+
+
+.pane {
+    -fx-background-color: rgba(0, 128, 0, 0.074);
+    -fx-background-radius: 20px;
+}
+
+.pane1 {
+    -fx-background-color: rgba(128, 0, 0, 0.074);
+    -fx-background-radius: 20px;
+}

@@ -1,0 +1,44 @@
+/* login.css for the login and sign up page */
+
+/* General Styles for AnchorPane */
+.anchor-pane {
+    -fx-background-color: #4b2cb9;
+}
+
+/* Styles for User Input Fields */
+.user-fields {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-border-color: #000000;
+    -fx-border-width: 0px 0px 2px 0px;
+}
+
+/* Styles for Standard Buttons */
+.button {
+    -fx-background-color: #ecd62c;
+    -fx-text-fill: #ffffff;
+}
+
+.button:hover {
+    -fx-background-color: #d9c421;
+    -fx-cursor: hand;
+}
+
+.button:pressed {
+    -fx-background-color: #ecd62c;
+}
+
+/* Styles for Custom Buttons */
+.custom-button {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-text-fill: #1c66cd;
+}
+
+.custom-button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-text-fill: #689be3;
+}
+
+.custom-button:pressed {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-text-fill: #1c66cd;
+}

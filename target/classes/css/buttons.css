@@ -1,0 +1,85 @@
+/* buttons.css for general button styles */
+
+/**
+ * Styles for normal buttons.
+ */
+.button-normal {
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: normal;
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.button-normal:hover {
+    -fx-background-color: #ffffff33;
+    -fx-padding: 10 20;
+    -fx-border-width: 1;
+}
+
+.button-normal:pressed {
+    -fx-background-color: #ffffff66;
+    -fx-padding: 10 20;
+    -fx-border-width: 1;
+}
+
+/**
+ * Styles for active buttons in specific scenes.
+ */
+.button-active {
+    -fx-padding: 10 20;
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: normal;
+    -fx-background-color: #ffffff33;
+    -fx-text-fill: #ffffff;
+}
+
+/**
+ * Styles for signout buttons.
+ */
+.button-signout {
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: normal;
+    -fx-background-color: #826eca;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.button-signout:hover {
+    -fx-background-color: #876abb;
+    -fx-padding: 10 20;
+    -fx-border-width: 1;
+}
+
+.button-signout:pressed {
+    -fx-background-color: #9b80ce;
+    -fx-padding: 10 20;
+    -fx-border-width: 1;
+}
+
+/**
+ * Styles for add vehicle buttons.
+ */
+.button-addvehicle {
+    -fx-cursor: hand;
+    -fx-background-color: #4b2cb9;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, #5e5e5e, 5, 0, 0, 0);
+}
+
+.button-addvehicle:hover {
+    -fx-background-color: #876abb;
+    -fx-effect: dropshadow(three-pass-box, #5e5e5e, 15, 0, 0, 0);
+}
+
+.button-addvehicle:pressed {
+    -fx-background-color: #4b2cb9;
+    -fx-effect: none;
+    -fx-text-fill: #dddddd;
+}

@@ -1,0 +1,10 @@
+/* mybooking.css for the myboooking fxml */
+
+
+/* the boxes */
+.boxes {
+    -fx-background-color: #cacaca44;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #0000002e, 15, 0, 0, 0);
+}

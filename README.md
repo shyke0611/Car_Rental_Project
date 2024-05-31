@@ -1,1 +1,1 @@
-# Car_Rental_Project
+rental car management and booking system using javafx and mysql

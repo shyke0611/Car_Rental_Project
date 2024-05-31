@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.MyBookingController">
+   <children>
+      <AnchorPane layoutX="-1.0" layoutY="-2.0" prefHeight="606.0" prefWidth="181.0" styleClass="anchor-pane" stylesheets="@../css/navbar.css">
+         <children>
+            <ImageView fitHeight="191.0" fitWidth="166.0" layoutX="3.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images%20and%20attribution/logo.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" layoutX="1.0" layoutY="242.0" prefHeight="357.0" prefWidth="182.0" stylesheets="@../css/buttons.css">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#onFindVehicles" prefHeight="35.0" prefWidth="169.0" styleClass="button-normal" text="Find Vehicles">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CAR" wrappingWidth="13.656265258789062" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" styleClass="button-active" text="My Booking">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="BOOK" wrappingWidth="13.656265258789062" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#onSignOut" prefHeight="35.0" prefWidth="114.0" styleClass="button-signout" stylesheets="@../css/navbar.css" text="Sign Out">
+                     <VBox.margin>
+                        <Insets top="200.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <Label fx:id="clientNameLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="140.0" prefHeight="20.0" prefWidth="140.0" text="Welcome" textAlignment="CENTER" textFill="WHITE" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="120.0" prefHeight="20.0" prefWidth="140.0" text="Welcome" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="189.0" layoutY="-41.0" prefHeight="645.0" prefWidth="716.0" styleClass="mainanchor-pane">
+         <children>
+            <Label layoutX="250.0" layoutY="263.0" />
+            <VBox fx:id="bookingDetailsVBox" alignment="TOP_CENTER" layoutX="45.0" layoutY="301.0" prefHeight="227.0" prefWidth="282.0" styleClass="boxes" stylesheets="@../css/mybooking.css">
+               <children>
+                  <Label text="Booking Summary" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="5.0" prefWidth="275.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="161.0">
+                           <children>
+                              <Label text="Pick up">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="pickUpLbl" text="Label" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="159.0">
+                           <children>
+                              <Label text="Return">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="returnLbl" text="Label" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" stroke="BLACK" strokeType="INSIDE" width="253.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="20.0" />
+                     </VBox.margin></Rectangle>
+                  <HBox prefHeight="66.0" prefWidth="282.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <VBox prefHeight="86.0" prefWidth="275.0">
+                           <children>
+                              <Label prefHeight="29.0" prefWidth="119.0" text="Insurance Details:">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox prefHeight="1.0" prefWidth="275.0">
+                                 <children>
+                                    <Label fx:id="insuranceTypeLbl" text="Select an insurance type">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="insuranceCostLbl">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="49.0" prefWidth="275.0" style="-fx-background-color: black; -fx-background-radius: 0 0 10 10;">
+                     <children>
+                        <Label prefHeight="22.0" prefWidth="139.0" text="Total Amount:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" right="50.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="totalAmountLbl" prefHeight="22.0" prefWidth="86.0" text="amount" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="vehicleDetailsVBox" alignment="CENTER" layoutX="370.0" layoutY="163.0" prefHeight="364.0" prefWidth="299.0" styleClass="boxes" stylesheets="@../css/mybooking.css">
+               <children>
+                  <HBox alignment="TOP_CENTER" prefHeight="41.0" prefWidth="299.0">
+                     <children>
+                        <Label fx:id="brandLbl" text="Brand">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="modelLbl" text="Model">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="153.0" prefWidth="299.0">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                     <children>
+                        <ImageView fx:id="vehicleImage" fitHeight="176.0" fitWidth="273.0" pickOnBounds="true" preserveRatio="true" />
+                     </children></HBox>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" stroke="BLACK" strokeType="INSIDE" width="253.0" />
+                  <HBox alignment="CENTER" prefHeight="28.0" prefWidth="293.0">
+                     <children>
+                        <Label text="Year:">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" right="10.0" top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="yearLbl" prefHeight="20.0" prefWidth="46.0" text="Label">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <HBox prefHeight="28.0" prefWidth="179.0">
+                           <children>
+                              <Label text="Plate:">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="10.0" top="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="regLbl" prefHeight="20.0" prefWidth="107.0" text="Label">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="293.0">
+                     <children>
+                        <FontAwesomeIconView glyphName="ADJUST" size="20">
+                           <HBox.margin>
+                              <Insets left="20.0" right="6.0" />
+                           </HBox.margin>
+                        </FontAwesomeIconView>
+                        <Label fx:id="colourLbl" prefHeight="20.0" prefWidth="82.0" text="Label">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <HBox prefHeight="28.0" prefWidth="123.0">
+                           <children>
+                              <FontAwesomeIconView glyphName="THERMOMETER_FULL" size="20">
+                                 <HBox.margin>
+                                    <Insets right="6.0" top="5.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                              <Label fx:id="fuelLbl" prefHeight="20.0" prefWidth="105.0" text="Label">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="12.0" top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <Label layoutX="37.0" layoutY="66.0" prefHeight="39.0" prefWidth="485.0" text="My Booking">
+               <font>
+                  <Font name="System Bold Italic" size="32.0" />
+               </font>
+            </Label>
+            <Pane fx:id="resBox" layoutX="47.0" layoutY="160.0" prefHeight="124.0" prefWidth="280.0" styleClass="pane" stylesheets="@../css/confirmation.css">
+               <children>
+                  <Label layoutX="32.0" layoutY="22.0" prefHeight="27.0" prefWidth="222.0" text="Reservation Confirmed!" textFill="#18b218">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="82.0" layoutY="71.0" text="Thank you for using">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="84.0" layoutY="91.0" prefHeight="18.0" prefWidth="129.0" text="MRM Rentals again">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="noResBox" layoutX="96.0" layoutY="186.0" prefHeight="228.0" prefWidth="502.0" styleClass="pane1" stylesheets="@../css/confirmation.css">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-4.0" layoutY="22.0" prefHeight="27.0" prefWidth="508.0" text="No Reservations Made" textFill="#d01a1a">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-5.0" layoutY="71.0" prefHeight="18.0" prefWidth="507.0" text="Find Your Vehicle">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-5.0" layoutY="91.0" prefHeight="18.0" prefWidth="506.0" text="Book your first Vehicle Now!">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

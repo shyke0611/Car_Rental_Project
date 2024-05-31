@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/navbar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.BookingsController">
+   <children>
+      <AnchorPane fx:id="pane1" layoutX="-1.0" layoutY="-2.0" prefHeight="606.0" prefWidth="181.0" styleClass="anchor-pane" stylesheets="@../css/navbar.css">
+         <children>
+            <ImageView fitHeight="191.0" fitWidth="166.0" layoutX="3.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images%20and%20attribution/logo.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" layoutX="1.0" layoutY="183.0" prefHeight="416.0" prefWidth="182.0" stylesheets="@../css/buttons.css">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#onDashBoard" prefHeight="35.0" prefWidth="156.0" styleClass="button-normal" text="DashBoard">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="ARCHIVE" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#onManageVehicles" prefHeight="37.0" prefWidth="156.0" styleClass="button-normal" text="Manage Vehicles">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CAR" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" prefWidth="156.0" styleClass="button-active" text="View Bookings">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="BOOK" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#onViewCustomers" prefHeight="36.0" prefWidth="156.0" styleClass="button-normal" text="View Customers">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="GROUP" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#onSignOut" prefHeight="35.0" prefWidth="114.0" styleClass="button-signout" stylesheets="@../css/navbar.css" text="Sign Out">
+                     <VBox.margin>
+                        <Insets top="140.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="182.0" layoutY="-5.0" prefHeight="609.0" prefWidth="718.0">
+         <children>
+            <Label layoutX="40.0" layoutY="26.0" prefHeight="39.0" prefWidth="209.0" text="View Bookings">
+               <font>
+                  <Font name="System Bold Italic" size="32.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableReservation" layoutX="5.0" layoutY="124.0" prefHeight="468.0" prefWidth="707.0" stylesheets="@../css/navbar.css">
+              <columns>
+                  <TableColumn fx:id="colRentalId" editable="false" prefWidth="58" sortable="false" text="Rental_id" />
+                  <TableColumn fx:id="colClientId" editable="false" prefWidth="59" sortable="false" text="Client_id" />
+                  <TableColumn fx:id="colVehicleId" editable="false" prefWidth="71" sortable="false" text="Vehicle_id" />
+                  <TableColumn fx:id="colVehicleReg" editable="false" prefWidth="80" sortable="false" text="Vehicle_reg" />
+                  <TableColumn fx:id="colLicenseNum" editable="false" prefWidth="78" sortable="false" text="License_num" />
+                  <TableColumn fx:id="colTotalRate" editable="false" prefWidth="71.59393310546875" sortable="false" text="Total_rate" />
+                  <TableColumn fx:id="colStartDate" editable="false" prefWidth="96.90606689453125" sortable="false" text="Start_date" />
+                  <TableColumn fx:id="colReturnDate" editable="false" prefWidth="93" sortable="false" text="Return_date" />
+                  <TableColumn fx:id="colInsuranceType" editable="false" prefWidth="98.32867431640625" sortable="false" text="Insurance_type" />
+              </columns>
+            </TableView>
+            <HBox fx:id="searchHbox" alignment="CENTER" layoutX="11.0" layoutY="78.0" prefHeight="30.0" prefWidth="379.0" stylesheets="@../css/navbar.css">
+               <children>
+                  <FontAwesomeIconView glyphName="SEARCH" wrappingWidth="14.21856689453125" />
+                  <TextField fx:id="searchTxt" prefHeight="25.0" prefWidth="216.0" promptText="Search">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+                  <ChoiceBox fx:id="searchChoiceBox" prefHeight="27.0" prefWidth="115.0">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ChoiceBox>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <Label layoutX="45.0" layoutY="120.0" text="Welcome Admin" textFill="WHITE" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/navbar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.ManageController">
+   <children>
+      <AnchorPane fx:id="pane1" layoutX="-1.0" layoutY="-2.0" prefHeight="606.0" prefWidth="181.0" styleClass="anchor-pane" stylesheets="@../css/navbar.css">
+         <children>
+            <ImageView fitHeight="191.0" fitWidth="166.0" layoutX="3.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images%20and%20attribution/logo.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" layoutX="1.0" layoutY="183.0" prefHeight="416.0" prefWidth="182.0" stylesheets="@../css/buttons.css">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#onDashBoard" prefHeight="35.0" prefWidth="156.0" styleClass="button-normal" text="DashBoard">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="ARCHIVE" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="156.0" styleClass="button-active" text="Manage Vehicles">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CAR" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#onViewBookings" prefWidth="156.0" styleClass="button-normal" text="View Bookings">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="BOOK" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#onViewCustomers" prefHeight="36.0" prefWidth="156.0" styleClass="button-normal" text="View Customers">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="GROUP" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#onSignOut" prefHeight="35.0" prefWidth="114.0" styleClass="button-signout" stylesheets="@../css/navbar.css" text="Sign Out">
+                     <VBox.margin>
+                        <Insets top="140.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <Label layoutX="45.0" layoutY="120.0" text="Welcome Admin" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pane2" layoutX="173.0" layoutY="-5.0" prefHeight="609.0" prefWidth="727.0">
+         <children>
+            <HBox fx:id="searchHbox" alignment="CENTER" layoutX="20.0" layoutY="78.0" prefHeight="30.0" prefWidth="379.0" stylesheets="@../css/navbar.css">
+               <children>
+                  <FontAwesomeIconView glyphName="SEARCH" wrappingWidth="14.21856689453125" />
+                  <TextField fx:id="searchTxt" prefHeight="25.0" prefWidth="216.0" promptText="Search">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+                  <ChoiceBox fx:id="searchChoiceBox" prefHeight="27.0" prefWidth="115.0">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ChoiceBox>
+               </children>
+            </HBox>
+            <Label layoutX="45.0" layoutY="25.0" prefHeight="39.0" prefWidth="243.0" text="Manage Vehicles">
+               <font>
+                  <Font name="System Bold Italic" size="32.0" />
+               </font>
+            </Label>
+            <Button layoutX="539.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#onAddNewVehicle" prefHeight="35.0" prefWidth="161.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Add new Vehicle">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" wrappingWidth="22.077567100524902" />
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <TableView fx:id="tableVehicle" layoutX="15.0" layoutY="137.0" prefHeight="465.0" prefWidth="706.0" stylesheets="@../css/navbar.css">
+              <columns>
+                <TableColumn fx:id="colId" editable="false" prefWidth="50" sortable="false" text="Id" />
+                  <TableColumn fx:id="colBrand" editable="false" prefWidth="100" sortable="false" text="Brand" />
+                <TableColumn fx:id="colModel" editable="false" prefWidth="100" sortable="false" text="Model" />
+                  <TableColumn fx:id="colMakeYear" editable="false" prefWidth="75" sortable="false" text="Year" />
+                  <TableColumn fx:id="colReg" editable="false" prefWidth="95.24761962890625" sortable="false" text="Registration" />
+                  <TableColumn fx:id="colColour" editable="false" prefWidth="80.2523193359375" sortable="false" text="Colour" />
+                  <TableColumn fx:id="colFuel" editable="false" prefWidth="75" sortable="false" text="Fuel" />
+                  <TableColumn fx:id="colDailyRate" editable="false" prefWidth="78.048583984375" sortable="false" text="Daily_rate" />
+                  <TableColumn fx:id="colAvail" editable="false" prefWidth="96.95147705078125" sortable="false" text="available" />
+                  <TableColumn fx:id="colView" prefWidth="75" text="View" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="vehiclePane" layoutX="159.0" layoutY="92.0" prefHeight="437.0" prefWidth="611.0" stylesheets="@../css/view.css" visible="false">
+         <children>
+            <Button fx:id="cancelBtn" layoutX="568.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#onCancel" styleClass="button-action" stylesheets="@../css/view.css">
+               <graphic>
+                  <FontAwesomeIconView glyphName="ANGLE_RIGHT" size="30" />
+               </graphic></Button>
+            <AnchorPane fx:id="importPane" layoutX="375.0" layoutY="83.0" prefHeight="257.0" prefWidth="213.0">
+               <children>
+                  <ImageView fx:id="vehicleImageView" fitHeight="166.0" fitWidth="170.0" layoutX="20.0" layoutY="31.0" nodeOrientation="INHERIT" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images%20and%20attribution/importcar.png" />
+                     </image></ImageView>
+                  <Button fx:id="importBtn" layoutY="216.0" mnemonicParsing="false" onMouseClicked="#onImportImage" prefHeight="41.0" prefWidth="213.0" styleClass="button-import" stylesheets="@../css/view.css" text="Import">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Button>
+                  <FontAwesomeIconView fill="WHITE" glyphName="UPLOAD" layoutX="70.0" layoutY="241.0" />
+               </children>
+            </AnchorPane>
+            <VBox layoutX="38.0" layoutY="82.0" prefHeight="336.0" prefWidth="277.0">
+               <children>
+                  <HBox fx:id="fieldHbox" alignment="CENTER" prefHeight="35.0" prefWidth="238.0">
+                     <children>
+                        <Label prefHeight="16.0" prefWidth="52.0" text="Brand:">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtBrand" promptText="Eg) Toyota" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox fx:id="fieldHbox1111" alignment="CENTER" prefHeight="39.0" prefWidth="238.0" stylesheets="@../css/view.css">
+                     <children>
+                        <Label prefHeight="16.0" prefWidth="54.0" text="Model:" />
+                        <TextField fx:id="txtModel" prefHeight="25.0" prefWidth="170.0" promptText="Eg) Camry" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox fx:id="fieldHbox1" alignment="CENTER" prefHeight="39.0" prefWidth="238.0" stylesheets="@../css/view.css">
+                     <children>
+                        <Label prefHeight="16.0" prefWidth="74.0" text="Make Year:">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtYear" promptText="XXXX" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox fx:id="fieldHbox11" alignment="CENTER" prefHeight="39.0" prefWidth="238.0" stylesheets="@../css/view.css">
+                     <children>
+                        <Label prefHeight="16.0" prefWidth="75.0" text="Daily Rate:">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtDailyRate" promptText="\$ 0.00" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox fx:id="fieldHbox111" alignment="CENTER" prefHeight="39.0" prefWidth="238.0" stylesheets="@../css/view.css">
+                     <children>
+                        <Label prefHeight="16.0" prefWidth="86.0" text="Registration:" />
+                        <TextField fx:id="txtRegNumber" prefHeight="25.0" prefWidth="142.0" promptText="AAA000" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox fx:id="fieldHbox11111" alignment="CENTER" prefHeight="39.0" prefWidth="238.0" stylesheets="@../css/view.css">
+                     <children>
+                        <Label prefHeight="16.0" prefWidth="49.0" text="Colour:" />
+                        <TextField fx:id="txtColour" prefHeight="25.0" prefWidth="179.0" promptText="Eg) White" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox fx:id="fieldHbox111111" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="238.0" stylesheets="@../css/view.css">
+                     <children>
+                        <Label prefHeight="16.0" prefWidth="72.0" text="Fuel Type:">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin></Label>
+                        <ChoiceBox fx:id="choiceFuel" prefHeight="26.0" prefWidth="98.0" stylesheets="@../css/view.css" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="addVbox" alignment="CENTER" layoutX="-3.0" layoutY="15.0" prefHeight="46.0" prefWidth="367.0">
+               <children>
+                  <Label fx:id="titleLbl" alignment="CENTER" prefHeight="46.0" prefWidth="372.0" text="Add new Vehicle" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Label fx:id="idLbl" layoutX="280.0" layoutY="27.0" prefHeight="23.0" prefWidth="46.0" textFill="#fcfcfc">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="deleteVehicleBtn" layoutX="415.0" layoutY="380.0" mnemonicParsing="false" onMouseClicked="#onDeleteVehicle" prefHeight="39.0" prefWidth="122.0" styleClass="button-action" stylesheets="@../css/view.css" text="Delete">
+               <graphic>
+                  <FontAwesomeIconView fill="RED" glyphName="TRASH" selectionFill="RED" size="26">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </FontAwesomeIconView>
+               </graphic>
+            </Button>
+            <StackPane layoutX="424.0" layoutY="350.0" prefHeight="39.0" prefWidth="109.0">
+               <children>
+                  <Button fx:id="updateVehicleBtn" mnemonicParsing="false" onMouseClicked="#onUpdateVehicle" prefHeight="34.0" prefWidth="116.0" stylesheets="@../css/view.css" text="Update ">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="REFRESH" size="20" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="anchor-pane" />
+                        <String fx:value="button-action" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="saveVehicleBtn" mnemonicParsing="false" onMouseClicked="#onSaveVehicle" prefHeight="34.0" prefWidth="94.0" styleClass="button-action" stylesheets="@../css/view.css" text="Save ">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="SAVE" size="25" />
+                     </graphic>
+                  </Button>
+               </children>
+            </StackPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

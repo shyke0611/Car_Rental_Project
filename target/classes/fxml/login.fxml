@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.LoginController">
+   <left>
+      <AnchorPane prefHeight="600.0" prefWidth="297.0" styleClass="anchor-pane" stylesheets="@../css/login.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="320.0" fitWidth="300.0" layoutX="-2.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images%20and%20attribution/logo.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="600.0" prefWidth="639.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="username" layoutX="218.0" layoutY="216.0" prefHeight="28.0" prefWidth="192.0" promptText="User Name" styleClass="user-fields" stylesheets="@../css/login.css" />
+            <FontAwesomeIconView glyphName="USER" layoutX="195.0" layoutY="236.0" size="20" text="" />
+            <PasswordField fx:id="password" layoutX="216.0" layoutY="274.0" prefHeight="28.0" prefWidth="193.0" promptText="Password" styleClass="user-fields" stylesheets="@../css/login.css" />
+            <Button fx:id="loginBtn" layoutX="212.0" layoutY="327.0" mnemonicParsing="false" onMouseClicked="#onLogIn" prefHeight="34.0" prefWidth="193.0" stylesheets="@../css/login.css" text="Login">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="87.0" prefHeight="54.0" prefWidth="516.0" text="Welcome, Log in to get started" textAlignment="CENTER">
+               <font>
+                  <Font name="Al Nile Bold" size="29.0" />
+               </font>
+            </Label>
+            <Text fill="#b9afaf" layoutX="166.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to our car rental application. Rent any vehicles we have ready for you! " textAlignment="CENTER" wrappingWidth="306.47100830078125">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <Button fx:id="signUpBtn" layoutX="330.0" layoutY="492.0" mnemonicParsing="false" onMouseClicked="#onSignUp" styleClass="custom-button" stylesheets="@../css/login.css" text="SIgn up">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Text fill="#b9afaf" layoutX="225.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New With Us?">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="193.0" fitWidth="422.0" layoutX="-264.0" layoutY="338.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images%20and%20attribution/Yellow_Ford_Mustang.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="adminBtn" layoutX="495.0" layoutY="555.0" mnemonicParsing="false" onMouseClicked="#onAdmin" styleClass="custom-button" stylesheets="@../css/login.css" text="Admin Login">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <FontAwesomeIconView glyphName="LOCK" layoutX="195.0" layoutY="295.0" size="20" wrappingWidth="10.721613883972168" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

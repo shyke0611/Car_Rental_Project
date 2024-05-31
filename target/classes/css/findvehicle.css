@@ -1,0 +1,84 @@
+/* findvehicle.css for the findvehicle page */
+
+.nav {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, #0000001a, 10, 0, 0, 0);
+}
+
+.nav .label {
+    -fx-font-weight: bold;
+}
+
+
+.active-page {
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-border-color: transparent transparent #4b2cb9 transparent;
+    -fx-border-width: 0 0 3px 0;
+}
+
+
+.normal-page {
+    -fx-text-fill: rgb(138, 137, 137);
+}
+
+.datepickBox {
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, #0000001a, 10, 0, 0, 0);
+}
+
+.outerbox {
+    -fx-background-color: #000000;
+    -fx-background-radius: 10px;
+}
+
+/* General DatePicker styling */
+.datepicker {
+    -fx-background-color: transparent;
+
+}
+
+/* DatePicker text field */
+.datepicker .text-field {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+    -fx-text-fill: #000000;
+    -fx-padding: 0;
+
+}
+
+/* DatePicker arrow button */
+.datepicker .arrow-button {
+    -fx-background-color: rgba(190, 190, 190, 0.325);
+}
+
+/* DatePicker arrow button */
+.datepicker .arrow-button:hover {
+    -fx-cursor: hand;
+}
+
+/* Popup calendar */
+.date-picker-popup {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, #0000001a, 10, 0, 0, 0);
+    -fx-padding: 10px;
+}
+
+/* Day cell styling */
+.date-picker-popup .day-cell {
+    -fx-text-fill: #000000;
+    -fx-background-color: transparent;
+}
+
+.date-picker-popup .day-cell:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+.date-picker-popup .day-cell:selected {
+    -fx-background-color: #4b2cb9;
+    -fx-text-fill: #ffffff;
+}
