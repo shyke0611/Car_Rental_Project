@@ -1,0 +1,110 @@
+/* vehicles.css for the vehicle images */
+
+/* Make ScrollPane white */
+.scroll-pane {
+    -fx-background-color: white;
+    -fx-background: white;
+}
+
+/* Ensure the ScrollPane's viewport background is white */
+.scroll-pane .viewport {
+    -fx-background-color: white;
+}
+
+/* Make GridPane white */
+.grid-pane {
+    -fx-background-color: white;
+    -fx-background: white;
+}
+
+/* Vehicle Pane Styles */
+.vehicle-pane {
+    -fx-background-color: #ebebebc7;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 30px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 0);
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+    -fx-min-width: 300px;
+    -fx-pref-width: 300px;
+    -fx-max-width: 300px;
+    -fx-min-height: 400px;
+    -fx-pref-height: 400px;
+    -fx-max-height: 400px;
+}
+
+/* Vehicle Image Styles */
+.vehicle-image {
+    -fx-fit-width: 200px;
+    -fx-fit-height: 150px;
+    -fx-preserve-ratio: true;
+    -fx-smooth: true;
+}
+
+/* Vehicle Brand and Model Label Styles */
+.vehicle-brand-model-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Vehicle Year Label Styles */
+.vehicle-year-label {
+    -fx-font-size: 15px;
+    -fx-text-fill: #4b2cb9;
+}
+
+/* Vehicle Price Label Styles */
+.vehicle-price-label {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Vehicle Price Unit Label Styles */
+.vehicle-price-lab {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4b2cb9;
+}
+
+/* Separator Styles */
+.separator {
+    -fx-background-color: #505050;
+    -fx-pref-height: 2px;
+    -fx-max-height: 2px;
+    -fx-min-height: 2px;
+    -fx-padding: 10px 0;
+}
+
+/* Vehicle Color and Fuel Type Label Styles */
+.vehicle-color-fueltype-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+/* Book Now Button Styles */
+.book-now-button {
+    -fx-background-color: #4b2cb9;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+    -fx-position: absolute;
+    -fx-bottom: 10px;
+}
+
+.book-now-button:hover {
+    -fx-background-color: #4b2cb9b5;
+}
+
+/* Labels Grid Styles */
+.labels-grid {
+    -fx-hgap: 10px;
+    -fx-vgap: 10px;
+}

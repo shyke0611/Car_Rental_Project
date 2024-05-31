@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/navbar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.AdminController">
+   <children>
+      <AnchorPane layoutX="185.0" layoutY="-5.0" prefHeight="609.0" prefWidth="716.0">
+         <children>
+            <Label layoutX="40.0" layoutY="55.0" prefHeight="39.0" prefWidth="395.0" text="Welcome To MRM Rentals">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="40.0" layoutY="270.0" prefHeight="39.0" prefWidth="264.0" text="Analytics Tracking">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <HBox layoutX="38.0" layoutY="319.0" prefHeight="268.0" prefWidth="401.0" styleClass="graphbox" stylesheets="@../css/dashboard.css">
+               <children>
+                  <PieChart fx:id="piechart" />
+               </children>
+            </HBox>
+            <HBox layoutX="39.0" layoutY="97.0" prefHeight="140.0" prefWidth="644.0">
+               <children>
+                  <AnchorPane prefHeight="150.0" prefWidth="200.0" styleClass="block-one" stylesheets="@../css/dashboard.css">
+                     <children>
+                        <Label layoutX="21.0" layoutY="96.0" prefHeight="30.0" prefWidth="118.0" text="Total Customers" textFill="#514f4f" />
+                        <Label fx:id="customerLbl" layoutX="21.0" layoutY="70.0" text="1232">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView fill="#106de0" glyphName="USERS" layoutX="21.0" layoutY="51.0" size="30" wrappingWidth="27.89808464050293" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="160.0" prefWidth="200.0" styleClass="block-two" stylesheets="@../css/dashboard.css">
+                     <children>
+                        <Label layoutX="21.0" layoutY="96.0" prefHeight="30.0" prefWidth="118.0" text="Available cars" textFill="#514f4f" />
+                        <Label fx:id="vehicleLbl" layoutX="21.0" layoutY="70.0" text="12">
+                           <font>
+                              <Font name="System Bold Italic" size="23.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView fill="#106de0" glyphName="CAR" layoutX="21.0" layoutY="51.0" size="30" wrappingWidth="27.89808464050293" />
+                     </children>
+                     <effect>
+                        <DropShadow height="17.0" offsetX="2.0" offsetY="2.0" radius="8.0" spread="0.6" width="17.0">
+                           <color>
+                              <Color red="0.6901960968971252" green="0.6666666865348816" blue="0.7490196228027344" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="166.0" prefWidth="200.0" styleClass="block-three" stylesheets="@../css/dashboard.css">
+                     <children>
+                        <Label layoutX="21.0" layoutY="96.0" prefHeight="30.0" prefWidth="118.0" text="Total Earnings" textFill="#514f4f" />
+                        <Label layoutX="21.0" layoutY="68.0" text="\$">
+                           <font>
+                              <Font name="System Bold Italic" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="earningsLbl" layoutX="40.0" layoutY="70.0" text="100">
+                           <font>
+                              <Font name="System Bold Italic" size="23.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView fill="#106de0" glyphName="MONEY" layoutX="21.0" layoutY="51.0" size="30" wrappingWidth="27.89808464050293" />
+                     </children>
+                     <effect>
+                        <DropShadow height="17.0" offsetX="2.0" offsetY="2.0" radius="8.0" spread="0.6" width="17.0">
+                           <color>
+                              <Color red="0.6901960968971252" green="0.6666666865348816" blue="0.7490196228027344" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <AnchorPane layoutX="474.0" layoutY="325.0" prefHeight="261.0" prefWidth="204.0" styleClass="block-three" stylesheets="@../css/dashboard.css">
+               <children>
+                  <Label layoutX="20.0" layoutY="101.0" text="Events">
+                     <font>
+                        <Font name="System Bold Italic" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="earningsLbl1" layoutX="20.0" layoutY="71.0" text="Upcoming">
+                     <font>
+                        <Font name="System Bold Italic" size="23.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="#106de0" glyphName="CALENDAR" layoutX="20.0" layoutY="50.0" size="30" wrappingWidth="27.89808464050293" />
+               </children>
+               <effect>
+                  <DropShadow height="17.0" offsetX="2.0" offsetY="2.0" radius="8.0" spread="0.6" width="17.0">
+                     <color>
+                        <Color red="0.6901960968971252" green="0.6666666865348816" blue="0.7490196228027344" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-1.0" layoutY="-2.0" prefHeight="606.0" prefWidth="181.0" styleClass="anchor-pane" stylesheets="@../css/navbar.css">
+         <children>
+            <ImageView fitHeight="191.0" fitWidth="166.0" layoutX="3.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images%20and%20attribution/logo.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" layoutX="1.0" layoutY="183.0" prefHeight="416.0" prefWidth="182.0" stylesheets="@../css/buttons.css">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="156.0" styleClass="button-active" text="DashBoard">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="ARCHIVE" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#onManageVehicles" prefHeight="35.0" prefWidth="156.0" styleClass="button-normal" text="Manage Vehicles">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CAR" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#onViewBookings" prefWidth="156.0" styleClass="button-normal" text="View Bookings">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="BOOK" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#onViewCustomers" prefHeight="36.0" prefWidth="156.0" styleClass="button-normal" text="View Customers">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="GROUP" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#onSignOut" prefHeight="35.0" prefWidth="114.0" styleClass="button-signout" stylesheets="@../css/navbar.css" text="Sign Out">
+                     <VBox.margin>
+                        <Insets top="140.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <Label layoutX="45.0" layoutY="120.0" text="Welcome Admin" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

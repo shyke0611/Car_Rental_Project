@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.ConfirmationController">
+   <children>
+      <AnchorPane layoutX="-1.0" layoutY="-2.0" prefHeight="606.0" prefWidth="181.0" styleClass="anchor-pane" stylesheets="@../css/navbar.css">
+         <children>
+            <ImageView fitHeight="191.0" fitWidth="166.0" layoutX="3.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images%20and%20attribution/logo.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" layoutX="1.0" layoutY="242.0" prefHeight="357.0" prefWidth="182.0" stylesheets="@../css/buttons.css">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="169.0" styleClass="button-active" text="Find Vehicles">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CAR" wrappingWidth="13.656265258789062" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#onMyBooking" prefHeight="35.0" prefWidth="170.0" styleClass="button-normal" text="My Booking">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="BOOK" wrappingWidth="13.656265258789062" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#onSignOut" prefHeight="35.0" prefWidth="114.0" styleClass="button-signout" stylesheets="@../css/navbar.css" text="Sign Out">
+                     <VBox.margin>
+                        <Insets top="200.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <Label fx:id="clientNameLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="140.0" prefHeight="20.0" prefWidth="140.0" text="Welcome" textAlignment="CENTER" textFill="WHITE" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="120.0" prefHeight="20.0" prefWidth="140.0" text="Welcome" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="185.0" layoutY="-5.0" prefHeight="609.0" prefWidth="716.0" styleClass="mainanchor-pane">
+         <children>
+            <Label layoutX="39.0" layoutY="26.0" prefHeight="39.0" prefWidth="485.0" text="Confirmation">
+               <font>
+                  <Font name="System Bold Italic" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="250.0" layoutY="263.0" />
+            <HBox alignment="CENTER" layoutX="-1.0" layoutY="78.0" prefHeight="41.0" prefWidth="715.0" styleClass="nav" stylesheets="@../css/findvehicle.css">
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="5.0" prefHeight="31.0" prefWidth="143.0" styleClass="normal-page" text="1. FIND VEHICLE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="5.0" prefHeight="31.0" prefWidth="169.0" styleClass="normal-page" stylesheets="@../css/findvehicle.css" text="2. INSURANCE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="5.0" prefHeight="31.0" prefWidth="173.0" styleClass="active-page" text="3. CONFIRMATION">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <Pane layoutX="152.0" layoutY="222.0" prefHeight="200.0" prefWidth="380.0" styleClass="pane" stylesheets="@../css/confirmation.css">
+               <children>
+                  <Label layoutX="115.0" layoutY="22.0" text="Reservation Confirmed!" textFill="#18b218">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="82.0" layoutY="71.0" text="You are now booked with your vehicle">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="100.0" layoutY="91.0" text="Check My Booking for more info">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="#18b218" glyphName="CHECK_CIRCLE" layoutX="55.0" layoutY="53.0" size="50">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </FontAwesomeIconView>
+                  <VBox layoutX="86.0" layoutY="118.0" prefHeight="59.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="30.0" prefWidth="171.0" />
+                        <HBox alignment="CENTER" prefHeight="20.0" prefWidth="171.0">
+                           <children>
+                              <Label text="Booked On:">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="bookingDate" text="Label" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

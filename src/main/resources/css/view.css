@@ -1,0 +1,91 @@
+/* Views.css for the client and vehicle pages for adding, deleting, and updating */
+
+/* General Styles */
+#vehiclePane,
+#clientUpdatePane {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(three-pass-box, #0000004d, 15, 0, 0, 0);
+}
+
+#vehiclePane .text-field,
+#clientUpdatePane .text-field {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-text-fill: #909090;
+}
+
+#vehiclePane .label,
+#clientUpdatePane .label {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-font-weight: bold;
+}
+
+/* Button Styles */
+.button-action {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-cursor: hand;
+}
+
+.button-action:hover {
+    -fx-effect: dropshadow(three-pass-box, #878686, 5, 0, 0, 0);
+}
+
+.button-import {
+    -fx-cursor: hand;
+    -fx-background-color: #4b2cb9;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, #5e5e5e, 5, 0, 0, 0);
+    -fx-background-radius: 0 0 10 10;
+}
+
+.button-import:hover {
+    -fx-background-color: #876abb;
+}
+
+.button-import:pressed {
+    -fx-background-color: #4b2cb9;
+    -fx-effect: none;
+    -fx-text-fill: #dddddd;
+}
+
+/* HBox Styles */
+HBox {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, #0000001a, 10, 0, 0, 0);
+}
+
+/* ChoiceBox Styles */
+#choiceFuel {
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+
+#choiceFuel .label {
+    -fx-text-fill: #909090;
+    -fx-font-size: 11px;
+    -fx-alignment: CENTER;
+    -fx-font-weight: none;
+}
+
+#choiceFuel .list-cell {
+    -fx-text-fill: #000000;
+    -fx-font-weight: none;
+}
+
+/* Import Pane Styles */
+#importPane {
+    -fx-background-color: #cbc8c8;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, #00000091, 15, 0, 0, 0);
+}
+
+/* Add Vehicle Pane Styles */
+#addVbox {
+    -fx-background-color: #4b2cb9;
+    -fx-effect: dropshadow(three-pass-box, #00000091, 15, 0, 0, 0);
+    -fx-background-radius: 0 10 10 0;
+}

@@ -1,0 +1,44 @@
+/* insurance.css for the insurance FXML */
+
+/* General Styles for Insurance Section */
+.insurance {
+    -fx-background-color: #cacaca44;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #0000002e, 15, 0, 0, 0);
+}
+
+.insurance:hover {
+    -fx-background-color: #cacaca69;
+}
+
+/* Styles for Summary Section */
+.summary {
+    -fx-background-color: #cacaca44;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #0000002e, 15, 0, 0, 0);
+}
+
+/* Styles for Insurance Buttons */
+.button-insurance {
+    -fx-background-radius: 50px;
+    -fx-background-color: #5656568f;
+}
+
+.button-insurance:hover {
+    -fx-cursor: hand;
+}
+
+/* Styles for Selected Buttons */
+.selected-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+/* Styles for Header */
+.header {
+    -fx-background-color: #000000c5;
+    -fx-background-radius: 10 10 0 0;
+    -fx-effect: dropshadow(three-pass-box, #ffffff36, 15, 0, 0, 0);
+}

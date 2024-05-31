@@ -1,0 +1,144 @@
+/* dashboard.css for the admin FXML */
+
+/**
+ * Styles for the first block.
+ */
+ .block-one {
+    -fx-background-color: #ca92f144;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #0000002e, 15, 0, 0, 0);
+}
+
+/**
+ * Styles for the second block.
+ */
+.block-two {
+    -fx-background-color: #d8db2744;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #0000002e, 15, 0, 0, 0);
+}
+
+/**
+ * Styles for the third block.
+ */
+.block-three {
+    -fx-background-color: #54c42744;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, #0000002e, 5, 0, 0, 0);
+}
+
+/**
+ * Styles for the graph box.
+ */
+.graphbox {
+    -fx-background-color: #f5a4a444;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #0000002e, 15, 0, 0, 0);
+}
+
+/**
+ * General styles for charts.
+ */
+.chart {
+    -fx-background-color: transparent;
+    -fx-padding: 20px;
+}
+
+/**
+ * Styles for chart titles.
+ */
+.chart-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-padding: 10px 0;
+}
+
+/**
+ * Styles for axis labels.
+ */
+.axis-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555;
+}
+
+/**
+ * Styles for axis tick marks.
+ */
+.axis-tick-mark {
+    -fx-stroke: #ddd;
+}
+
+/**
+ * General axis styles.
+ */
+.axis {
+    -fx-tick-label-fill: #555;
+}
+
+/**
+ * Styles for axis lines.
+ */
+.axis .axis-line {
+    -fx-stroke: #ddd;
+}
+
+/**
+ * Styles for tick marks.
+ */
+.axis .tick-mark {
+    -fx-stroke: #ddd;
+}
+
+/**
+ * Styles for tick labels.
+ */
+.axis .tick-label {
+    -fx-font-size: 12px;
+}
+
+/**
+ * Styles for the default line color.
+ */
+.default-color0.chart-series-line {
+    -fx-stroke: #007ACC;
+    -fx-stroke-width: 2px;
+}
+
+/**
+ * Styles for the default line symbols.
+ */
+.default-color0.chart-line-symbol {
+    -fx-background-color: #007ACC, white;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #007ACC;
+}
+
+/**
+ * Styles for the default bar color.
+ */
+.default-color0.chart-bar {
+    -fx-bar-fill: #007ACC;
+}
+
+/**
+ * Styles for chart legend item symbols.
+ */
+.chart-legend-item-symbol {
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+/**
+ * Styles for chart legend items.
+ */
+.chart-legend-item {
+    -fx-font-size: 12px;
+    -fx-text-fill: #555;
+}
