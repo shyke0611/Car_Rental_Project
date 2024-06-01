@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/navbar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.AdminController">
    <children>
-      <AnchorPane layoutX="185.0" layoutY="-5.0" prefHeight="609.0" prefWidth="716.0">
+      <AnchorPane layoutX="185.0" layoutY="-5.0" prefHeight="609.0" prefWidth="716.0" stylesheets="@../css/font.css">
          <children>
             <Label layoutX="40.0" layoutY="55.0" prefHeight="39.0" prefWidth="395.0" text="Welcome To MRM Rentals">
                <font>
@@ -51,7 +51,7 @@
                         <Label layoutX="21.0" layoutY="96.0" prefHeight="30.0" prefWidth="118.0" text="Available cars" textFill="#514f4f" />
                         <Label fx:id="vehicleLbl" layoutX="21.0" layoutY="70.0" text="12">
                            <font>
-                              <Font name="System Bold Italic" size="23.0" />
+                              <Font name="Arial Bold" size="23.0" />
                            </font>
                         </Label>
                         <FontAwesomeIconView fill="#106de0" glyphName="CAR" layoutX="21.0" layoutY="51.0" size="30" wrappingWidth="27.89808464050293" />
@@ -72,12 +72,12 @@
                         <Label layoutX="21.0" layoutY="96.0" prefHeight="30.0" prefWidth="118.0" text="Total Earnings" textFill="#514f4f" />
                         <Label layoutX="21.0" layoutY="68.0" text="\$">
                            <font>
-                              <Font name="System Bold Italic" size="25.0" />
+                              <Font name="Arial Bold" size="25.0" />
                            </font>
                         </Label>
                         <Label fx:id="earningsLbl" layoutX="40.0" layoutY="70.0" text="100">
                            <font>
-                              <Font name="System Bold Italic" size="23.0" />
+                              <Font name="System Bold" size="23.0" />
                            </font>
                         </Label>
                         <FontAwesomeIconView fill="#106de0" glyphName="MONEY" layoutX="21.0" layoutY="51.0" size="30" wrappingWidth="27.89808464050293" />
@@ -99,12 +99,12 @@
                <children>
                   <Label layoutX="20.0" layoutY="101.0" text="Events">
                      <font>
-                        <Font name="System Bold Italic" size="25.0" />
+                        <Font name="Arial Bold" size="25.0" />
                      </font>
                   </Label>
                   <Label fx:id="earningsLbl1" layoutX="20.0" layoutY="71.0" text="Upcoming">
                      <font>
-                        <Font name="System Bold Italic" size="23.0" />
+                        <Font name="Arial Bold" size="23.0" />
                      </font>
                   </Label>
                   <FontAwesomeIconView fill="#106de0" glyphName="CALENDAR" layoutX="20.0" layoutY="50.0" size="30" wrappingWidth="27.89808464050293" />

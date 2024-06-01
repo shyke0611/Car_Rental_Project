@@ -1,6 +1,22 @@
 /* Views.css for the client and vehicle pages for adding, deleting, and updating */
 
 /* General Styles */
+#vehiclePane,
+#clientUpdatePane {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(three-pass-box, #0000004d, 15, 0, 0, 0);
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
+}
+
+#vehiclePane .text-field,
+#clientUpdatePane .text-field {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-text-fill: #909090;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
+}
+
 #vehiclePane .label,
 #clientUpdatePane .label {
     -fx-background-color: rgba(0, 0, 0, 0);
@@ -8,23 +24,11 @@
     -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
-
-#vehiclePane .text-field,
-#clientUpdatePane .text-field {
-    -fx-background-color: rgba(0, 0, 0, 0);
-    -fx-text-fill: #909090;
-}
-
-#vehiclePane .label,
-#clientUpdatePane .label {
-    -fx-background-color: rgba(0, 0, 0, 0);
-    -fx-font-weight: bold;
-}
-
 /* Button Styles */
 .button-action {
     -fx-background-color: rgba(0, 0, 0, 0);
     -fx-cursor: hand;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 .button-action:hover {
@@ -81,6 +85,7 @@ HBox {
     -fx-border-radius: 20px;
     -fx-background-radius: 20;
     -fx-effect: dropshadow(three-pass-box, #00000091, 15, 0, 0, 0);
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 /* Add Vehicle Pane Styles */

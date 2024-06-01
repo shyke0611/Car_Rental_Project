@@ -64,7 +64,7 @@
          <children>
             <Label layoutX="39.0" layoutY="26.0" prefHeight="39.0" prefWidth="485.0" text="Confirmation">
                <font>
-                  <Font name="System Bold Italic" size="32.0" />
+                  <Font name="Arial Bold" size="32.0" />
                </font>
             </Label>
             <Label layoutX="250.0" layoutY="263.0" />
@@ -77,7 +77,7 @@
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="5.0" prefHeight="31.0" prefWidth="143.0" styleClass="normal-page" text="1. FIND VEHICLE">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="Arial Bold" size="16.0" />
                            </font>
                         </Label>
                      </children>
@@ -86,7 +86,7 @@
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="5.0" prefHeight="31.0" prefWidth="169.0" styleClass="normal-page" stylesheets="@../css/findvehicle.css" text="2. INSURANCE">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="Arial Bold" size="16.0" />
                            </font>
                         </Label>
                      </children>
@@ -98,7 +98,7 @@
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="5.0" prefHeight="31.0" prefWidth="173.0" styleClass="active-page" text="3. CONFIRMATION">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="Arial Bold" size="16.0" />
                            </font>
                         </Label>
                      </children>
@@ -107,22 +107,22 @@
             </HBox>
             <Pane layoutX="152.0" layoutY="222.0" prefHeight="200.0" prefWidth="380.0" styleClass="pane" stylesheets="@../css/confirmation.css">
                <children>
-                  <Label layoutX="115.0" layoutY="22.0" text="Reservation Confirmed!" textFill="#18b218">
+                  <Label layoutX="87.0" layoutY="22.0" prefHeight="25.0" prefWidth="266.0" text="Reservation Confirmed!" textFill="#18b218">
                      <font>
                         <Font name="System Bold" size="21.0" />
                      </font>
                   </Label>
-                  <Label layoutX="82.0" layoutY="71.0" text="You are now booked with your vehicle">
+                  <Label layoutX="70.0" layoutY="71.0" text="You are now booked with your vehicle">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="100.0" layoutY="91.0" text="Check My Booking for more info">
+                  <Label layoutX="90.0" layoutY="91.0" text="Check My Booking for more info">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <FontAwesomeIconView fill="#18b218" glyphName="CHECK_CIRCLE" layoutX="55.0" layoutY="53.0" size="50">
+                  <FontAwesomeIconView fill="#18b218" glyphName="CHECK_CIRCLE" layoutX="30.0" layoutY="53.0" size="50">
                      <font>
                         <Font size="36.0" />
                      </font>
