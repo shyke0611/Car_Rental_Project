@@ -96,7 +96,7 @@ To get a local copy up and running, follow these simple steps.
 
 You will need the following software installed:
 * [Java Development Kit (JDK)](https://www.oracle.com/java/technologies/javase-downloads.html)
-* [Java Development Kit (JDK)](https://git-scm.com/downloads)
+* [Git](https://git-scm.com/downloads)
 * [Maven](https://maven.apache.org/download.cgi)
 
 * [Set up Maven Environment for Windows](https://www.qamadness.com/knowledge-base/how-to-install-maven-and-configure-environment-variables/)
@@ -104,7 +104,7 @@ You will need the following software installed:
 
 ### Installation
 
-1. **Clone the repo**:
+1. **Clone the repo using Terminal/Command Prompt**:
 
      ```sh
      git clone https://github.com/shyke0611/Car_Rental_Project.git
