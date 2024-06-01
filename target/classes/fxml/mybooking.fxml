@@ -66,7 +66,7 @@
             <Label layoutX="250.0" layoutY="263.0" />
             <VBox fx:id="bookingDetailsVBox" alignment="TOP_CENTER" layoutX="45.0" layoutY="301.0" prefHeight="227.0" prefWidth="282.0" styleClass="boxes" stylesheets="@../css/mybooking.css">
                <children>
-                  <Label text="Booking Summary" textAlignment="CENTER">
+                  <Label stylesheets="@../css/font.css" text="Booking Summary" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -76,7 +76,7 @@
                   </Label>
                   <HBox alignment="CENTER" prefHeight="5.0" prefWidth="275.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="161.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="161.0" stylesheets="@../css/font.css">
                            <children>
                               <Label text="Pick up">
                                  <font>
@@ -89,7 +89,7 @@
                               <Insets top="5.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="159.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="159.0" stylesheets="@../css/font.css">
                            <children>
                               <Label text="Return">
                                  <font>
@@ -118,7 +118,7 @@
                      <children>
                         <VBox prefHeight="86.0" prefWidth="275.0">
                            <children>
-                              <Label prefHeight="29.0" prefWidth="119.0" text="Insurance Details:">
+                              <Label prefHeight="29.0" prefWidth="148.0" stylesheets="@../css/font.css" text="Insurance Details:">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -128,7 +128,7 @@
                               </Label>
                               <HBox prefHeight="1.0" prefWidth="275.0">
                                  <children>
-                                    <Label fx:id="insuranceTypeLbl" text="Select an insurance type">
+                                    <Label fx:id="insuranceTypeLbl" stylesheets="@../css/font.css" text="Select an insurance type">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -152,7 +152,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="49.0" prefWidth="275.0" style="-fx-background-color: black; -fx-background-radius: 0 0 10 10;">
                      <children>
-                        <Label prefHeight="22.0" prefWidth="139.0" text="Total Amount:" textFill="WHITE">
+                        <Label prefHeight="22.0" prefWidth="139.0" stylesheets="@../css/font.css" text="Total Amount:" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
@@ -160,7 +160,7 @@
                               <Insets left="10.0" right="50.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="totalAmountLbl" prefHeight="22.0" prefWidth="86.0" text="amount" textFill="WHITE">
+                        <Label fx:id="totalAmountLbl" prefHeight="22.0" prefWidth="86.0" stylesheets="@../css/font.css" text="amount" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
@@ -171,7 +171,7 @@
             </VBox>
             <VBox fx:id="vehicleDetailsVBox" alignment="CENTER" layoutX="370.0" layoutY="163.0" prefHeight="364.0" prefWidth="299.0" styleClass="boxes" stylesheets="@../css/mybooking.css">
                <children>
-                  <HBox alignment="TOP_CENTER" prefHeight="41.0" prefWidth="299.0">
+                  <HBox alignment="TOP_CENTER" prefHeight="41.0" prefWidth="299.0" stylesheets="@../css/font.css">
                      <children>
                         <Label fx:id="brandLbl" text="Brand">
                            <font>
@@ -201,7 +201,7 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" stroke="BLACK" strokeType="INSIDE" width="253.0" />
                   <HBox alignment="CENTER" prefHeight="28.0" prefWidth="293.0">
                      <children>
-                        <Label text="Year:">
+                        <Label prefHeight="20.0" prefWidth="45.0" stylesheets="@../css/font.css" text="Year:">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -209,7 +209,7 @@
                               <Insets left="20.0" right="10.0" top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="yearLbl" prefHeight="20.0" prefWidth="46.0" text="Label">
+                        <Label fx:id="yearLbl" prefHeight="20.0" prefWidth="46.0" stylesheets="@../css/font.css" text="Label">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -219,7 +219,7 @@
                         </Label>
                         <HBox prefHeight="28.0" prefWidth="179.0">
                            <children>
-                              <Label text="Plate:">
+                              <Label prefHeight="20.0" prefWidth="57.0" stylesheets="@../css/font.css" text="Plate:">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -227,7 +227,7 @@
                                     <Insets left="20.0" right="10.0" top="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="regLbl" prefHeight="20.0" prefWidth="107.0" text="Label">
+                              <Label fx:id="regLbl" prefHeight="20.0" prefWidth="107.0" stylesheets="@../css/font.css" text="Label">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -246,7 +246,7 @@
                               <Insets left="20.0" right="6.0" />
                            </HBox.margin>
                         </FontAwesomeIconView>
-                        <Label fx:id="colourLbl" prefHeight="20.0" prefWidth="82.0" text="Label">
+                        <Label fx:id="colourLbl" prefHeight="20.0" prefWidth="82.0" stylesheets="@../css/font.css" text="Label">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -261,7 +261,7 @@
                                     <Insets right="6.0" top="5.0" />
                                  </HBox.margin>
                               </FontAwesomeIconView>
-                              <Label fx:id="fuelLbl" prefHeight="20.0" prefWidth="105.0" text="Label">
+                              <Label fx:id="fuelLbl" prefHeight="20.0" prefWidth="105.0" stylesheets="@../css/font.css" text="Label">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -281,24 +281,24 @@
                   </HBox>
                </children>
             </VBox>
-            <Label layoutX="37.0" layoutY="66.0" prefHeight="39.0" prefWidth="485.0" text="My Booking">
+            <Label layoutX="37.0" layoutY="66.0" prefHeight="39.0" prefWidth="485.0" stylesheets="@../css/font.css" text="My Booking">
                <font>
-                  <Font name="System Bold Italic" size="32.0" />
+                  <Font name="Arial Bold" size="32.0" />
                </font>
             </Label>
             <Pane fx:id="resBox" layoutX="47.0" layoutY="160.0" prefHeight="124.0" prefWidth="280.0" styleClass="pane" stylesheets="@../css/confirmation.css">
                <children>
-                  <Label layoutX="32.0" layoutY="22.0" prefHeight="27.0" prefWidth="222.0" text="Reservation Confirmed!" textFill="#18b218">
+                  <Label layoutX="21.0" layoutY="22.0" prefHeight="27.0" prefWidth="233.0" text="Reservation Confirmed!" textFill="#18b218">
                      <font>
-                        <Font name="System Bold" size="21.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="82.0" layoutY="71.0" text="Thank you for using">
+                  <Label layoutX="75.0" layoutY="71.0" text="Thank you for using">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="84.0" layoutY="91.0" prefHeight="18.0" prefWidth="129.0" text="MRM Rentals again">
+                  <Label layoutX="75.0" layoutY="91.0" prefHeight="18.0" prefWidth="129.0" text="MRM Rentals again">
                      <font>
                         <Font size="14.0" />
                      </font>

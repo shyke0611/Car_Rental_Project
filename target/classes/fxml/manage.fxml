@@ -85,7 +85,7 @@
             <Label layoutX="45.0" layoutY="120.0" text="Welcome Admin" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane2" layoutX="173.0" layoutY="-5.0" prefHeight="609.0" prefWidth="727.0">
+      <AnchorPane fx:id="pane2" layoutX="173.0" layoutY="-5.0" prefHeight="609.0" prefWidth="727.0" stylesheets="@../css/font.css">
          <children>
             <HBox fx:id="searchHbox" alignment="CENTER" layoutX="20.0" layoutY="78.0" prefHeight="30.0" prefWidth="379.0" stylesheets="@../css/navbar.css">
                <children>
@@ -102,9 +102,9 @@
                   </ChoiceBox>
                </children>
             </HBox>
-            <Label layoutX="45.0" layoutY="25.0" prefHeight="39.0" prefWidth="243.0" text="Manage Vehicles">
+            <Label layoutX="45.0" layoutY="25.0" prefHeight="39.0" prefWidth="363.0" text="Manage Vehicles">
                <font>
-                  <Font name="System Bold Italic" size="32.0" />
+                  <Font name="Arial Bold" size="32.0" />
                </font>
             </Label>
             <Button layoutX="539.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#onAddNewVehicle" prefHeight="35.0" prefWidth="161.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Add new Vehicle">
@@ -112,7 +112,7 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="PLUS" wrappingWidth="22.077567100524902" />
                </graphic>
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="Arial Bold" size="13.0" />
                </font></Button>
             <TableView fx:id="tableVehicle" layoutX="15.0" layoutY="137.0" prefHeight="465.0" prefWidth="706.0" stylesheets="@../css/navbar.css">
               <columns>
@@ -151,14 +151,14 @@
             </AnchorPane>
             <VBox layoutX="38.0" layoutY="82.0" prefHeight="336.0" prefWidth="277.0">
                <children>
-                  <HBox fx:id="fieldHbox" alignment="CENTER" prefHeight="35.0" prefWidth="238.0">
+                  <HBox fx:id="fieldHbox" alignment="CENTER" prefHeight="35.0" prefWidth="238.0" stylesheets="@../css/font.css">
                      <children>
                         <Label prefHeight="16.0" prefWidth="52.0" text="Brand:">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtBrand" promptText="Eg) Toyota" />
+                        <TextField fx:id="txtBrand" promptText="Eg) Toyota" stylesheets="@../css/font.css" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" />
@@ -167,7 +167,7 @@
                   <HBox fx:id="fieldHbox1111" alignment="CENTER" prefHeight="39.0" prefWidth="238.0" stylesheets="@../css/view.css">
                      <children>
                         <Label prefHeight="16.0" prefWidth="54.0" text="Model:" />
-                        <TextField fx:id="txtModel" prefHeight="25.0" prefWidth="170.0" promptText="Eg) Camry" />
+                        <TextField fx:id="txtModel" prefHeight="25.0" prefWidth="170.0" promptText="Eg) Camry" stylesheets="@../css/font.css" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" />

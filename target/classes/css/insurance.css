@@ -1,14 +1,14 @@
 /* insurance.css for the insurance FXML */
 
 /* General Styles for Insurance Section */
-.insurance {
+#limitedCoverPane, #basicCoverPane, #premiumCoverPane {
     -fx-background-color: #cacaca44;
     -fx-border-radius: 20px;
     -fx-background-radius: 10;
     -fx-effect: dropshadow(three-pass-box, #0000002e, 15, 0, 0, 0);
 }
 
-.insurance:hover {
+#limitedCoverPane:hover, #basicCoverPane:hover, #premiumCoverPane:hover {
     -fx-background-color: #cacaca69;
 }
 
@@ -41,12 +41,4 @@
     -fx-background-color: #000000c5;
     -fx-background-radius: 10 10 0 0;
     -fx-effect: dropshadow(three-pass-box, #ffffff36, 15, 0, 0, 0);
-}
-/* styles for all the labels */
-.insurance .label,
-.summary .label,
-.button-insurance .label,
-.selected-button .label,
-.header .label {
-    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }

@@ -4,11 +4,17 @@
 .pane {
     -fx-background-color: rgba(0, 128, 0, 0.074);
     -fx-background-radius: 20px;
-    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 .pane1 {
     -fx-background-color: rgba(128, 0, 0, 0.074);
     -fx-background-radius: 20px;
+}
+
+.pane .label {
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
+}
+
+.pane1 .label {
     -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }

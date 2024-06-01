@@ -82,11 +82,11 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="182.0" layoutY="-5.0" prefHeight="609.0" prefWidth="718.0">
+      <AnchorPane layoutX="182.0" layoutY="-5.0" prefHeight="609.0" prefWidth="718.0" stylesheets="@../css/font.css">
          <children>
-            <Label layoutX="40.0" layoutY="26.0" prefHeight="39.0" prefWidth="209.0" text="View Bookings">
+            <Label layoutX="40.0" layoutY="26.0" prefHeight="39.0" prefWidth="278.0" text="View Bookings">
                <font>
-                  <Font name="System Bold Italic" size="32.0" />
+                  <Font name="Arial Bold" size="32.0" />
                </font>
             </Label>
             <TableView fx:id="tableReservation" layoutX="5.0" layoutY="124.0" prefHeight="468.0" prefWidth="707.0" stylesheets="@../css/navbar.css">

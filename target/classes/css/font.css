@@ -1,0 +1,20 @@
+/* sets font */
+.label {
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
+
+}
+
+.text {
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
+
+}
+
+.button {
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
+
+}
+
+.text-field {
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
+
+}
