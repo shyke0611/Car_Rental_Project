@@ -77,7 +77,7 @@
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="5.0" prefHeight="31.0" prefWidth="143.0" styleClass="normal-page" text="1. FIND VEHICLE">
                            <font>
-                              <Font name="Arial Bold" size="16.0" />
+                              <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
                      </children>
@@ -86,7 +86,7 @@
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="5.0" prefHeight="31.0" prefWidth="169.0" styleClass="normal-page" stylesheets="@../css/findvehicle.css" text="2. INSURANCE">
                            <font>
-                              <Font name="Arial Bold" size="16.0" />
+                              <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
                      </children>

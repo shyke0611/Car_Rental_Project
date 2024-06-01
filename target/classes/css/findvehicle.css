@@ -49,6 +49,7 @@
     -fx-border-width: 0;
     -fx-text-fill: #000000;
     -fx-padding: 0;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 
 }
 
@@ -68,12 +69,14 @@
     -fx-background-radius: 10px;
     -fx-effect: dropshadow(three-pass-box, #0000001a, 10, 0, 0, 0);
     -fx-padding: 10px;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 /* Day cell styling */
 .date-picker-popup .day-cell {
     -fx-text-fill: #000000;
     -fx-background-color: transparent;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 .date-picker-popup .day-cell:hover {

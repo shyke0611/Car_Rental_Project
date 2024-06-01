@@ -22,7 +22,7 @@
                   <Font name="Arial Bold" size="32.0" />
                </font>
             </Label>
-            <Button layoutX="562.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#onProceed" prefHeight="35.0" prefWidth="117.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Confirm Booking">
+            <Button layoutX="555.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#onProceed" prefHeight="35.0" prefWidth="124.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Confirm Booking">
                <font>
                   <Font name="Arial" size="13.0" />
                </font></Button>
@@ -261,7 +261,7 @@
                                     </Label>
                                     <Label fx:id="insuranceCostLbl">
                                        <font>
-                                          <Font size="14.0" />
+                                          <Font name="Arial" size="14.0" />
                                        </font>
                                        <HBox.margin>
                                           <Insets left="5.0" />
@@ -271,7 +271,7 @@
                               </HBox>
                               <Label fx:id="insuranceDetailsLbl">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font name="Arial" size="14.0" />
                                  </font>
                                  <VBox.margin>
                                     <Insets left="10.0" />
@@ -321,7 +321,7 @@
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="5.0" prefHeight="31.0" prefWidth="143.0" styleClass="normal-page" text="1. FIND VEHICLE">
                            <font>
-                              <Font name="Arial Bold" size="16.0" />
+                              <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
                      </children>
@@ -342,7 +342,7 @@
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="5.0" prefHeight="31.0" prefWidth="173.0" styleClass="normal-page" text="3. CONFIRMATION">
                            <font>
-                              <Font name="Arial Bold" size="16.0" />
+                              <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
                      </children>
