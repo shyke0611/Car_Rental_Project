@@ -15,37 +15,40 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.InsuranceController">
    <children>
-      <AnchorPane layoutX="185.0" layoutY="-5.0" prefHeight="609.0" prefWidth="716.0" styleClass="mainanchor-pane">
+      <AnchorPane layoutX="185.0" layoutY="-5.0" prefHeight="609.0" prefWidth="716.0">
          <children>
             <Label layoutX="39.0" layoutY="26.0" prefHeight="39.0" prefWidth="485.0" text="2) Insurance Cover">
                <font>
-                  <Font name="System Bold Italic" size="32.0" />
+                  <Font name="Arial Bold" size="32.0" />
                </font>
             </Label>
-            <Button layoutX="562.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#onProceed" prefHeight="35.0" prefWidth="117.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Confirm Booking" />
-            <VBox layoutX="17.0" layoutY="141.0" prefHeight="453.0" prefWidth="328.0">
+            <Button layoutX="562.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#onProceed" prefHeight="35.0" prefWidth="117.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Confirm Booking">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font></Button>
+            <VBox layoutX="17.0" layoutY="141.0" prefHeight="453.0" prefWidth="328.0" stylesheets="@../css/insurance.css">
                <children>
-                  <Pane fx:id="premiumCoverPane" prefHeight="147.0" prefWidth="328.0" styleClass="insurance" stylesheets="@../css/insurance.css">
+                  <Pane fx:id="premiumCoverPane" prefHeight="147.0" prefWidth="328.0">
                      <children>
                         <Label layoutX="14.0" layoutY="49.0" prefHeight="18.0" prefWidth="187.0" text="\$0 deposit, $0 excess">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="Arial" size="14.0" />
                            </font>
                         </Label>
                         <Button fx:id="PremiumBtn" layoutX="17.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#onSelectPremium" prefHeight="24.0" prefWidth="301.0" styleClass="button-insurance" text="SELECT" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="13.0" />
+                              <Font name="Arial Bold" size="13.0" />
                            </font></Button>
                         <Pane prefHeight="41.0" prefWidth="328.0" styleClass="header" stylesheets="@../css/insurance.css">
                            <children>
                               <Label layoutX="13.0" layoutY="16.0" text="PREMIUM COVER" textFill="#c94646">
                                  <font>
-                                    <Font name="System Bold" size="18.0" />
+                                    <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Label>
                               <Label layoutX="235.0" layoutY="14.0" prefHeight="26.0" prefWidth="85.0" text="\$35 /day" textFill="WHITE">
                                  <font>
-                                    <Font name="System Bold" size="20.0" />
+                                    <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Label>
                            </children>
@@ -55,52 +58,52 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Pane>
-                  <Pane fx:id="basicCoverPane" prefHeight="153.0" prefWidth="328.0" styleClass="insurance" stylesheets="@../css/insurance.css">
+                  <Pane fx:id="basicCoverPane" prefHeight="153.0" prefWidth="328.0">
                      <children>
                         <Label layoutX="14.0" layoutY="14.0" text="BASIC COVER">
                            <font>
-                              <Font name="System Bold" size="18.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
                         <Label layoutX="14.0" layoutY="38.0" prefHeight="18.0" prefWidth="187.0" text="\$500 deposit, $500 excess">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="Arial" size="14.0" />
                            </font>
                         </Label>
                         <Label layoutX="231.0" layoutY="12.0" prefHeight="26.0" prefWidth="87.0" text="\$24 /day">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
                         <Button fx:id="BasicBtn" layoutX="14.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#onSelectBasic" prefHeight="26.0" prefWidth="305.0" styleClass="button-insurance" text="SELECT" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="13.0" />
+                              <Font name="Arial Bold" size="13.0" />
                            </font></Button>
                      </children>
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Pane>
-                  <Pane fx:id="limitedCoverPane" prefHeight="153.0" prefWidth="328.0" styleClass="insurance" stylesheets="@../css/insurance.css">
+                  <Pane fx:id="limitedCoverPane" prefHeight="153.0" prefWidth="328.0">
                      <children>
                         <Label layoutX="14.0" layoutY="14.0" text="LIMITED COVER">
                            <font>
-                              <Font name="System Bold" size="18.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
                         <Label layoutX="14.0" layoutY="38.0" prefHeight="18.0" prefWidth="187.0" text="\$2000 deposit, $2000 excess">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="Arial" size="14.0" />
                            </font>
                         </Label>
                         <Label layoutX="231.0" layoutY="12.0" prefHeight="26.0" prefWidth="69.0" text="\$0 /day">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Label>
                         <Button fx:id="limitedBtn" layoutX="12.0" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#onSelectLimited" prefHeight="26.0" prefWidth="307.0" styleClass="button-insurance" text="SELECT" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="13.0" />
+                              <Font name="Arial Bold" size="13.0" />
                            </font></Button>
                      </children>
                      <VBox.margin>
@@ -111,9 +114,9 @@
             </VBox>
             <VBox alignment="TOP_CENTER" layoutX="412.0" layoutY="131.0" prefHeight="468.0" prefWidth="276.0" styleClass="summary" stylesheets="@../css/insurance.css">
                <children>
-                  <Label prefHeight="16.0" prefWidth="154.0" text="Booking Summary" textAlignment="CENTER">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="23.0" prefWidth="247.0" text="Booking Summary" textAlignment="CENTER">
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="Arial Bold" size="20.0" />
                      </font>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -121,24 +124,27 @@
                   </Label>
                   <HBox alignment="CENTER" prefHeight="5.0" prefWidth="275.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="161.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="161.0" stylesheets="@../css/font.css">
                            <children>
                               <Label text="Pick up">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="pickUpLbl" text="Label" textFill="#565656" />
+                              <Label fx:id="pickUpLbl" text="Label" textFill="#565656">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font></Label>
                            </children>
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="159.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="159.0" stylesheets="@../css/font.css">
                            <children>
                               <Label text="Return">
                                  <font>
-                                    <Font name="System Bold" size="13.0" />
+                                    <Font name="Arial Bold" size="13.0" />
                                  </font>
                               </Label>
                               <Label fx:id="returnLbl" text="Label" textFill="#565656" />
@@ -152,7 +158,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="TOP_CENTER" prefHeight="31.0" prefWidth="275.0">
+                  <HBox alignment="TOP_CENTER" prefHeight="31.0" prefWidth="275.0" stylesheets="@../css/font.css">
                      <children>
                         <Label fx:id="brandLbl" text="Brand">
                            <font>
@@ -184,7 +190,7 @@
                            </VBox.margin>
                         </Rectangle>
                      </children></VBox>
-                  <HBox prefHeight="22.0" prefWidth="275.0">
+                  <HBox prefHeight="22.0" prefWidth="275.0" stylesheets="@../css/font.css">
                      <children>
                         <Label text="Daily rate:">
                            <font>
@@ -235,7 +241,7 @@
                      <children>
                         <VBox prefHeight="160.0" prefWidth="275.0">
                            <children>
-                              <Label prefHeight="29.0" prefWidth="119.0" text="Insurance Details:">
+                              <Label prefHeight="29.0" prefWidth="128.0" stylesheets="@../css/font.css" text="Insurance Details:">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -243,7 +249,7 @@
                                     <Insets left="10.0" top="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <HBox prefHeight="1.0" prefWidth="275.0">
+                              <HBox prefHeight="1.0" prefWidth="275.0" stylesheets="@../css/font.css">
                                  <children>
                                     <Label fx:id="insuranceTypeLbl" text="Select an insurance type" textFill="#565656">
                                        <font>
@@ -275,14 +281,14 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="57.0" prefWidth="275.0" style="-fx-background-color: black; -fx-background-radius: 0 0 10 10;">
+                  <HBox alignment="CENTER" prefHeight="57.0" prefWidth="275.0" style="-fx-background-color: black; -fx-background-radius: 0 0 10 10;" stylesheets="@../css/font.css">
                      <children>
-                        <Label prefHeight="22.0" prefWidth="105.0" text="Total Amount:" textFill="WHITE">
+                        <Label prefHeight="22.0" prefWidth="137.0" text="Total Amount:" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
                            <HBox.margin>
-                              <Insets right="50.0" />
+                              <Insets right="30.0" />
                            </HBox.margin>
                         </Label>
                         <Label text="\$" textFill="WHITE">
@@ -302,7 +308,10 @@
                   </HBox>
                </children>
             </VBox>
-            <Button layoutX="468.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="35.0" prefWidth="74.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Go Back" />
+            <Button layoutX="468.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="35.0" prefWidth="74.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Go Back">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font></Button>
             <HBox alignment="CENTER" layoutX="-1.0" layoutY="78.0" prefHeight="41.0" prefWidth="715.0" styleClass="nav" stylesheets="@../css/findvehicle.css">
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0">
@@ -312,7 +321,7 @@
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="5.0" prefHeight="31.0" prefWidth="143.0" styleClass="normal-page" text="1. FIND VEHICLE">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="Arial Bold" size="16.0" />
                            </font>
                         </Label>
                      </children>
@@ -321,7 +330,7 @@
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="5.0" prefHeight="31.0" prefWidth="169.0" styleClass="active-page" stylesheets="@../css/findvehicle.css" text="2. INSURANCE">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="Arial Bold" size="16.0" />
                            </font>
                         </Label>
                      </children>
@@ -333,7 +342,7 @@
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="5.0" prefHeight="31.0" prefWidth="173.0" styleClass="normal-page" text="3. CONFIRMATION">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="Arial Bold" size="16.0" />
                            </font>
                         </Label>
                      </children>

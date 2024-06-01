@@ -54,7 +54,6 @@ public class InsuranceController extends Controller {
    */
   public void initialize() {
     setupBindings();
-    setupHoverEffects();
     selectInitialInsuranceOption();
   }
 
@@ -75,31 +74,6 @@ public class InsuranceController extends Controller {
     vehicleImageView.imageProperty().bind(reservationManager.vehicleImageProperty());
   }
 
-  /** Sets up hover effects for the insurance option panes. */
-  private void setupHoverEffects() {
-    setupHoverEffect(basicCoverPane);
-    setupHoverEffect(limitedCoverPane);
-    setupHoverEffect(premiumCoverPane);
-  }
-
-  /**
-   * Sets up a hover effect for the given pane.
-   *
-   * @param pane the pane to apply the hover effect to
-   */
-  private void setupHoverEffect(Pane pane) {
-    pane.setOnMouseEntered(
-        event -> {
-          pane.setScaleX(1.05);
-          pane.setScaleY(1.05);
-        });
-
-    pane.setOnMouseExited(
-        event -> {
-          pane.setScaleX(1.0);
-          pane.setScaleY(1.0);
-        });
-  }
 
   /** Sets the initial insurance option to Limited Cover. */
   private void selectInitialInsuranceOption() {
