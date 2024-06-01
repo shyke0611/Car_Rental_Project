@@ -4,6 +4,7 @@
 .anchor-pane {
     -fx-background-color: #4b2cb9;
     -fx-background-radius: 0 20 20 0;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 /* Search Bar Styles */
@@ -13,16 +14,20 @@
 
 #searchChoiceBox {
     -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 #searchChoiceBox .label {
     -fx-text-fill: black;
     -fx-font-size: 11px;
     -fx-alignment: center;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
+    
 }
 
 #searchChoiceBox .list-cell {
     -fx-text-fill: black;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 #searchHbox {
@@ -30,6 +35,7 @@
     -fx-border-radius: 20px;
     -fx-background-radius: 20;
     -fx-effect: dropshadow(three-pass-box, #0000001a, 10, 0, 0, 0);
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 /* Header Styles */
@@ -38,6 +44,7 @@
     -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-padding: 10 0 20 0;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 /* Table Styles */
@@ -47,12 +54,14 @@
     -fx-border-width: 1;
     -fx-background-radius: 10px;
     -fx-effect: dropshadow(three-pass-box, #0000001a, 10, 0, 0, 0);
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 .table-view .column-header {
     -fx-background-color: #ffffff;
     -fx-border-color: #dddddd;
     -fx-border-width: 0 0 1 0;
+    
 }
 
 .table-view .column-header .label {
@@ -60,12 +69,14 @@
     -fx-text-fill: black;
     -fx-font-weight: bold;
     -fx-padding: 5 0;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 .table-cell {
     -fx-text-fill: #333333;
     -fx-font-size: 11px;
     -fx-alignment: center;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 /* Scroll Bar Styles */

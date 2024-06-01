@@ -1,13 +1,13 @@
 /* Views.css for the client and vehicle pages for adding, deleting, and updating */
 
 /* General Styles */
-#vehiclePane,
-#clientUpdatePane {
-    -fx-background-color: #ffffff;
-    -fx-background-radius: 20px;
-    -fx-padding: 20px;
-    -fx-effect: dropshadow(three-pass-box, #0000004d, 15, 0, 0, 0);
+#vehiclePane .label,
+#clientUpdatePane .label {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-font-weight: bold;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
+
 
 #vehiclePane .text-field,
 #clientUpdatePane .text-field {
