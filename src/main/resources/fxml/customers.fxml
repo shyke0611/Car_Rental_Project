@@ -84,11 +84,11 @@
             <Label layoutX="45.0" layoutY="120.0" text="Welcome Admin" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane2" layoutX="184.0" layoutY="-5.0" prefHeight="609.0" prefWidth="718.0">
+      <AnchorPane fx:id="pane2" layoutX="184.0" layoutY="-5.0" prefHeight="609.0" prefWidth="718.0" stylesheets="@../css/font.css">
          <children>
-            <Label layoutX="50.0" layoutY="25.0" prefHeight="39.0" prefWidth="243.0" text="View Customers">
+            <Label layoutX="50.0" layoutY="25.0" prefHeight="39.0" prefWidth="309.0" text="View Customers">
                <font>
-                  <Font name="System Bold Italic" size="32.0" />
+                  <Font name="Arial Bold" size="32.0" />
                </font>
             </Label>
             <TableView fx:id="tableClient" layoutX="22.0" layoutY="126.0" prefHeight="463.0" prefWidth="674.0" stylesheets="@../css/navbar.css">
