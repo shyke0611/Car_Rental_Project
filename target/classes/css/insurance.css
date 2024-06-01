@@ -42,3 +42,11 @@
     -fx-background-radius: 10 10 0 0;
     -fx-effect: dropshadow(three-pass-box, #ffffff36, 15, 0, 0, 0);
 }
+/* styles for all the labels */
+.insurance .label,
+.summary .label,
+.button-insurance .label,
+.selected-button .label,
+.header .label {
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
+}

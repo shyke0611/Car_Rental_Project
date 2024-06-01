@@ -3,6 +3,7 @@
 /* General Styles for AnchorPane */
 .anchor-pane {
     -fx-background-color: #4b2cb9;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 /* Styles for User Input Fields */
@@ -10,12 +11,14 @@
     -fx-background-color: rgba(0, 0, 0, 0);
     -fx-border-color: #000000;
     -fx-border-width: 0px 0px 2px 0px;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 /* Styles for Standard Buttons */
 .button {
     -fx-background-color: #ecd62c;
     -fx-text-fill: #ffffff;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 .button:hover {
@@ -31,6 +34,7 @@
 .custom-button {
     -fx-background-color: rgba(0, 0, 0, 0);
     -fx-text-fill: #1c66cd;
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
 
 .custom-button:hover {

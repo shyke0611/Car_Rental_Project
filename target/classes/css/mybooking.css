@@ -7,4 +7,9 @@
     -fx-border-radius: 20px;
     -fx-background-radius: 10;
     -fx-effect: dropshadow(three-pass-box, #0000002e, 15, 0, 0, 0);
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
+}
+
+.boxes .label {
+    -fx-font-family: 'Arial', 'Helvetica', 'sans-serif';
 }
