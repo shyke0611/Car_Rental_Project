@@ -95,8 +95,12 @@ To get a local copy up and running, follow these simple steps.
 ### Prerequisites
 
 You will need the following software installed:
-* Java 11
-* Maven
+* [Java Development Kit (JDK)](https://www.oracle.com/java/technologies/javase-downloads.html)
+* [Java Development Kit (JDK)](https://git-scm.com/downloads)
+* [Maven](https://maven.apache.org/download.cgi)
+
+* [Set up Maven Environment for Windows](https://www.qamadness.com/knowledge-base/how-to-install-maven-and-configure-environment-variables/)
+* [Set up Maven Environment for Mac/Linux](https://www.baeldung.com/install-maven-on-windows-linux-mac)
 
 ### Installation
 
@@ -108,7 +112,7 @@ You will need the following software installed:
 
 2. **Navigate to the project directory**:
      ```sh
-     cd repo_name
+     cd Car_Rental_Project
      ```
 
 3. **Install Maven dependencies**:
@@ -141,13 +145,13 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 ## Reflection
 
 #### Context and Motivation
-This Car Rental Booking and Management System was a month-long personal project aimed at refining my Java skills. I undertook this project to deepen my understanding of software development and user experience (UX) design principles. It provided an excellent opportunity to expand my knowledge in both technical and UX aspects.
+This Car Rental Booking and Management System was a month long personal project aimed at refining my Java skills. I undertook this project to deepen my understanding of software development using java and user experience (UX) design principles. It provided an excellent opportunity to expand my knowledge in both technical and UX aspects.
 
 #### Project Goals
 The goal was to build a comprehensive system for managing car rentals, bookings, clients, and insurance options. I aimed to create a robust application using JavaFX for the user interface and MySQL for the database backend, ensuring a seamless and user-friendly experience.
 
 #### Challenges and Learning Experience
-A major challenge was ensuring thread safety and preventing race conditions, requiring extensive research into synchronization mechanisms for managing concurrent operations. This was crucial due to the simultaneous interactions by multiple users, necessitating data integrity. Addressing these issues enhanced my understanding of Java concurrency and improved my problem-solving skills.
+A major challenge was ensuring thread safety and preventing race conditions, requiring extensive research into synchronization mechanisms for managing concurrent operations. Addressing these issues enhanced my understanding of Java concurrency and improved my problem-solving skills.
 
 
 <!-- CONTACT -->
