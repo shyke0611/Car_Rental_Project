@@ -133,7 +133,9 @@ Entity-Relation Diagram of How Project was Planned:
 ### Quick Demo of Project ###
 
 **For Mac Users:**
-[Download CarRentalApp.pkg](https://github.com/yourusername/yourrepository/releases/download/v1.0/CarRentalApp.pkg)
+[Download CarRentalApp.pkg](https://github.com/shyke0611/Car_Rental_Project/releases/download/v1.0.0/CarRentalApp-1.0.pkg.zip)
+
+
 
 This .pkg file is specifically designed for macOS users to easily install and run the application.
 
@@ -190,7 +192,7 @@ Project Link - [https://github.com/shyke0611/Car_Rental_Project.git](https://git
 [license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: www.linkedin.com/in/andrew-hk-shin
+[linkedin-url]: https://www.linkedin.com/in/andrew-hk-shin
 [findVehicles]: project_images/findVehicles.png
 [manageVehicles]: project_images/manageVehicles.png
 [ERD]: project_images/ERD.png
