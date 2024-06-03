@@ -139,6 +139,10 @@ Clone the project repository, move to the project directory, and then run the co
    ```
 
 **For Windows Users:**
+ ```sh
+    custom-runtime-windows/bin/java -jar target/car_rental_book_and_manage-1.0.jar
+   ```
+  
 
 
 
