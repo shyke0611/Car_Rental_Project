@@ -135,7 +135,7 @@ Clone the project repository, move to the project directory, and then run the co
 
 **For Mac Users:**
   ```sh
-    ./custom-runtime-macos/bin/java -jar target/car_rental_book_and_manage-1.0-jar-with-dependencies.jar
+    ./custom-runtime-macos/bin/java -jar target/car_rental_book_and_manage-1.0.jar
    ```
 
 **For Windows Users:**
