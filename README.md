@@ -46,7 +46,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The Car Rental Booking and Management System is a comprehensive application designed to streamline the management of car rentals, bookings, clients, and insurance options. This system is built using JavaFX and CSS for the user interface and MySQL for the database backend, providing a robust and scalable solution.
+The Car Rental Booking and Management System is a comprehensive application designed to streamline the management of car rentals, bookings, clients, and insurance options. This system is built using JavaFX and CSS for the user interface, Scene Builder for the frontend, and MySQL for the database backend, providing a robust and scalable solution.
 
 
 [![find Vehicle Page][findVehicles]](project_images/findVehicles.png)
@@ -127,10 +127,19 @@ You will need the following software installed:
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+Entity-Relation Diagram of How Project was Planned:
+[![Manage Vehicle Page][ERD]](project_images/ERD.png)
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples, and demos work well in this space. You may also link to more resources.
+### Quick Demo of Project ###
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+**For Mac Users:**
+[Download CarRentalApp.pkg](https://github.com/yourusername/yourrepository/releases/download/v1.0/CarRentalApp.pkg)
+
+This .pkg file is specifically designed for macOS users to easily install and run the application.
+
+**For Windows Users:**
+
+
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -157,7 +166,7 @@ A major challenge was ensuring thread safety and preventing race conditions, req
 <!-- CONTACT -->
 ## Contact
 
-Email - shyke0611@gmail.com
+Email - hyungkenine2003@gmail.com
 
 Project Link - [https://github.com/shyke0611/Car_Rental_Project.git](https://github.com/shyke0611/Car_Rental_Project.git)
 
@@ -181,6 +190,7 @@ Project Link - [https://github.com/shyke0611/Car_Rental_Project.git](https://git
 [license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url]: www.linkedin.com/in/andrew-hk-shin
 [findVehicles]: project_images/findVehicles.png
 [manageVehicles]: project_images/manageVehicles.png
+[ERD]: project_images/ERD.png
