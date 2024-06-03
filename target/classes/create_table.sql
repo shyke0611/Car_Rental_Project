@@ -1,3 +1,5 @@
+-- Rental Tables Creation
+
 USE freedb_carrentalproject;
 
 CREATE TABLE CLIENT(
