@@ -130,14 +130,13 @@ You will need the following software installed:
 Entity-Relation Diagram of How Project was Planned:
 [![Manage Vehicle Page][ERD]](project_images/ERD.png)
 
-### Quick Demo of Project ###
+### Quick Demo of Project Using Custom Runtime ###
+Clone the project repository, move to the project directory, and then run the code below:
 
 **For Mac Users:**
-[Download CarRentalApp.pkg](https://github.com/shyke0611/Car_Rental_Project/releases/download/v1.0.0/CarRentalApp-1.0.pkg.zip)
-
-
-
-This .pkg file is specifically designed for macOS users to easily install and run the application.
+  ```sh
+    ./custom-runtime-macos/bin/java -jar target/car_rental_book_and_manage-1.0-jar-with-dependencies.jar
+   ```
 
 **For Windows Users:**
 
