@@ -3,7 +3,7 @@ package car_rental_book_and_manage.Objects;
 /** Represents a vehicle in the car rental system. */
 public class Vehicle {
 
-  private String model, licensePlate, brand, fuelType, colour, imagePath;
+  private String model, licensePlate, brand, fuelType, colour, imagePath, economy;
   private double pricePerDay;
   private int vehicleId, makeYear;
   private boolean availability;
@@ -23,6 +23,7 @@ public class Vehicle {
    * @param fuelType the fuel type of the vehicle
    * @param colour the color of the vehicle
    * @param imagePath the path to the vehicle's image
+   * @param economy the fuel economy of the vehicle
    */
   public Vehicle(
       int vehicleId,
@@ -33,7 +34,8 @@ public class Vehicle {
       String brand,
       String fuelType,
       String colour,
-      String imagePath) {
+      String imagePath,
+      String economy) {
     this.vehicleId = vehicleId;
     this.model = model;
     this.makeYear = makeYear;
@@ -43,6 +45,7 @@ public class Vehicle {
     this.colour = colour;
     this.fuelType = fuelType;
     this.imagePath = imagePath;
+    this.economy = economy;
   }
 
   /**
@@ -56,6 +59,7 @@ public class Vehicle {
    * @param fuelType the fuel type of the vehicle
    * @param colour the color of the vehicle
    * @param imagePath the path to the vehicle's image
+   * @param economy the fuel economy of the vehicle
    */
   public Vehicle(
       int makeYear,
@@ -65,7 +69,8 @@ public class Vehicle {
       String brand,
       String fuelType,
       String colour,
-      String imagePath) {
+      String imagePath,
+      String economy) {
     this.model = model;
     this.makeYear = makeYear;
     this.licensePlate = licensePlate;
@@ -74,6 +79,7 @@ public class Vehicle {
     this.colour = colour;
     this.fuelType = fuelType;
     this.imagePath = imagePath;
+    this.economy = economy;
   }
 
   /**
@@ -254,5 +260,23 @@ public class Vehicle {
    */
   public void setImage(String imagePath) {
     this.imagePath = imagePath;
+  }
+
+   /**
+   * Gets the fuel economy of the vehicle.
+   *
+   * @return the fuel economy of the vehicle
+   */
+  public String getEconomy() {
+    return economy;
+  }
+
+  /**
+   * Sets the fuel economy of the vehicle.
+   *
+   * @param economy the fuel economy of the vehicle
+   */
+  public void setEconomy(String economy) {
+    this.economy = economy;
   }
 }

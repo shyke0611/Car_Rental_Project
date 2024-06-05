@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.MyBookingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.MyBookingController">
    <children>
       <AnchorPane layoutX="-1.0" layoutY="-2.0" prefHeight="606.0" prefWidth="181.0" styleClass="anchor-pane" stylesheets="@../css/navbar.css">
          <children>
@@ -61,7 +61,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="189.0" layoutY="-41.0" prefHeight="645.0" prefWidth="716.0" styleClass="mainanchor-pane">
+      <AnchorPane layoutX="217.0" layoutY="-41.0" prefHeight="645.0" prefWidth="768.0" styleClass="mainanchor-pane">
          <children>
             <Label layoutX="250.0" layoutY="263.0" />
             <VBox fx:id="bookingDetailsVBox" alignment="TOP_CENTER" layoutX="45.0" layoutY="301.0" prefHeight="227.0" prefWidth="282.0" styleClass="boxes" stylesheets="@../css/mybooking.css">
@@ -281,7 +281,7 @@
                   </HBox>
                </children>
             </VBox>
-            <Label layoutX="37.0" layoutY="66.0" prefHeight="39.0" prefWidth="485.0" stylesheets="@../css/font.css" text="My Booking">
+            <Label layoutX="2.0" layoutY="66.0" prefHeight="39.0" prefWidth="520.0" stylesheets="@../css/font.css" text="My Booking">
                <font>
                   <Font name="Arial Bold" size="32.0" />
                </font>

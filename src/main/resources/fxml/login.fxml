@@ -12,11 +12,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.LoginController">
    <left>
-      <AnchorPane prefHeight="600.0" prefWidth="297.0" styleClass="anchor-pane" stylesheets="@../css/login.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="600.0" prefWidth="235.0" styleClass="anchor-pane" stylesheets="@../css/login.css" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="320.0" fitWidth="300.0" layoutX="-2.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="300.0" fitWidth="266.0" layoutX="-2.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images%20and%20attribution/logo.png" />
                </image>
@@ -24,7 +24,7 @@
          </children></AnchorPane>
    </left>
    <right>
-      <AnchorPane prefHeight="600.0" prefWidth="639.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="600.0" prefWidth="664.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="username" layoutX="218.0" layoutY="216.0" prefHeight="28.0" prefWidth="192.0" promptText="User Name" styleClass="user-fields" stylesheets="@../css/login.css">
                <font>
@@ -65,7 +65,7 @@
                   <Image url="@../images%20and%20attribution/Yellow_Ford_Mustang.png" />
                </image>
             </ImageView>
-            <Button fx:id="adminBtn" layoutX="495.0" layoutY="555.0" mnemonicParsing="false" onMouseClicked="#onAdmin" styleClass="custom-button" stylesheets="@../css/login.css" text="Admin Login">
+            <Button fx:id="adminBtn" layoutX="520.0" layoutY="555.0" mnemonicParsing="false" onMouseClicked="#onAdmin" styleClass="custom-button" stylesheets="@../css/login.css" text="Admin Login">
                <font>
                   <Font name="Arial" size="15.0" />
                </font>

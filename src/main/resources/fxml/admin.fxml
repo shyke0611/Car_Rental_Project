@@ -14,26 +14,26 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/navbar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" stylesheets="@../css/navbar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.AdminController">
    <children>
-      <AnchorPane layoutX="185.0" layoutY="-5.0" prefHeight="609.0" prefWidth="716.0" stylesheets="@../css/font.css">
+      <AnchorPane layoutX="183.0" layoutY="-5.0" prefHeight="609.0" prefWidth="800.0" stylesheets="@../css/font.css">
          <children>
-            <Label layoutX="40.0" layoutY="55.0" prefHeight="39.0" prefWidth="395.0" text="Welcome To MRM Rentals">
+            <Label layoutX="63.0" layoutY="55.0" prefHeight="39.0" prefWidth="372.0" text="Welcome To MRM Rentals">
                <font>
                   <Font name="Arial Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="40.0" layoutY="270.0" prefHeight="39.0" prefWidth="264.0" text="Analytics Tracking">
+            <Label layoutX="68.0" layoutY="270.0" prefHeight="39.0" prefWidth="236.0" text="Analytics Tracking">
                <font>
                   <Font name="Arial Bold" size="20.0" />
                </font>
             </Label>
-            <HBox layoutX="38.0" layoutY="319.0" prefHeight="268.0" prefWidth="401.0" styleClass="graphbox" stylesheets="@../css/dashboard.css">
+            <HBox layoutX="67.0" layoutY="319.0" prefHeight="268.0" prefWidth="401.0" styleClass="graphbox" stylesheets="@../css/dashboard.css">
                <children>
                   <PieChart fx:id="piechart" />
                </children>
             </HBox>
-            <HBox layoutX="39.0" layoutY="97.0" prefHeight="140.0" prefWidth="644.0">
+            <HBox layoutX="65.0" layoutY="97.0" prefHeight="140.0" prefWidth="687.0">
                <children>
                   <AnchorPane prefHeight="150.0" prefWidth="200.0" styleClass="block-one" stylesheets="@../css/dashboard.css">
                      <children>
@@ -64,7 +64,7 @@
                         </DropShadow>
                      </effect>
                      <HBox.margin>
-                        <Insets left="20.0" />
+                        <Insets left="30.0" />
                      </HBox.margin>
                   </AnchorPane>
                   <AnchorPane prefHeight="166.0" prefWidth="200.0" styleClass="block-three" stylesheets="@../css/dashboard.css">
@@ -90,12 +90,12 @@
                         </DropShadow>
                      </effect>
                      <HBox.margin>
-                        <Insets left="20.0" />
+                        <Insets left="30.0" />
                      </HBox.margin>
                   </AnchorPane>
                </children>
             </HBox>
-            <AnchorPane layoutX="474.0" layoutY="325.0" prefHeight="261.0" prefWidth="204.0" styleClass="block-three" stylesheets="@../css/dashboard.css">
+            <AnchorPane layoutX="525.0" layoutY="325.0" prefHeight="261.0" prefWidth="204.0" styleClass="block-three" stylesheets="@../css/dashboard.css">
                <children>
                   <Label layoutX="20.0" layoutY="101.0" text="Events">
                      <font>
