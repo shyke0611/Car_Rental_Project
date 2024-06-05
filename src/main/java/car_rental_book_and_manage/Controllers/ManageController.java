@@ -161,9 +161,9 @@ public class ManageController extends Controller {
     setUpTableColumn(colBrand, "brand", 100);
     setUpTableColumn(colReg, "licensePlate", 65);
     setUpTableColumn(colDailyRate, "pricePerDay", 80);
-    setUpTableColumn(colColour, "colour", 75);
+    setUpTableColumn(colColour, "colour", 72);
     setUpTableColumn(colFuel, "fuelType", 75);
-    setUpTableColumn(colEconomy, "economy", 85);
+    setUpTableColumn(colEconomy, "economy", 99);
     setUpAvailabilityColumn();
     setUpViewColumn();
     configureTable();
@@ -202,7 +202,7 @@ public class ManageController extends Controller {
                 }
               }
             });
-    colAvail.setPrefWidth(75);
+    colAvail.setPrefWidth(73);
     colAvail.setResizable(false);
   }
 
@@ -242,6 +242,8 @@ public class ManageController extends Controller {
                 setGraphic(empty ? null : viewButton);
               }
             });
+    colView.setPrefWidth(50);
+    colView.setResizable(false);
   }
 
   /**

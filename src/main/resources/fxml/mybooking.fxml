@@ -305,7 +305,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="noResBox" layoutX="96.0" layoutY="186.0" prefHeight="228.0" prefWidth="502.0" styleClass="pane1" stylesheets="@../css/confirmation.css">
+            <Pane fx:id="noResBox" layoutX="100.0" layoutY="186.0" prefHeight="228.0" prefWidth="502.0" styleClass="pane1" stylesheets="@../css/confirmation.css">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-4.0" layoutY="22.0" prefHeight="27.0" prefWidth="508.0" text="No Reservations Made" textFill="#d01a1a">
                      <font>

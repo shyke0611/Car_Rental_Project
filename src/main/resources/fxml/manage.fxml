@@ -85,7 +85,7 @@
             <Label layoutX="45.0" layoutY="120.0" text="Welcome Admin" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane2" layoutX="173.0" layoutY="-5.0" prefHeight="609.0" prefWidth="727.0" stylesheets="@../css/font.css">
+      <AnchorPane fx:id="pane2" layoutX="173.0" layoutY="-5.0" prefHeight="609.0" prefWidth="807.0" stylesheets="@../css/font.css">
          <children>
             <HBox fx:id="searchHbox" alignment="CENTER" layoutX="20.0" layoutY="78.0" prefHeight="30.0" prefWidth="379.0" stylesheets="@../css/navbar.css">
                <children>
@@ -114,7 +114,7 @@
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font></Button>
-            <TableView fx:id="tableVehicle" layoutX="15.0" layoutY="137.0" prefHeight="463.0" prefWidth="787.0" stylesheets="@../css/navbar.css">
+            <TableView fx:id="tableVehicle" layoutX="14.0" layoutY="137.0" prefHeight="463.0" prefWidth="788.0" stylesheets="@../css/navbar.css">
               <columns>
                 <TableColumn fx:id="colId" editable="false" prefWidth="50" sortable="false" text="Id" />
                   <TableColumn fx:id="colBrand" editable="false" prefWidth="100" sortable="false" text="Brand" />
@@ -123,9 +123,9 @@
                   <TableColumn fx:id="colReg" editable="false" prefWidth="95.24761962890625" sortable="false" text="Registration" />
                   <TableColumn fx:id="colColour" editable="false" prefWidth="80.2523193359375" sortable="false" text="Colour" />
                   <TableColumn fx:id="colFuel" editable="false" prefWidth="75" sortable="false" text="Fuel" />
-                  <TableColumn fx:id="colEconomy" editable="false" prefWidth="82.90509033203125" sortable="false" text="Economy" />
-                  <TableColumn fx:id="colDailyRate" editable="false" prefWidth="70.5948486328125" sortable="false" text="Daily_rate" />
-                  <TableColumn fx:id="colAvail" editable="false" prefWidth="96.95147705078125" sortable="false" text="available" />
+                  <TableColumn fx:id="colEconomy" editable="false" prefWidth="100.51373291015625" sortable="false" text="Economy L/100km" />
+                  <TableColumn fx:id="colDailyRate" editable="false" prefWidth="81.88995361328125" sortable="false" text="Daily_rate $" />
+                  <TableColumn fx:id="colAvail" editable="false" prefWidth="69.11004638671875" sortable="false" text="available" />
                   <TableColumn fx:id="colView" prefWidth="75" text="View" />
               </columns>
             </TableView>
@@ -225,7 +225,11 @@
                               <Insets left="25.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtEconomy" prefHeight="25.0" prefWidth="179.0" promptText="Eg) XXX l/km" />
+                        <TextField fx:id="txtEconomy" prefHeight="25.0" prefWidth="179.0" promptText="Eg) XXX L/100kms">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextField>
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" />
@@ -256,7 +260,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="deleteVehicleBtn" layoutX="415.0" layoutY="380.0" mnemonicParsing="false" onMouseClicked="#onDeleteVehicle" prefHeight="39.0" prefWidth="122.0" styleClass="button-action" stylesheets="@../css/view.css" text="Delete">
+            <Button fx:id="deleteVehicleBtn" layoutX="415.0" layoutY="410.0" mnemonicParsing="false" onMouseClicked="#onDeleteVehicle" prefHeight="39.0" prefWidth="122.0" styleClass="button-action" stylesheets="@../css/view.css" text="Delete">
                <graphic>
                   <FontAwesomeIconView fill="RED" glyphName="TRASH" selectionFill="RED" size="26">
                      <font>
@@ -265,7 +269,7 @@
                   </FontAwesomeIconView>
                </graphic>
             </Button>
-            <StackPane layoutX="424.0" layoutY="350.0" prefHeight="39.0" prefWidth="109.0">
+            <StackPane layoutX="424.0" layoutY="380.0" prefHeight="39.0" prefWidth="109.0">
                <children>
                   <Button fx:id="updateVehicleBtn" mnemonicParsing="false" onMouseClicked="#onUpdateVehicle" prefHeight="34.0" prefWidth="116.0" stylesheets="@../css/view.css" text="Update ">
                      <graphic>
