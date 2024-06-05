@@ -24,7 +24,7 @@
          </children></AnchorPane>
    </left>
    <right>
-      <AnchorPane prefHeight="600.0" prefWidth="667.0" stylesheets="@../css/font.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="600.0" prefWidth="664.0" stylesheets="@../css/font.css" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="createAccBtn" layoutX="212.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#onCreateAccount" prefHeight="34.0" prefWidth="193.0" stylesheets="@../css/login.css" text="Sign Up">
                <font>
@@ -51,7 +51,7 @@
                   <Font name="Arial" size="16.0" />
                </font>
             </Text>
-            <ImageView fitHeight="193.0" fitWidth="425.0" layoutX="-264.0" layoutY="338.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="193.0" fitWidth="422.0" layoutX="-264.0" layoutY="338.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images%20and%20attribution/Yellow_Ford_Mustang.png" />
                </image>

@@ -22,8 +22,8 @@ public class VehicleDB implements VehicleDAO {
     App.vehicledbExecutor.execute(
         () -> {
           String query =
-              "INSERT INTO VEHICLE (Brand, Model, Make_year, Reg_no, Colour, Fuel_option,"
-                  + " Daily_rate, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+              "INSERT INTO VEHICLE (Brand, Model, Make_year, Reg_no, Colour, Fuel_option, Fuel_economy,"
+                  + " Daily_rate, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
           try (Connection connection = DataManager.getConnection()) {
             connection.setAutoCommit(false);
             try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -54,12 +54,12 @@ public class VehicleDB implements VehicleDAO {
         () -> {
           String query =
               "UPDATE VEHICLE SET Brand = ?, Model = ?, Make_year = ?, Reg_no = ?, Colour = ?,"
-                  + " Fuel_option = ?, Daily_rate = ?, image_path = ? WHERE V_Id = ?";
+                  + " Fuel_option = ?, Fuel_economy = ?, Daily_rate = ?, image_path = ? WHERE V_Id = ?";
           try (Connection connection = DataManager.getConnection()) {
             connection.setAutoCommit(false);
             try (PreparedStatement statement = connection.prepareStatement(query)) {
               setVehicleStatementParams(statement, vehicle);
-              statement.setInt(9, vehicle.getVehicleId());
+              statement.setInt(10, vehicle.getVehicleId());
               statement.executeUpdate();
               connection.commit();
               retrieveVehicleByIdToUpdate(vehicle.getVehicleId());
@@ -291,8 +291,9 @@ public class VehicleDB implements VehicleDAO {
     statement.setString(4, vehicle.getLicensePlate());
     statement.setString(5, vehicle.getColour());
     statement.setString(6, vehicle.getFuelType());
-    statement.setDouble(7, vehicle.getPricePerDay());
-    statement.setString(8, vehicle.getImage());
+    statement.setString(7, vehicle.getEconomy());
+    statement.setDouble(8, vehicle.getPricePerDay());
+    statement.setString(9, vehicle.getImage());
   }
 
   /**
@@ -311,6 +312,7 @@ public class VehicleDB implements VehicleDAO {
     vehicle.setLicensePlate(resultSet.getString("Reg_no"));
     vehicle.setColour(resultSet.getString("Colour"));
     vehicle.setFuelType(resultSet.getString("Fuel_option"));
+    vehicle.setEconomy(resultSet.getString("Fuel_economy"));
     vehicle.setPricePerDay(resultSet.getDouble("Daily_rate"));
     vehicle.setAvailability(resultSet.getBoolean("Availability"));
     vehicle.setImage(resultSet.getString("image_path"));
