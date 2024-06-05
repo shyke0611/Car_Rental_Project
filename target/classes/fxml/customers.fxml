@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="customersPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/navbar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.CustomersController">
+<AnchorPane fx:id="customersPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" stylesheets="@../css/navbar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.CustomersController">
    <children>
       <AnchorPane fx:id="pane1" layoutX="-1.0" layoutY="-2.0" prefHeight="606.0" prefWidth="181.0" styleClass="anchor-pane" stylesheets="@../css/navbar.css">
          <children>
@@ -84,14 +84,14 @@
             <Label layoutX="45.0" layoutY="120.0" text="Welcome Admin" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane2" layoutX="184.0" layoutY="-5.0" prefHeight="609.0" prefWidth="718.0" stylesheets="@../css/font.css">
+      <AnchorPane fx:id="pane2" layoutX="184.0" layoutY="-5.0" prefHeight="609.0" prefWidth="795.0" stylesheets="@../css/font.css">
          <children>
             <Label layoutX="50.0" layoutY="25.0" prefHeight="39.0" prefWidth="309.0" text="View Customers">
                <font>
                   <Font name="Arial Bold" size="32.0" />
                </font>
             </Label>
-            <TableView fx:id="tableClient" layoutX="22.0" layoutY="126.0" prefHeight="463.0" prefWidth="674.0" stylesheets="@../css/navbar.css">
+            <TableView fx:id="tableClient" layoutX="37.0" layoutY="125.0" prefHeight="463.0" prefWidth="712.0" stylesheets="@../css/navbar.css">
                <columns>
                   <TableColumn fx:id="colId" editable="false" prefWidth="100" text="Client_id" />
                   <TableColumn fx:id="colName" editable="false" prefWidth="175.15847778320312" text="First_name" />
@@ -103,7 +103,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <HBox fx:id="searchHbox" alignment="CENTER" layoutX="20.0" layoutY="78.0" prefHeight="30.0" prefWidth="379.0" stylesheets="@../css/navbar.css">
+            <HBox fx:id="searchHbox" alignment="CENTER" layoutX="40.0" layoutY="78.0" prefHeight="30.0" prefWidth="379.0" stylesheets="@../css/navbar.css">
                <children>
                   <FontAwesomeIconView glyphName="SEARCH" wrappingWidth="14.21856689453125" />
                   <TextField fx:id="searchTxt" prefHeight="25.0" prefWidth="216.0" promptText="Search">

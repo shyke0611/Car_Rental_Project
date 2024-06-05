@@ -43,6 +43,7 @@ public class ManageController extends Controller {
   @FXML private TableColumn<Vehicle, Integer> colMakeYear;
   @FXML private TableColumn<Vehicle, String> colModel;
   @FXML private TableColumn<Vehicle, String> colReg;
+  @FXML private TableColumn<Vehicle, String> colEconomy;
   @FXML private TableView<Vehicle> tableVehicle;
   @FXML private Button cancelBtn;
   @FXML private ChoiceBox<String> choiceFuel;
@@ -59,6 +60,7 @@ public class ManageController extends Controller {
   @FXML private TextField txtModel;
   @FXML private TextField txtRegNumber;
   @FXML private TextField txtYear;
+  @FXML private TextField txtEconomy;
   @FXML private Label titleLbl;
   @FXML private Label idLbl;
   @FXML private ChoiceBox<String> searchChoiceBox;
@@ -161,6 +163,7 @@ public class ManageController extends Controller {
     setUpTableColumn(colDailyRate, "pricePerDay", 80);
     setUpTableColumn(colColour, "colour", 75);
     setUpTableColumn(colFuel, "fuelType", 75);
+    setUpTableColumn(colEconomy, "economy", 85);
     setUpAvailabilityColumn();
     setUpViewColumn();
     configureTable();
@@ -276,9 +279,11 @@ public class ManageController extends Controller {
     String year = txtYear.getText();
     String colour = txtColour.getText();
     String fuel = choiceFuel.getValue();
+    String econ = txtEconomy.getText();
 
     // Check for missing or invalid input fields
-    if (ValidationManager.isVehicleInputValid(brand, model, year, colour, dailyRate, regNo, fuel)) {
+    if (ValidationManager.isVehicleInputValid(
+        brand, model, year, colour, dailyRate, regNo, fuel, econ)) {
       AlertManager.showAlert(
           AlertType.WARNING, "Required Fields", "Please Enter All Missing Fields");
       return false;
@@ -307,6 +312,13 @@ public class ManageController extends Controller {
     if (!ValidationManager.isColourValid(colour)) {
       AlertManager.showAlert(
           AlertType.WARNING, "Colour is invalid", "Colour entered is not a valid Colour");
+      return false;
+    }
+
+    // Check fuel economy validity
+    if (!ValidationManager.isFuelEconomyValid(econ)) {
+      AlertManager.showAlert(
+          AlertType.WARNING, "Fuel Economy is invalid", "Fuel economy must be 2 or 3 digits max");
       return false;
     }
 
@@ -378,11 +390,21 @@ public class ManageController extends Controller {
     clearTextFields();
   }
 
+  /**
+   * Handles the action when a new vehicle is added.
+   *
+   * @param event The mouse event triggered by adding a new vehicle.
+   */
   @FXML
   void onAddNewVehicle(MouseEvent event) {
     handleAddAction();
   }
 
+  /**
+   * Handles the action when a vehicle is saved.
+   *
+   * @param event The mouse event triggered by saving a vehicle.
+   */
   @FXML
   void onSaveVehicle(MouseEvent event) {
     if (validateVehicleFields("save")) {
@@ -391,6 +413,11 @@ public class ManageController extends Controller {
     }
   }
 
+  /**
+   * Handles the action when a vehicle is updated.
+   *
+   * @param event The mouse event triggered by updating a vehicle.
+   */
   @FXML
   void onUpdateVehicle(MouseEvent event) {
     if (validateVehicleFields("update")) {
@@ -400,6 +427,11 @@ public class ManageController extends Controller {
     }
   }
 
+  /**
+   * Handles the action when a vehicle is deleted.
+   *
+   * @param event The mouse event triggered by deleting a vehicle.
+   */
   @FXML
   void onDeleteVehicle(MouseEvent event) {
     vehicledb.deleteVehicle(selectedVehicle);
@@ -408,12 +440,22 @@ public class ManageController extends Controller {
     showVehiclePane(false);
   }
 
+  /**
+   * Handles the action when the cancel button is clicked.
+   *
+   * @param event The mouse event triggered by canceling the current action.
+   */
   @FXML
   void onCancel(MouseEvent event) {
     clearTextFields();
     showVehiclePane(false);
   }
 
+  /**
+   * Handles the action when an image is imported.
+   *
+   * @param event The mouse event triggered by importing an image.
+   */
   @FXML
   void onImportImage(MouseEvent event) {
     vehiclePane.setDisable(true);
@@ -455,6 +497,7 @@ public class ManageController extends Controller {
     txtColour.clear();
     idLbl.setText(null);
     choiceFuel.setValue("Regular");
+    txtEconomy.clear();
     vehicleImageView.setImage(new Image("/images and attribution/importcar.png"));
   }
 
@@ -471,6 +514,7 @@ public class ManageController extends Controller {
     txtRegNumber.setText(vehicle.getLicensePlate());
     txtYear.setText(String.valueOf(vehicle.getMakeYear()));
     choiceFuel.setValue(vehicle.getFuelType());
+    txtEconomy.setText(vehicle.getEconomy());
     imageName = vehicle.getImage();
     String fullImagePath = "/images and attribution/" + imageName;
     vehicleImageView.setImage(new Image(fullImagePath));
@@ -489,6 +533,7 @@ public class ManageController extends Controller {
     String year = txtYear.getText();
     String colour = txtColour.getText();
     String fuel = choiceFuel.getValue();
+    String econ = txtEconomy.getText();
     return new Vehicle(
         Integer.parseInt(year),
         model,
@@ -497,7 +542,8 @@ public class ManageController extends Controller {
         brand,
         fuel,
         colour,
-        imageName);
+        imageName,
+        econ);
   }
 
   /**
