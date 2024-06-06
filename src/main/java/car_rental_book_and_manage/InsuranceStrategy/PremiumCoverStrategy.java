@@ -1,7 +1,7 @@
-package car_rental_book_and_manage.Insurance;
+package car_rental_book_and_manage.InsuranceStrategy;
 
-/** Represents the basic cover insurance strategy for a car rental. */
-public class BasicCoverStrategy implements InsuranceStrategy {
+/** Represents the premium cover insurance strategy for a car rental. */
+public class PremiumCoverStrategy implements InsuranceStrategy {
 
   /**
    * Gets the name of the insurance type.
@@ -10,7 +10,7 @@ public class BasicCoverStrategy implements InsuranceStrategy {
    */
   @Override
   public String getInsuranceTypeName() {
-    return "Basic Cover";
+    return "Premium Cover";
   }
 
   /**
@@ -20,10 +20,10 @@ public class BasicCoverStrategy implements InsuranceStrategy {
    */
   @Override
   public String getDescription() {
-    return "$500 EXCESS, $500 BOND\n\n"
-               + "Windscreen & Tyre: No\n"
-               + "Premium 24/7 Roadside Assistance: No\n"
-               + "Lost Key Replacement: No";
+    return "$0 EXCESS, $0 BOND\n\n"
+               + "Windscreen & Tyre: Yes\n"
+               + "Premium 24/7 Roadside Assistance: Yes\n"
+               + "Lost Key Replacement: Yes";
   }
 
   /**
@@ -33,7 +33,7 @@ public class BasicCoverStrategy implements InsuranceStrategy {
    */
   @Override
   public double getDailyCost() {
-    return 24.0;
+    return 35.0;
   }
 
   /**
@@ -43,7 +43,7 @@ public class BasicCoverStrategy implements InsuranceStrategy {
    */
   @Override
   public double getDeposit() {
-    return 500.0;
+    return 0.0;
   }
 
   /**
@@ -53,6 +53,6 @@ public class BasicCoverStrategy implements InsuranceStrategy {
    */
   @Override
   public double getExcess() {
-    return 500.0;
+    return 0.0;
   }
 }

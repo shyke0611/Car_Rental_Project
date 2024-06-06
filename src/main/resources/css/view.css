@@ -62,6 +62,10 @@ HBox {
     -fx-effect: dropshadow(three-pass-box, #0000001a, 10, 0, 0, 0);
 }
 
+HBox .text-field {
+    -fx-background-color: transparent;
+}
+
 /* ChoiceBox Styles */
 #choiceFuel {
     -fx-background-color: rgba(0, 0, 0, 0);

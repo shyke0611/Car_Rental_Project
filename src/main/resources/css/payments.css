@@ -1,0 +1,45 @@
+/* payments.css for the payments.fxml */
+
+/**
+ * Styles for the payment blocks
+ */
+ .payment-blocks {
+    -fx-background-color: #c4c2c244;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #0000002e, 15, 0, 0, 0);
+}
+
+
+.payment-blocks:hover {
+    -fx-border-color: #5e0ad4;
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(three-pass-box, #0000002e, 15, 0, 0, 0);
+    -fx-cursor: hand;
+}
+
+.payment-blocks:hover .label {
+    -fx-text-fill: #5e0ad4;
+}
+
+
+.payment-blocks:hover #card {
+    -fx-fill: #5e0ad4;
+}
+
+.payment-blocks.selected {
+    -fx-border-color: #5e0ad4;
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(three-pass-box, #0000002e, 15, 0, 0, 0);
+}
+
+.payment-blocks.selected .label {
+    -fx-text-fill: #5e0ad4;
+}
+
+
+.payment-blocks.selected #card {
+    -fx-fill: #5e0ad4;
+}

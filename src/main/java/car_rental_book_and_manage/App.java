@@ -27,6 +27,7 @@ public class App extends Application {
   public static final ExecutorService vehicledbExecutor = Executors.newFixedThreadPool(5);
   public static final ExecutorService clientdbExecutor = Executors.newFixedThreadPool(5);
   public static final ExecutorService reservationdbExecutor = Executors.newFixedThreadPool(5);
+  public static final ExecutorService paymentdbExecutor = Executors.newFixedThreadPool(5);
   private static final DataModel model = DataModel.getInstance();
   private VehicleDB v = new VehicleDB();
   private ReservationDB r = new ReservationDB();
@@ -37,6 +38,7 @@ public class App extends Application {
     bookingScheduler.stop();
     vehicledbExecutor.shutdown();
     clientdbExecutor.shutdown();
+    paymentdbExecutor.shutdown();
     reservationdbExecutor.shutdown();
     model.clearVehicles();
     model.clearClients();
@@ -94,6 +96,9 @@ public class App extends Application {
     SceneManager.addController(SceneManager.Scenes.MYBOOKING, null);
     SceneManager.addUi(SceneManager.Scenes.MYBOOKING, loadFXML("mybooking"));
 
+    SceneManager.addController(SceneManager.Scenes.PAYMENT, null);
+    SceneManager.addUi(SceneManager.Scenes.PAYMENT, loadFXML("payment"));
+
     Parent root = SceneManager.getUiRoot(Scenes.LOGIN);
 
     scene = new Scene(root, 980, 600);
@@ -103,8 +108,8 @@ public class App extends Application {
     stage.show();
     root.requestFocus();
 
-    bookingScheduler.processOverdueBookings();
     bookingScheduler.start();
+    bookingScheduler.processOverdueBookings();
   }
 
   @Override
