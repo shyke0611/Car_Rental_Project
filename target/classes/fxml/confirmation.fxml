@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.ConfirmationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.ConfirmationController">
    <children>
       <AnchorPane layoutX="-1.0" layoutY="-2.0" prefHeight="606.0" prefWidth="181.0" styleClass="anchor-pane" stylesheets="@../css/navbar.css">
          <children>
@@ -60,7 +60,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="185.0" layoutY="-5.0" prefHeight="609.0" prefWidth="716.0" styleClass="mainanchor-pane">
+      <AnchorPane layoutX="185.0" layoutY="-5.0" prefHeight="609.0" prefWidth="796.0" styleClass="mainanchor-pane">
          <children>
             <Label layoutX="39.0" layoutY="26.0" prefHeight="39.0" prefWidth="485.0" text="Confirmation">
                <font>
@@ -68,7 +68,7 @@
                </font>
             </Label>
             <Label layoutX="250.0" layoutY="263.0" />
-            <HBox alignment="CENTER" layoutX="-1.0" layoutY="78.0" prefHeight="41.0" prefWidth="715.0" styleClass="nav" stylesheets="@../css/findvehicle.css">
+            <HBox alignment="CENTER" layoutX="-1.0" layoutY="78.0" prefHeight="41.0" prefWidth="793.0" styleClass="nav" stylesheets="@../css/findvehicle.css">
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <HBox.margin>
@@ -105,7 +105,7 @@
                   </Pane>
                </children>
             </HBox>
-            <Pane layoutX="152.0" layoutY="222.0" prefHeight="200.0" prefWidth="380.0" styleClass="pane" stylesheets="@../css/confirmation.css">
+            <Pane layoutX="200.0" layoutY="222.0" prefHeight="200.0" prefWidth="380.0" styleClass="pane" stylesheets="@../css/confirmation.css">
                <children>
                   <Label layoutX="87.0" layoutY="22.0" prefHeight="25.0" prefWidth="266.0" text="Reservation Confirmed!" textFill="#18b218">
                      <font>

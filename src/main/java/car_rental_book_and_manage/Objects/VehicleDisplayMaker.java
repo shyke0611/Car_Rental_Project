@@ -4,7 +4,6 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -169,7 +168,7 @@ public class VehicleDisplayMaker {
     HBox.setHgrow(fuelBox, Priority.ALWAYS);
     HBox.setHgrow(colorFuelTypeBox, Priority.ALWAYS);
 
-    HBox speedBox = createSpeedSpecBox();
+    HBox speedBox = createSpeedSpecBox(vehicle);
     speedBox.setAlignment(Pos.CENTER);
     HBox.setHgrow(speedBox, Priority.ALWAYS);
 
@@ -209,14 +208,14 @@ public class VehicleDisplayMaker {
   /**
    * Creates an HBox for the speed specification.
    *
+   * @param vehicle the vehicle to display
    * @return the HBox containing the speed icon and label
    */
-  private HBox createSpeedSpecBox() {
+  private HBox createSpeedSpecBox(Vehicle vehicle) {
     FontAwesomeIconView speedIcon = new FontAwesomeIconView(FontAwesomeIcon.DASHBOARD);
     speedIcon.setSize("15");
 
-    double randomSpeed = ThreadLocalRandom.current().nextDouble(5, 10);
-    Label speedLabel = new Label(String.format("%.1f/100kms", randomSpeed));
+    Label speedLabel = new Label(vehicle.getEconomy() + " L/100kms");
     speedLabel.getStyleClass().add("vehicle-color-fueltype-label");
     speedLabel.setWrapText(false);
     speedLabel.setMaxWidth(Double.MAX_VALUE);

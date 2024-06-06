@@ -132,11 +132,11 @@ public class CustomersController extends Controller {
 
   /** Sets the width and resizable property of all table columns. */
   private void setTableColumnsWidthAndResizable() {
-    colId.setPrefWidth(100);
-    colName.setPrefWidth(150);
-    colPhone.setPrefWidth(150);
-    colLicense.setPrefWidth(150);
-    colUpdate.setPrefWidth(100);
+    colId.setPrefWidth(110);
+    colName.setPrefWidth(170);
+    colPhone.setPrefWidth(160);
+    colLicense.setPrefWidth(160);
+    colUpdate.setPrefWidth(110);
 
     colId.setResizable(false);
     colName.setResizable(false);

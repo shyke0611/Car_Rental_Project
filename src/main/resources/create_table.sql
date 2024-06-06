@@ -22,6 +22,7 @@ CREATE TABLE VEHICLE(
     Reg_no VARCHAR(6) NOT NULL,
     Colour VARCHAR(20) NOT NULL,
     Fuel_option ENUM('Premium','Regular','Diesel') NOT NULL,
+    Fuel_economy VARCHAR(3) NOT NULL,
     Daily_rate DECIMAL(10,2) NOT NULL,
     Availability BOOLEAN NOT NULL DEFAULT TRUE,
     image_path VARCHAR(255) NOT NULL,
