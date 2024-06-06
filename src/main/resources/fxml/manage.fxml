@@ -114,7 +114,7 @@
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font></Button>
-            <TableView fx:id="tableVehicle" layoutX="14.0" layoutY="137.0" prefHeight="463.0" prefWidth="788.0" stylesheets="@../css/navbar.css">
+            <TableView fx:id="tableVehicle" layoutX="14.0" layoutY="137.0" prefHeight="463.0" prefWidth="789.0" stylesheets="@../css/navbar.css">
               <columns>
                 <TableColumn fx:id="colId" editable="false" prefWidth="50" sortable="false" text="Id" />
                   <TableColumn fx:id="colBrand" editable="false" prefWidth="100" sortable="false" text="Brand" />
