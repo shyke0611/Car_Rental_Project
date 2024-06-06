@@ -75,7 +75,8 @@ public class ValidationManager {
       String Colour,
       String dailyRate,
       String regNo,
-      String fuelType) {
+      String fuelType,
+      String economy) {
     return brand.isEmpty()
         || model.isEmpty()
         || makeYear.isEmpty()
@@ -83,7 +84,8 @@ public class ValidationManager {
         || dailyRate.isEmpty()
         || regNo.isEmpty()
         || fuelType == null
-        || fuelType.isEmpty();
+        || fuelType.isEmpty()
+        || economy.isEmpty();
   }
 
   /**
@@ -148,5 +150,15 @@ public class ValidationManager {
    */
   public static boolean isColourValid(String colour) {
     return colour.matches("[a-zA-Z]+");
+  }
+
+   /**
+   * Validates the vehicle fuel economy.
+   *
+   * @param fuelEconomy The fuel economy to validate.
+   * @return true if the fuel economy is a valid string containing exactly three digits, false otherwise.
+   */
+  public static boolean isFuelEconomyValid(String fuelEconomy) {
+    return fuelEconomy.matches("\\d{2,3}");
   }
 }

@@ -96,7 +96,7 @@ public class App extends Application {
 
     Parent root = SceneManager.getUiRoot(Scenes.LOGIN);
 
-    scene = new Scene(root, 900, 600);
+    scene = new Scene(root, 980, 600);
     stage.setScene(scene);
     stage.setTitle("My Vehicle Rental Company");
     stage.setResizable(false);
