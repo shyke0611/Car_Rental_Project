@@ -8,6 +8,8 @@ import car_rental_book_and_manage.Utility.SceneManager.Scenes;
 import car_rental_book_and_manage.Utility.ValidationManager;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.File;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.function.Predicate;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -529,11 +531,14 @@ public class ManageController extends Controller {
     String colour = txtColour.getText();
     String fuel = choiceFuel.getValue();
     String econ = txtEconomy.getText();
+
+    BigDecimal pricePerDay = new BigDecimal(dailyRate).setScale(2, RoundingMode.HALF_UP);
+
     return new Vehicle(
         Integer.parseInt(year),
         model,
         regNo,
-        Double.parseDouble(dailyRate),
+        pricePerDay, 
         brand,
         fuel,
         colour,

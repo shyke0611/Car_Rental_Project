@@ -2,6 +2,8 @@ package car_rental_book_and_manage.Objects;
 
 import car_rental_book_and_manage.App;
 import car_rental_book_and_manage.Utility.DataManager;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,8 +24,8 @@ public class VehicleDB implements VehicleDAO {
     App.vehicledbExecutor.execute(
         () -> {
           String query =
-              "INSERT INTO VEHICLE (Brand, Model, Make_year, Reg_no, Colour, Fuel_option, Fuel_economy,"
-                  + " Daily_rate, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+              "INSERT INTO VEHICLE (Brand, Model, Make_year, Reg_no, Colour, Fuel_option,"
+                  + " Fuel_economy, Daily_rate, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
           try (Connection connection = DataManager.getConnection()) {
             connection.setAutoCommit(false);
             try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -54,7 +56,8 @@ public class VehicleDB implements VehicleDAO {
         () -> {
           String query =
               "UPDATE VEHICLE SET Brand = ?, Model = ?, Make_year = ?, Reg_no = ?, Colour = ?,"
-                  + " Fuel_option = ?, Fuel_economy = ?, Daily_rate = ?, image_path = ? WHERE V_Id = ?";
+                  + " Fuel_option = ?, Fuel_economy = ?, Daily_rate = ?, image_path = ? WHERE V_Id"
+                  + " = ?";
           try (Connection connection = DataManager.getConnection()) {
             connection.setAutoCommit(false);
             try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -292,7 +295,7 @@ public class VehicleDB implements VehicleDAO {
     statement.setString(5, vehicle.getColour());
     statement.setString(6, vehicle.getFuelType());
     statement.setString(7, vehicle.getEconomy());
-    statement.setDouble(8, vehicle.getPricePerDay());
+    statement.setBigDecimal(8, vehicle.getPricePerDay());
     statement.setString(9, vehicle.getImage());
   }
 
@@ -304,6 +307,7 @@ public class VehicleDB implements VehicleDAO {
    * @throws SQLException if a database access error occurs
    */
   private Vehicle mapResultSetToVehicle(ResultSet resultSet) throws SQLException {
+    BigDecimal dailyRate = resultSet.getBigDecimal("Daily_rate").setScale(2, RoundingMode.HALF_UP);
     Vehicle vehicle = new Vehicle();
     vehicle.setVehicleId(resultSet.getInt("V_Id"));
     vehicle.setBrand(resultSet.getString("Brand"));
@@ -313,7 +317,7 @@ public class VehicleDB implements VehicleDAO {
     vehicle.setColour(resultSet.getString("Colour"));
     vehicle.setFuelType(resultSet.getString("Fuel_option"));
     vehicle.setEconomy(resultSet.getString("Fuel_economy"));
-    vehicle.setPricePerDay(resultSet.getDouble("Daily_rate"));
+    vehicle.setPricePerDay(dailyRate);
     vehicle.setAvailability(resultSet.getBoolean("Availability"));
     vehicle.setImage(resultSet.getString("image_path"));
     return vehicle;

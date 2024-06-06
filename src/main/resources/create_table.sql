@@ -44,3 +44,15 @@ CREATE TABLE RESERVATION(
     FOREIGN KEY (Vehicle_Id) REFERENCES VEHICLE(V_Id),
     FOREIGN KEY (Client_Id) REFERENCES CLIENT(C_Id)
 );
+
+CREATE TABLE PAYMENT(
+    Payment_Id INT NOT NULL AUTO_INCREMENT,
+    Rental_Id INT NOT NULL,
+    Client_Id INT NOT NULL,
+    Payment_Date DATE NOT NULL,
+    Amount DECIMAL(10,2) NOT NULL,
+    Payment_Method ENUM('Credit Card', 'Debit Card') NOT NULL,
+    PRIMARY KEY (Payment_Id),
+    FOREIGN KEY (Rental_Id) REFERENCES RESERVATION(Rental_Id),
+    FOREIGN KEY (Client_Id) REFERENCES CLIENT(C_Id)
+);
