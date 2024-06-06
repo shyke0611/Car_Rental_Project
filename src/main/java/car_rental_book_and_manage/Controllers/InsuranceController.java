@@ -1,10 +1,10 @@
 package car_rental_book_and_manage.Controllers;
 
 import car_rental_book_and_manage.App;
-import car_rental_book_and_manage.Insurance.BasicCoverStrategy;
-import car_rental_book_and_manage.Insurance.InsuranceManager;
-import car_rental_book_and_manage.Insurance.LimitedCoverStrategy;
-import car_rental_book_and_manage.Insurance.PremiumCoverStrategy;
+import car_rental_book_and_manage.InsuranceStrategy.BasicCoverStrategy;
+import car_rental_book_and_manage.InsuranceStrategy.InsuranceManager;
+import car_rental_book_and_manage.InsuranceStrategy.LimitedCoverStrategy;
+import car_rental_book_and_manage.InsuranceStrategy.PremiumCoverStrategy;
 import car_rental_book_and_manage.Objects.Client;
 import car_rental_book_and_manage.Objects.Reservation;
 import car_rental_book_and_manage.Objects.Vehicle;
