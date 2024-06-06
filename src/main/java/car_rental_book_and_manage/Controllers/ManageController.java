@@ -165,7 +165,6 @@ public class ManageController extends Controller {
     setUpTableColumn(colFuel, "fuelType", 75);
     setUpTableColumn(colEconomy, "economy", 99);
     setUpAvailabilityColumn();
-    setUpViewColumn();
     configureTable();
   }
 
@@ -202,14 +201,8 @@ public class ManageController extends Controller {
                 }
               }
             });
-    colAvail.setPrefWidth(73);
+    colAvail.setPrefWidth(55);
     colAvail.setResizable(false);
-  }
-
-  /** Sets up the view column with predefined properties. */
-  private void setUpViewColumn() {
-    colView.setPrefWidth(60);
-    colView.setResizable(false);
   }
 
   /** Configures the table properties. */
