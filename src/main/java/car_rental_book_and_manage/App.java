@@ -94,7 +94,10 @@ public class App extends Application {
     SceneManager.addController(SceneManager.Scenes.MYBOOKING, null);
     SceneManager.addUi(SceneManager.Scenes.MYBOOKING, loadFXML("mybooking"));
 
-    Parent root = SceneManager.getUiRoot(Scenes.LOGIN);
+    SceneManager.addController(SceneManager.Scenes.PAYMENT, null);
+    SceneManager.addUi(SceneManager.Scenes.PAYMENT, loadFXML("payment"));
+
+    Parent root = SceneManager.getUiRoot(Scenes.PAYMENT);
 
     scene = new Scene(root, 980, 600);
     stage.setScene(scene);

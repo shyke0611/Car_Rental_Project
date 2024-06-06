@@ -538,7 +538,7 @@ public class ManageController extends Controller {
         Integer.parseInt(year),
         model,
         regNo,
-        pricePerDay, 
+        pricePerDay,
         brand,
         fuel,
         colour,

@@ -103,7 +103,7 @@ public class InsuranceController extends Controller {
     updateVehicleAvailability();
     onSelectLimited(null);
     App.resetAllDatePickers();
-    App.setUi(Scenes.CONFIRMATION);
+    App.setUi(Scenes.PAYMENT);
   }
 
   /** Creates and saves the reservation. */

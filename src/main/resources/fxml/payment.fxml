@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/navbar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.PaymentController">
+   <children>
+      <AnchorPane layoutX="178.0" layoutY="-8.0" prefHeight="609.0" prefWidth="716.0">
+         <children>
+            <Label layoutX="30.0" layoutY="20.0" prefHeight="39.0" prefWidth="243.0" text="Payments">
+               <font>
+                  <Font name="Arial Bold" size="32.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" layoutX="-1.0" layoutY="78.0" prefHeight="41.0" prefWidth="715.0" styleClass="nav" stylesheets="@../css/findvehicle.css">
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="5.0" prefHeight="31.0" prefWidth="167.0" styleClass="normal-page" text="1. FIND VEHICLE">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="5.0" prefHeight="31.0" prefWidth="176.0" styleClass="normal-page" stylesheets="@../css/findvehicle.css" text="2. INSURANCE">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="186.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="5.0" prefHeight="31.0" prefWidth="166.0" styleClass="active-page" text="3. PAYMENTS">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="-23.0" />
+                     </HBox.margin>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="5.0" prefHeight="31.0" prefWidth="169.0" styleClass="normal-page" stylesheets="@../css/findvehicle.css" text="4. CONFIRMATION">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Pane>
+               </children>
+            </HBox>
+            <Button fx:id="proceedBtn" layoutX="577.0" layoutY="510.0" mnemonicParsing="false" onMouseClicked="#onProceed" prefHeight="35.0" prefWidth="100.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Proceed">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+            <Button layoutX="476.0" layoutY="510.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="35.0" prefWidth="81.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Go Back">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+            <HBox layoutX="36.0" layoutY="190.0" prefHeight="112.0" prefWidth="445.0">
+               <children>
+                  <AnchorPane fx:id="creditBlock" onMouseClicked="#onCredit" prefHeight="115.0" prefWidth="200.0" styleClass="payment-blocks" stylesheets="@../css/payments.css">
+                     <children>
+                        <FontAwesomeIconView fx:id="card" fill="#808080" glyphName="CREDIT_CARD" layoutX="80.0" layoutY="50.0" size="30" wrappingWidth="27.89808464050293" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="60.0" prefHeight="39.0" prefWidth="196.0" text="Credit Card" textFill="GREY">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="debitBlock" onMouseClicked="#onDebit" prefHeight="89.0" prefWidth="200.0" styleClass="payment-blocks" stylesheets="@../css/payments.css">
+                     <children>
+                        <FontAwesomeIconView fx:id="card" fill="GREY" glyphName="CREDIT_CARD" layoutX="80.0" layoutY="52.0" size="30" wrappingWidth="27.89808464050293" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-4.0" layoutY="60.0" prefHeight="39.0" prefWidth="203.0" text="Debit Card" textFill="GREY">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <effect>
+                        <DropShadow height="17.0" offsetX="2.0" offsetY="2.0" radius="8.0" spread="0.6" width="17.0">
+                           <color>
+                              <Color red="0.6901960968971252" green="0.6666666865348816" blue="0.7490196228027344" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <Label layoutX="40.0" layoutY="140.0" prefHeight="39.0" prefWidth="470.0" text="Choose Payment Method:">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="informationLbl" layoutX="40.0" layoutY="330.0" prefHeight="39.0" prefWidth="470.0" text="Card Information">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <VBox fx:id="informationBox" layoutX="43.0" layoutY="381.0" prefHeight="197.0" prefWidth="362.0">
+               <children>
+                  <VBox prefHeight="122.0" prefWidth="336.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="39.0" prefWidth="238.0" stylesheets="@../css/view.css">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="128.0" text="Card Holder Name:">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="cardNameLbl" promptText="Eg) Jonn Doe">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="39.0" prefWidth="238.0" stylesheets="@../css/view.css">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="97.0" text="Card Number:">
+                                 <HBox.margin>
+                                    <Insets left="-20.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="cardNoLbl" promptText="XXX XXX XXX XXX">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="39.0" prefWidth="336.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="39.0" prefWidth="364.0" stylesheets="@../css/view.css">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="90.0" text="Expiry Date:">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="expiryDateLbl" prefHeight="25.0" prefWidth="78.0" promptText="Eg) 02/24">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="39.0" prefWidth="238.0" stylesheets="@../css/view.css">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="88.0" text="CVV:">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="cvvLbl" prefHeight="25.0" prefWidth="110.0" promptText="XXX">
+                                 <font>
+                                    <Font name="Arial" size="13.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-1.0" layoutY="-2.0" prefHeight="606.0" prefWidth="181.0" styleClass="anchor-pane" stylesheets="@../css/navbar.css">
+         <children>
+            <ImageView fitHeight="191.0" fitWidth="166.0" layoutX="3.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images%20and%20attribution/logo.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" layoutX="1.0" layoutY="335.0" prefHeight="264.0" prefWidth="182.0" stylesheets="@../css/buttons.css">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#onSignOut" prefHeight="35.0" prefWidth="114.0" styleClass="button-signout" stylesheets="@../css/navbar.css" text="Sign Out">
+                     <VBox.margin>
+                        <Insets top="200.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <Label fx:id="clientNameLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="140.0" prefHeight="20.0" prefWidth="140.0" text="Welcome" textAlignment="CENTER" textFill="WHITE" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="120.0" prefHeight="20.0" prefWidth="140.0" text="Welcome" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
