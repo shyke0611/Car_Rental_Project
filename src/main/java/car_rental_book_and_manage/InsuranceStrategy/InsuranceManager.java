@@ -1,4 +1,4 @@
-package car_rental_book_and_manage.Insurance;
+package car_rental_book_and_manage.InsuranceStrategy;
 
 /** Manages the insurance strategy for a car rental. */
 public class InsuranceManager {
@@ -28,7 +28,11 @@ public class InsuranceManager {
    * @return the description of the current insurance strategy
    */
   public String getDescription() {
-    return strategy.getDescription();
+    if (strategy == null) {
+      return "No strategy selected";
+    } else {
+      return strategy.getDescription();
+    }
   }
 
   /**
@@ -56,5 +60,24 @@ public class InsuranceManager {
    */
   public double getExcess() {
     return strategy.getExcess();
+  }
+
+  /**
+   * Gets the insurance strategy based on the type.
+   *
+   * @param type the type of insurance strategy
+   * @return the insurance strategy corresponding to the type
+   */
+  public InsuranceStrategy getStrategyByType(String type) {
+    switch (type) {
+      case "Basic Cover":
+        return new BasicCoverStrategy();
+      case "Limited Cover":
+        return new LimitedCoverStrategy();
+      case "Premium Cover":
+        return new PremiumCoverStrategy();
+      default:
+        throw new IllegalArgumentException("Unknown insurance type: " + type);
+    }
   }
 }

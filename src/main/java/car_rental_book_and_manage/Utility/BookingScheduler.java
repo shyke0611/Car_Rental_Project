@@ -48,7 +48,7 @@ public class BookingScheduler {
     List<Reservation> reservationsToDrop = reservationDB.getReservationsToDrop(date);
 
     for (Reservation reservation : reservationsToDrop) {
-      reservationDB.deleteReservation(reservation.getReservationId());
+      reservationDB.deleteReservationAndPayment(reservation.getReservationId());
       vehicleDB.setVehicleAvailability(reservation.getVehicleId(), true);
       System.out.println("Dropped reservation for client: " + reservation.getClientId());
     }

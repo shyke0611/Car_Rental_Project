@@ -1,16 +1,12 @@
 package car_rental_book_and_manage.Controllers;
 
 import car_rental_book_and_manage.App;
-import car_rental_book_and_manage.Insurance.BasicCoverStrategy;
-import car_rental_book_and_manage.Insurance.InsuranceManager;
-import car_rental_book_and_manage.Insurance.LimitedCoverStrategy;
-import car_rental_book_and_manage.Insurance.PremiumCoverStrategy;
-import car_rental_book_and_manage.Objects.Client;
-import car_rental_book_and_manage.Objects.Reservation;
-import car_rental_book_and_manage.Objects.Vehicle;
+import car_rental_book_and_manage.InsuranceStrategy.BasicCoverStrategy;
+import car_rental_book_and_manage.InsuranceStrategy.InsuranceManager;
+import car_rental_book_and_manage.InsuranceStrategy.LimitedCoverStrategy;
+import car_rental_book_and_manage.InsuranceStrategy.PremiumCoverStrategy;
 import car_rental_book_and_manage.Utility.SceneManager;
 import car_rental_book_and_manage.Utility.SceneManager.Scenes;
-import java.time.LocalDate;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -74,7 +70,6 @@ public class InsuranceController extends Controller {
     vehicleImageView.imageProperty().bind(reservationManager.vehicleImageProperty());
   }
 
-
   /** Sets the initial insurance option to Limited Cover. */
   private void selectInitialInsuranceOption() {
     onSelectLimited(null);
@@ -92,55 +87,19 @@ public class InsuranceController extends Controller {
   }
 
   /**
-   * Handles the Proceed button click event. Creates and saves the reservation, updates vehicle
-   * availability, and switches to the Confirmation scene.
+   * Handles the Proceed button click event. Sets insurance details and switches to the Payment scene.
    *
    * @param event the mouse event triggering this action
    */
   @FXML
   void onProceed(MouseEvent event) {
-    createAndSaveReservation();
-    updateVehicleAvailability();
-    onSelectLimited(null);
-    App.resetAllDatePickers();
-    App.setUi(Scenes.CONFIRMATION);
+    setInsuranceDetails();
+    App.setUi(Scenes.PAYMENT);
   }
 
-  /** Creates and saves the reservation. */
-  private void createAndSaveReservation() {
-    Reservation newReservation = createReservationObject();
-    reservationdb.saveReservation(newReservation);
-    reservationManager.setCurrentReservation(newReservation);
-  }
-
-  /**
-   * Creates a new Reservation object with the current reservation details.
-   *
-   * @return a new Reservation object
-   */
-  private Reservation createReservationObject() {
-    Vehicle selectedVehicle = reservationManager.getSelectedVehicle();
-    Client loggedInClient = reservationManager.getLoggedInClient();
-    LocalDate pickUpDate = reservationManager.getPickUpDate();
-    LocalDate returnDate = reservationManager.getReturnDate();
-    double totalRate = Double.parseDouble(reservationManager.getTotalAmount());
-    String insuranceType = reservationManager.getInsuranceType();
-
-    return new Reservation(
-        loggedInClient.getClientId(),
-        selectedVehicle.getVehicleId(),
-        totalRate,
-        selectedVehicle.getLicensePlate(),
-        loggedInClient.getLicenseNo(),
-        pickUpDate,
-        returnDate,
-        insuranceType);
-  }
-
-  /** Updates the availability status of the selected vehicle. */
-  private void updateVehicleAvailability() {
-    Vehicle selectedVehicle = reservationManager.getSelectedVehicle();
-    vehicledb.setVehicleAvailability(selectedVehicle.getVehicleId(), false);
+  /** Sets the insurance details in the reservation manager. */
+  private void setInsuranceDetails() {
+    updateInsuranceDetails();
   }
 
   /**
@@ -183,6 +142,7 @@ public class InsuranceController extends Controller {
   private void updateInsuranceDetails() {
     reservationManager.setInsuranceType(insuranceManage.getStrategy().getInsuranceTypeName());
     reservationManager.setInsuranceCost(insuranceManage.getDailyCost());
+    reservationManager.updateTotalAmount();
     insuranceDetailsLbl.setText(insuranceManage.getDescription());
   }
 

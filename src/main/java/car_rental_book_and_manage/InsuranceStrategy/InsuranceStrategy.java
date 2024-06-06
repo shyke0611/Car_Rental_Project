@@ -1,4 +1,4 @@
-package car_rental_book_and_manage.Insurance;
+package car_rental_book_and_manage.InsuranceStrategy;
 
 /** Interface for defining insurance strategies for car rentals. */
 public interface InsuranceStrategy {

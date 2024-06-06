@@ -18,7 +18,8 @@ public class SceneManager {
     CONFIRMATION,
     FINDVEHICLES,
     INSURANCE,
-    MYBOOKING
+    MYBOOKING,
+    PAYMENT
   }
 
   private static Controller activeController;
