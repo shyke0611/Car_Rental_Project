@@ -153,7 +153,7 @@ Note: When using this application, you can use fake phone numbers, license numbe
 - [x]  Implement features for the rental management section
 - [x]  Implement features for the rental booking section
 - [x]  Apply user experience 
-- [ ] Integrate additional payment methods
+- [x] Integrate additional payment methods
 - [ ] Expand to client-web server
 
 <!-- REFLECTION -->
