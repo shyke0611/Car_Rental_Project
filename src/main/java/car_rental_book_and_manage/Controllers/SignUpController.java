@@ -64,31 +64,7 @@ public class SignUpController extends Controller {
     String phoneNo = phoneField.getText();
     String license = licenseField.getText().toUpperCase();
 
-    if (ValidationManager.isSignUpUserInputValid(name, password, username, phoneNo, license)) {
-      AlertManager.showAlert(
-          AlertType.WARNING, "Required Fields", "Please Enter All Missing Fields");
-      return false;
-    }
-    if (!ValidationManager.isNameValid(name)) {
-      AlertManager.showAlert(
-          AlertType.WARNING, "Invalid Name Format", "First Name Format Is Invalid");
-      return false;
-    }
-    if (!ValidationManager.isPhoneNoValid(phoneNo)) {
-      AlertManager.showAlert(
-          AlertType.WARNING,
-          "Invalid Phone Number",
-          "Phone Number must be a 10 digit number\n021-XXX-XXXX");
-      return false;
-    }
-    if (!ValidationManager.isLicenseNoValid(license)) {
-      AlertManager.showAlert(
-          AlertType.WARNING, "Invalid License Number", "Format must be xxxx0000");
-      return false;
-    }
-    if (clientdb.doesUserNameExist(username)) {
-      AlertManager.showAlert(
-          AlertType.WARNING, "Username Already Exists", "Please Come Up With Another Username");
+    if (!ValidationManager.validateSignUpUserInput(name, password, username, phoneNo, license, clientdb)) {
       return false;
     }
     return true;

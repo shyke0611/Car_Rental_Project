@@ -237,7 +237,7 @@ public class ManageController extends Controller {
                 setGraphic(empty ? null : viewButton);
               }
             });
-    colView.setPrefWidth(50);
+    colView.setPrefWidth(45);
     colView.setResizable(false);
   }
 
@@ -278,44 +278,7 @@ public class ManageController extends Controller {
     String fuel = choiceFuel.getValue();
     String econ = txtEconomy.getText();
 
-    // Check for missing or invalid input fields
-    if (ValidationManager.isVehicleInputValid(
-        brand, model, year, colour, dailyRate, regNo, fuel, econ)) {
-      AlertManager.showAlert(
-          AlertType.WARNING, "Required Fields", "Please Enter All Missing Fields");
-      return false;
-    }
-    if (!ValidationManager.isDailyRateValid(dailyRate)) {
-      AlertManager.showAlert(
-          AlertType.WARNING, "Invalid Daily rate", "Daily rate must be in 0.00 format");
-      return false;
-    }
-    if (!ValidationManager.isYearValid(year)) {
-      AlertManager.showAlert(
-          AlertType.WARNING,
-          "Invalid Make Year",
-          "Make Year must be in XXXX format and in between 1900 and current year");
-      return false;
-    }
-    if (!ValidationManager.isRegNoValid(regNo)) {
-      AlertManager.showAlert(
-          AlertType.WARNING,
-          "Invalid Registration number",
-          "Registration number plate must be in the format AAA000");
-      return false;
-    }
-
-    // Check color validity
-    if (!ValidationManager.isColourValid(colour)) {
-      AlertManager.showAlert(
-          AlertType.WARNING, "Colour is invalid", "Colour entered is not a valid Colour");
-      return false;
-    }
-
-    // Check fuel economy validity
-    if (!ValidationManager.isFuelEconomyValid(econ)) {
-      AlertManager.showAlert(
-          AlertType.WARNING, "Fuel Economy is invalid", "Fuel economy must be 2 or 3 digits max");
+    if (!ValidationManager.validateVehicleFields(brand, model, year, colour, dailyRate, regNo, fuel, econ)) {
       return false;
     }
 
@@ -328,25 +291,14 @@ public class ManageController extends Controller {
 
     // Additional validation for save action
     if (action.equals("save")) {
-      if (vehicledb.doesRegistrationNoExist(regNo)) {
-        AlertManager.showAlert(
-            AlertType.WARNING,
-            "Registration number Already exists",
-            "You must register another Registration number");
+      if (ValidationManager.checkRegistrationNoExists(regNo, action, vehicledb, id)) {
         return false;
       }
     }
 
     // Additional validation for update action
     if (action.equals("update")) {
-      Vehicle selectedVehicle = dataModel.getVehicle(Integer.parseInt(id));
-      // Only check for duplicate registration number if it has been changed
-      if (!selectedVehicle.getLicensePlate().equals(regNo)
-          && vehicledb.doesRegistrationNoExist(regNo)) {
-        AlertManager.showAlert(
-            AlertType.WARNING,
-            "Registration number Already exists",
-            "You must register another Registration number");
+      if (ValidationManager.checkRegistrationNoExists(regNo, action, vehicledb, id)) {
         return false;
       }
     }

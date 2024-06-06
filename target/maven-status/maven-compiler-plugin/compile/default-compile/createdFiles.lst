@@ -43,5 +43,4 @@ car_rental_book_and_manage/Utility/ImageSelect.class
 car_rental_book_and_manage/Objects/ReservationDB.class
 car_rental_book_and_manage/Controllers/FindVehiclesController.class
 car_rental_book_and_manage/Controllers/ConfirmationController.class
-car_rental_book_and_manage/Controllers/PaymentController$1.class
 car_rental_book_and_manage/Controllers/MyBookingController$1.class

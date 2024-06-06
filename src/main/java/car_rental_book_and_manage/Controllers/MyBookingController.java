@@ -1,5 +1,10 @@
 package car_rental_book_and_manage.Controllers;
 
+import car_rental_book_and_manage.InsuranceStrategy.BasicCoverStrategy;
+import car_rental_book_and_manage.InsuranceStrategy.InsuranceManager;
+import car_rental_book_and_manage.InsuranceStrategy.InsuranceStrategy;
+import car_rental_book_and_manage.InsuranceStrategy.LimitedCoverStrategy;
+import car_rental_book_and_manage.InsuranceStrategy.PremiumCoverStrategy;
 import car_rental_book_and_manage.Objects.Client;
 import car_rental_book_and_manage.Objects.Reservation;
 import car_rental_book_and_manage.Objects.Vehicle;
@@ -26,6 +31,7 @@ public class MyBookingController extends Controller {
   @FXML private Label colourLbl;
   @FXML private Label insuranceCostLbl;
   @FXML private Label insuranceTypeLbl;
+  @FXML private Label insuranceDetailsLbl;
   @FXML private Label modelLbl;
   @FXML private Label pickUpLbl;
   @FXML private Label returnLbl;
@@ -36,6 +42,8 @@ public class MyBookingController extends Controller {
   @FXML private Pane resBox;
   @FXML private Pane noResBox;
   @FXML private ImageView vehicleImage;
+
+  private InsuranceManager insuranceManage = new InsuranceManager();
 
   /** Initializes the controller, setting up bindings and listeners for reservation details. */
   public void initialize() {
@@ -142,6 +150,8 @@ public class MyBookingController extends Controller {
     pickUpLbl.setText(reservation.getStartDate().toString());
     returnLbl.setText(reservation.getReturnDate().toString());
     insuranceTypeLbl.setText(reservation.getInsuranceType());
+    InsuranceStrategy strategy = insuranceManage.getStrategyByType(reservation.getInsuranceType());
+    insuranceDetailsLbl.setText(strategy.getDescription());
     totalAmountLbl.setText(String.format("$%.2f", reservation.getTotalRate()));
   }
 
