@@ -13,20 +13,20 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.InsuranceController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.InsuranceController">
    <children>
-      <AnchorPane layoutX="185.0" layoutY="-5.0" prefHeight="609.0" prefWidth="716.0">
+      <AnchorPane layoutX="185.0" layoutY="-5.0" prefHeight="609.0" prefWidth="795.0">
          <children>
             <Label layoutX="39.0" layoutY="26.0" prefHeight="39.0" prefWidth="485.0" text="Insurance Cover">
                <font>
                   <Font name="Arial Bold" size="32.0" />
                </font>
             </Label>
-            <Button layoutX="555.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#onProceed" prefHeight="35.0" prefWidth="100.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Proceed">
+            <Button layoutX="670.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#onProceed" prefHeight="35.0" prefWidth="100.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Proceed">
                <font>
                   <Font name="Arial" size="13.0" />
                </font></Button>
-            <VBox layoutX="17.0" layoutY="141.0" prefHeight="453.0" prefWidth="328.0" stylesheets="@../css/insurance.css">
+            <VBox layoutX="60.0" layoutY="141.0" prefHeight="453.0" prefWidth="328.0" stylesheets="@../css/insurance.css">
                <children>
                   <Pane fx:id="premiumCoverPane" prefHeight="147.0" prefWidth="328.0">
                      <children>
@@ -112,7 +112,7 @@
                   </Pane>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" layoutX="412.0" layoutY="131.0" prefHeight="468.0" prefWidth="276.0" styleClass="summary" stylesheets="@../css/insurance.css">
+            <VBox alignment="TOP_CENTER" layoutX="450.0" layoutY="131.0" prefHeight="468.0" prefWidth="276.0" styleClass="summary" stylesheets="@../css/insurance.css">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="23.0" prefWidth="247.0" text="Booking Summary" textAlignment="CENTER">
                      <font>
@@ -308,11 +308,11 @@
                   </HBox>
                </children>
             </VBox>
-            <Button layoutX="461.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="35.0" prefWidth="81.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Go Back">
+            <Button layoutX="575.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="35.0" prefWidth="81.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Go Back">
                <font>
                   <Font name="Arial" size="13.0" />
                </font></Button>
-            <HBox alignment="CENTER" layoutX="-1.0" layoutY="78.0" prefHeight="41.0" prefWidth="715.0" styleClass="nav" stylesheets="@../css/findvehicle.css">
+            <HBox alignment="CENTER" layoutX="-1.0" layoutY="78.0" prefHeight="41.0" prefWidth="795.0" styleClass="nav" stylesheets="@../css/findvehicle.css">
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <HBox.margin>

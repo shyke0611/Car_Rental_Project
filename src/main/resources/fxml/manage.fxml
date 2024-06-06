@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/navbar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.ManageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" stylesheets="@../css/navbar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="car_rental_book_and_manage.Controllers.ManageController">
    <children>
       <AnchorPane fx:id="pane1" layoutX="-1.0" layoutY="-2.0" prefHeight="606.0" prefWidth="181.0" styleClass="anchor-pane" stylesheets="@../css/navbar.css">
          <children>
@@ -85,9 +85,9 @@
             <Label layoutX="45.0" layoutY="120.0" text="Welcome Admin" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane2" layoutX="173.0" layoutY="-5.0" prefHeight="609.0" prefWidth="727.0" stylesheets="@../css/font.css">
+      <AnchorPane fx:id="pane2" layoutX="182.0" layoutY="-5.0" prefHeight="609.0" prefWidth="801.0" stylesheets="@../css/font.css">
          <children>
-            <HBox fx:id="searchHbox" alignment="CENTER" layoutX="20.0" layoutY="78.0" prefHeight="30.0" prefWidth="379.0" stylesheets="@../css/navbar.css">
+            <HBox fx:id="searchHbox" alignment="CENTER" layoutX="10.0" layoutY="78.0" prefHeight="30.0" prefWidth="379.0" stylesheets="@../css/navbar.css">
                <children>
                   <FontAwesomeIconView glyphName="SEARCH" wrappingWidth="14.21856689453125" />
                   <TextField fx:id="searchTxt" prefHeight="25.0" prefWidth="216.0" promptText="Search">
@@ -107,14 +107,14 @@
                   <Font name="Arial Bold" size="32.0" />
                </font>
             </Label>
-            <Button layoutX="539.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#onAddNewVehicle" prefHeight="35.0" prefWidth="161.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Add new Vehicle">
+            <Button layoutX="600.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#onAddNewVehicle" prefHeight="35.0" prefWidth="161.0" styleClass="button-addvehicle" stylesheets="@../css/buttons.css" text="Add new Vehicle">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="PLUS" wrappingWidth="22.077567100524902" />
                </graphic>
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font></Button>
-            <TableView fx:id="tableVehicle" layoutX="15.0" layoutY="137.0" prefHeight="465.0" prefWidth="706.0" stylesheets="@../css/navbar.css">
+            <TableView fx:id="tableVehicle" layoutX="9.0" layoutY="137.0" prefHeight="458.0" prefWidth="782.0" stylesheets="@../css/navbar.css">
               <columns>
                 <TableColumn fx:id="colId" editable="false" prefWidth="50" sortable="false" text="Id" />
                   <TableColumn fx:id="colBrand" editable="false" prefWidth="100" sortable="false" text="Brand" />
@@ -220,8 +220,8 @@
                   </HBox>
                   <HBox fx:id="fieldHbox111112" alignment="CENTER" prefHeight="39.0" prefWidth="277.0" stylesheets="@../css/view.css">
                      <children>
-                        <Label prefHeight="16.0" prefWidth="106.0" text="Fuel Economy:" />
-                        <TextField fx:id="txtEconomy" prefHeight="25.0" prefWidth="124.0" promptText="XX or XXX" />
+                        <Label prefHeight="16.0" prefWidth="100.0" text="Fuel Economy:" />
+                        <TextField fx:id="txtEconomy" prefHeight="25.0" prefWidth="131.0" promptText="XX or XXX L/100km" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" />
@@ -252,7 +252,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="deleteVehicleBtn" layoutX="415.0" layoutY="380.0" mnemonicParsing="false" onMouseClicked="#onDeleteVehicle" prefHeight="39.0" prefWidth="122.0" styleClass="button-action" stylesheets="@../css/view.css" text="Delete">
+            <Button fx:id="deleteVehicleBtn" layoutX="415.0" layoutY="410.0" mnemonicParsing="false" onMouseClicked="#onDeleteVehicle" prefHeight="39.0" prefWidth="122.0" styleClass="button-action" stylesheets="@../css/view.css" text="Delete">
                <graphic>
                   <FontAwesomeIconView fill="RED" glyphName="TRASH" selectionFill="RED" size="26">
                      <font>
@@ -261,7 +261,7 @@
                   </FontAwesomeIconView>
                </graphic>
             </Button>
-            <StackPane layoutX="424.0" layoutY="350.0" prefHeight="39.0" prefWidth="109.0">
+            <StackPane layoutX="424.0" layoutY="380.0" prefHeight="39.0" prefWidth="109.0">
                <children>
                   <Button fx:id="updateVehicleBtn" mnemonicParsing="false" onMouseClicked="#onUpdateVehicle" prefHeight="34.0" prefWidth="116.0" stylesheets="@../css/view.css" text="Update ">
                      <graphic>

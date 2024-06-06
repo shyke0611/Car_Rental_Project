@@ -3,6 +3,8 @@ package car_rental_book_and_manage.Objects;
 import java.time.LocalDate;
 import java.util.List;
 
+import car_rental_book_and_manage.Payment.CardPayment;
+
 /** Interface for reservation data access operations. */
 public interface ReservationDAO {
 
@@ -11,7 +13,7 @@ public interface ReservationDAO {
    *
    * @param reservation the reservation to save
    */
-  void saveReservation(Reservation reservation);
+  void saveReservationAndPayment(Reservation reservation, CardPayment payment);
 
   /** Retrieves all reservations from the database and adds them to the model. */
   void retrieveAllReservations();
@@ -37,7 +39,7 @@ public interface ReservationDAO {
    *
    * @param reservationId the ID of the reservation to delete
    */
-  void deleteReservation(int reservationId);
+  void deleteReservationAndPayment(int reservationId);
 
   /** Retrieves the latest saved reservation from the database and adds it to the model. */
   void retrieveLatestReservationToSave();

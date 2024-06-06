@@ -188,7 +188,7 @@
                                     <Font name="Arial Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="expiryDateLbl" prefHeight="25.0" prefWidth="78.0" promptText="Eg) 02/24">
+                              <TextField fx:id="expiryDateLbl" prefHeight="25.0" prefWidth="78.0" promptText="MM/YY">
                                  <font>
                                     <Font name="Arial" size="13.0" />
                                  </font>
