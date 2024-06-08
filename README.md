@@ -53,6 +53,9 @@ The Car Rental Booking and Management System is a comprehensive application desi
 <br><br>
 
 [![Manage Vehicle Page][manageVehicles]](project_images/manageVehicles.png)
+<br><br>
+
+[![Payment Page][payment]](project_images/payment.png)
 
 #### Key Features:
 
@@ -199,4 +202,5 @@ Project Link - [https://github.com/shyke0611/Car_Rental_Project.git](https://git
 [linkedin-url]: https://www.linkedin.com/in/andrew-hk-shin
 [findVehicles]: project_images/findVehicles.png
 [manageVehicles]: project_images/manageVehicles.png
+[payment]: project_images/payment.png
 [ERD]: project_images/ERD.png
