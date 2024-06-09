@@ -18,7 +18,7 @@ COPY . .
 RUN mvn clean package
 
 # Download JavaFX SDK
-RUN wget https://gluonhq.com/download/javafx-17.0.2-sdk-linux/ -O openjfx-17.0.2_linux-x64_bin-sdk.zip && \
+RUN wget https://download2.gluonhq.com/openjfx/17.0.2/openjfx-17.0.2_linux-x64_bin-sdk.zip -O openjfx-17.0.2_linux-x64_bin-sdk.zip && \
     unzip openjfx-17.0.2_linux-x64_bin-sdk.zip && \
     mv javafx-sdk-17.0.2 /opt/javafx-sdk && \
     rm openjfx-17.0.2_linux-x64_bin-sdk.zip
