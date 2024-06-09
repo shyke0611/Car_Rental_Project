@@ -49,4 +49,4 @@ COPY --from=build /opt/javafx-sdk /opt/javafx-sdk
 EXPOSE 8080
 
 # Clean up any existing Xvfb locks and start the application with Xvfb
-ENTRYPOINT ["sh", "-c", "rm -rf /tmp/.X99-lock && Xvfb :99 -screen 0 1024x768x16 & export DISPLAY=:99 && java --module-path /opt/javafx-sdk-17.0.2/lib --add-modules javafx.controls,javafx.fxml -jar car_rental_book_and_manage-1.0.jar"]
+ENTRYPOINT ["sh", "-c", "rm -rf /tmp/.X99-lock && Xvfb :99 -screen 0 1024x768x16 & export DISPLAY=:99 && java --module-path /opt/javafx-sdk/lib --add-modules javafx.controls,javafx.fxml -jar car_rental_book_and_manage-1.0.jar"]
