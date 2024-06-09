@@ -24,4 +24,4 @@ COPY . .
 EXPOSE 8080
 
 # Ensure Xvfb is properly set up before running the JavaFX application
-ENTRYPOINT ["sh", "-c", "Xvfb :100 -screen 0 1024x768x16 & export DISPLAY=:100 && mvn javafx:run -Djava.awt.headless=true"]
+ENTRYPOINT ["sh", "-c", "rm -f /tmp/.X100-lock && Xvfb :100 -screen 0 1024x768x16 & export DISPLAY=:100 && mvn javafx:run -Djava.awt.headless=true"]
