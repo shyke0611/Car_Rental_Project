@@ -1,16 +1,8 @@
 # Use a base image containing Java runtime
 FROM openjdk:17-slim
 
-# Install necessary packages for running JavaFX in headless mode and Maven
+# Install necessary packages for Maven
 RUN apt-get update && apt-get install -y \
-    libx11-6 \
-    libxext6 \
-    libxrender1 \
-    libxtst6 \
-    libxi6 \
-    libfreetype6 \
-    xauth \
-    xvfb \
     maven \
     && rm -rf /var/lib/apt/lists/*
 
@@ -20,8 +12,11 @@ WORKDIR /app
 # Copy the entire project to the container
 COPY . .
 
+# Build the application
+RUN mvn clean package
+
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
 
-# Start Xvfb and run the Maven command to start the application
-ENTRYPOINT ["sh", "-c", "rm -f /tmp/.X1-lock && Xvfb :1 -screen 0 1024x768x16 & export DISPLAY=:1 && mvn javafx:run -Djava.awt.headless=true"]
+# Run the Spring Boot application
+ENTRYPOINT ["java", "-jar", "target/car_rental_book_and_manage-1.0.jar"]
