@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: car-rental-service
+    env: docker
+    plan: free
+    region: oregon
+    buildCommand: "./mvnw clean install"
+    dockerfilePath: ./Dockerfile
+    startCommand: "java --module-path /opt/javafx-sdk-17.0.2/lib --add-modules javafx.controls,javafx.fxml -jar target/car_rental_book_and_manage-1.0.jar"
+    envVars:
+      - key: DB_URL
+        value: jdbc:mysql://sql.freedb.tech:3306/freedb_carrentalproject
+      - key: DB_USERNAME
+        value: freedb_hshi270
+      - key: DB_PASSWORD
+        value: qA3e$g%u*YCGJTB
