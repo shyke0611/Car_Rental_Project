@@ -24,4 +24,4 @@ COPY . .
 EXPOSE 8080
 
 # Ensure Xvfb is properly set up before running the JavaFX application
-ENTRYPOINT ["sh", "-c", "rm -f /tmp/.X100-lock && Xvfb :100 -screen 0 1024x768x16 & export DISPLAY=:100 && ./mvnw clean install && java --module-path /opt/javafx-sdk-17.0.2/lib --add-modules javafx.controls,javafx.fxml -jar target/car_rental_book_and_manage-1.0.jar"]
+ENTRYPOINT ["sh", "-c", "rm -f /tmp/.X100-lock && Xvfb :100 -screen 0 1024x768x16 & export DISPLAY=:100 && mvn clean install && mvn javafx:run -Djava.awt.headless=true"]
