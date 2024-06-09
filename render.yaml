@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: car-rental-service
+    name: car_rental_sse
     env: docker
     plan: free
     region: oregon
