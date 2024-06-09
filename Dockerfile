@@ -42,4 +42,4 @@ COPY --from=build /app/target/car_rental_book_and_manage-1.0.jar .
 EXPOSE 8080
 
 # Start Xvfb and run the application
-ENTRYPOINT ["sh", "-c", "Xvfb :99 -screen 0 1024x768x16 & export DISPLAY=:99 && java --module-path /opt/javafx-sdk-21.0.2/lib --add-modules javafx.controls,javafx.fxml -jar car_rental_book_and_manage-1.0.jar"]
+ENTRYPOINT ["sh", "-c", "Xvfb :100 -screen 0 1024x768x16 & export DISPLAY=:100 && java --module-path /opt/javafx-sdk-21.0.2/lib --add-modules javafx.controls,javafx.fxml -jar car_rental_book_and_manage-1.0.jar"]
