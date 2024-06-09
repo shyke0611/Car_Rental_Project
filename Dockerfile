@@ -34,6 +34,7 @@ RUN apt-get update && apt-get install -y \
     libxtst6 \
     libxi6 \
     libfreetype6 \
+    libgtk-3-0 \
     xauth \
     xvfb \
     && rm -rf /var/lib/apt/lists/*
