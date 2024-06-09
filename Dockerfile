@@ -23,5 +23,5 @@ COPY . .
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
 
-# Ensure Xvfb is properly set up before running the JavaFX application
-ENTRYPOINT ["sh", "-c", "rm -f /tmp/.X99-lock && Xvfb :99 -screen 0 1024x768x16 & export DISPLAY=:100 && mvn clean install && mvn javafx:run -Djava.awt.headless=true"]
+# Start Xvfb and run the Maven command to start the application
+ENTRYPOINT ["sh", "-c", "rm -f /tmp/.X99-lock && Xvfb :99 -screen 0 1024x768x16 & export DISPLAY=:99 && mvn javafx:run -Djava.awt.headless=true"]
