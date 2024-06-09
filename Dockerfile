@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copy the built JAR file from the build stage
-COPY --from=build /app/target/car_rental_book_and_manage-1.0-shaded.jar .
+COPY --from=build /app/target/car_rental_book_and_manage-1.0.jar .
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
