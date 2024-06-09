@@ -24,4 +24,4 @@ COPY . .
 EXPOSE 8080
 
 # Start Xvfb and run the Maven command to start the application
-ENTRYPOINT ["sh", "-c", "rm -f /tmp/.X99-lock && Xvfb :99 -screen 0 1024x768x16 & export DISPLAY=:99 && mvn javafx:run -Djava.awt.headless=true"]
+ENTRYPOINT ["sh", "-c", "Xvfb :99 -screen 0 1024x768x16 & export DISPLAY=:99 && mvn javafx:run -Djava.awt.headless=true"]
