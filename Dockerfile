@@ -48,5 +48,5 @@ COPY --from=build /opt/javafx-sdk /opt/javafx-sdk
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
 
-# Start Xvfb and run the application
-ENTRYPOINT ["sh", "-c", "Xvfb :99 -screen 0 1024x768x16 & export DISPLAY=:99 && java --module-path /opt/javafx-sdk/lib --add-modules javafx.controls,javafx.fxml -jar car_rental_book_and_manage-1.0.jar"]
+# Clean up any existing Xvfb locks and start the application with Xvfb
+ENTRYPOINT ["sh", "-c", "rm -rf /tmp/.X99-lock && Xvfb :99 -screen 0 1024x768x16 & export DISPLAY=:99 && java --module-path /opt/javafx-sdk-17.0.2/lib --add-modules javafx.controls,javafx.fxml -jar car_rental_book_and_manage-1.0.jar"]
