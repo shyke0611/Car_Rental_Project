@@ -6,7 +6,7 @@ services:
     region: oregon
     buildCommand: "mvn clean install"
     dockerfilePath: ./Dockerfile
-    startCommand: "java -jar target/car_rental_book_and_manage-1.0.jar"
+    startCommand: "java --module-path /path/to/javafx-sdk-21.0.2/lib --add-modules javafx.controls,javafx.fxml -jar target/car_rental_book_and_manage-1.0-shaded.jar"
     envVars:
       - key: DB_URL
         value: jdbc:mysql://sql.freedb.tech:3306/freedb_carrentalproject
