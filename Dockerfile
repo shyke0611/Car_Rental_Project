@@ -17,11 +17,11 @@ COPY . .
 # Build the application
 RUN mvn clean package
 
-# Download and extract JavaFX SDK
-RUN wget https://download2.gluonhq.com/openjfx/17.0.2/openjfx-17.0.2_linux-x64_bin-sdk.zip -O openjfx-17.0.2_linux-x64_bin-sdk.zip && \
-    unzip openjfx-17.0.2_linux-x64_bin-sdk.zip && \
-    mv javafx-sdk-17.0.2 /opt/javafx-sdk && \
-    rm openjfx-17.0.2_linux-x64_bin-sdk.zip
+# Download and extract JavaFX SDK 21.0.2
+RUN wget https://download2.gluonhq.com/openjfx/21.0.2/openjfx-21.0.2_linux-x64_bin-sdk.zip -O openjfx-21.0.2_linux-x64_bin-sdk.zip && \
+    unzip openjfx-21.0.2_linux-x64_bin-sdk.zip && \
+    mv javafx-sdk-21.0.2 /opt/javafx-sdk && \
+    rm openjfx-21.0.2_linux-x64_bin-sdk.zip
 
 # Stage 2: Run the application
 FROM openjdk:17-slim
