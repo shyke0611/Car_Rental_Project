@@ -6,7 +6,7 @@ services:
     region: oregon
     buildCommand: "mvn clean install"
     dockerfilePath: ./Dockerfile
-    startCommand: "sh -c 'rm -rf /tmp/.X99-lock && Xvfb :99 -screen 0 1024x768x16 & export DISPLAY=:99 && java --module-path /opt/javafx-sdk-17.0.2/lib --add-modules javafx.controls,javafx.fxml -jar car_rental_book_and_manage-1.0.jar'"
+    startCommand: "sh -c 'rm -rf /tmp/.X99-lock && Xvfb :99 -screen 0 1024x768x16 & export DISPLAY=:99 && java --module-path /opt/javafx-sdk/lib --add-modules javafx.controls,javafx.fxml -jar car_rental_book_and_manage-1.0.jar'"
     envVars:
       - key: DB_URL
         value: jdbc:mysql://sql.freedb.tech:3306/freedb_carrentalproject
