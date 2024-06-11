@@ -26,7 +26,7 @@
    <right>
       <AnchorPane prefHeight="600.0" prefWidth="664.0" stylesheets="@../css/font.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="createAccBtn" layoutX="212.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#onCreateAccount" prefHeight="34.0" prefWidth="193.0" stylesheets="@../css/login.css" text="Sign Up">
+            <Button fx:id="createAccBtn" layoutX="212.0" layoutY="400.0" mnemonicParsing="false" onKeyPressed="#onEnter" onMouseClicked="#onCreateAccount" prefHeight="34.0" prefWidth="193.0" stylesheets="@../css/login.css" text="Sign Up">
                <font>
                   <Font name="Arial" size="15.0" />
                </font>
