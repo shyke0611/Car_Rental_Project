@@ -4,7 +4,7 @@
  * Styles for normal buttons.
  */
 .button-normal {
-    -fx-font-family: 'Arial', sans-serif;
+    -fx-font-family: 'Arial', 'sans-serif';
     -fx-font-size: 12px;
     -fx-font-weight: normal;
     -fx-background-color: rgba(0, 0, 0, 0);
@@ -30,7 +30,7 @@
  */
 .button-active {
     -fx-padding: 10 20;
-    -fx-font-family: 'Arial', sans-serif;
+    -fx-font-family: 'Arial', 'sans-serif';
     -fx-font-size: 12px;
     -fx-font-weight: normal;
     -fx-background-color: #ffffff33;
@@ -41,7 +41,7 @@
  * Styles for signout buttons.
  */
 .button-signout {
-    -fx-font-family: 'Arial', sans-serif;
+    -fx-font-family: 'Arial', 'sans-serif';
     -fx-font-size: 12px;
     -fx-font-weight: normal;
     -fx-background-color: #826eca;

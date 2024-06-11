@@ -24,7 +24,7 @@
          </children></AnchorPane>
    </left>
    <right>
-      <AnchorPane prefHeight="600.0" prefWidth="664.0" stylesheets="@../css/font.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="600.0" prefWidth="664.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="createAccBtn" layoutX="212.0" layoutY="400.0" mnemonicParsing="false" onKeyPressed="#onEnter" onMouseClicked="#onCreateAccount" prefHeight="34.0" prefWidth="193.0" stylesheets="@../css/login.css" text="Sign Up">
                <font>
@@ -33,12 +33,12 @@
             </Button>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="87.0" prefHeight="54.0" prefWidth="208.0" text="Join Us Now" textAlignment="CENTER">
                <font>
-                  <Font name="Al Nile Bold" size="29.0" />
+                  <Font name="Arial Bold" size="29.0" />
                </font>
             </Label>
             <Text fill="#b9afaf" layoutX="120.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lets get you started" textAlignment="CENTER" wrappingWidth="368.9103698730469">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Arial" size="17.0" />
                </font>
             </Text>
             <Button fx:id="logInBtn" layoutX="350.0" layoutY="492.0" mnemonicParsing="false" onMouseClicked="#onLogIn" styleClass="custom-button" stylesheets="@../css/login.css" text="Login">
@@ -56,11 +56,26 @@
                   <Image url="@../images%20and%20attribution/Yellow_Ford_Mustang.png" />
                </image>
             </ImageView>
-            <TextField fx:id="nameField" layoutX="120.0" layoutY="199.0" prefHeight="26.0" prefWidth="166.0" promptText="Enter Your First Name" styleClass="user-fields" stylesheets="@../css/login.css" />
-            <TextField fx:id="usernameField" layoutX="325.0" layoutY="199.0" prefHeight="26.0" prefWidth="166.0" promptText="Enter a Username" styleClass="user-fields" stylesheets="@../css/login.css" />
-            <PasswordField fx:id="passwordField" layoutX="120.0" layoutY="256.0" prefHeight="26.0" prefWidth="165.0" promptText="Enter a Password" styleClass="user-fields" stylesheets="@../css/login.css" />
-            <TextField fx:id="phoneField" layoutX="325.0" layoutY="256.0" prefHeight="28.0" prefWidth="174.0" promptText="021XXXXXXX" styleClass="user-fields" stylesheets="@../css/login.css" />
-            <TextField fx:id="licenseField" layoutX="223.0" layoutY="324.0" prefHeight="26.0" prefWidth="166.0" promptText="AAAAXXXX" styleClass="user-fields" stylesheets="@../css/login.css" />
+            <TextField fx:id="nameField" layoutX="120.0" layoutY="199.0" prefHeight="26.0" prefWidth="166.0" promptText="Enter Your First Name" styleClass="user-fields" stylesheets="@../css/login.css">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="usernameField" layoutX="325.0" layoutY="199.0" prefHeight="26.0" prefWidth="166.0" promptText="Enter a Username" styleClass="user-fields" stylesheets="@../css/login.css">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font></TextField>
+            <PasswordField fx:id="passwordField" layoutX="120.0" layoutY="256.0" prefHeight="26.0" prefWidth="165.0" promptText="Enter a Password" styleClass="user-fields" stylesheets="@../css/login.css">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font></PasswordField>
+            <TextField fx:id="phoneField" layoutX="325.0" layoutY="256.0" prefHeight="28.0" prefWidth="174.0" promptText="021XXXXXXX" styleClass="user-fields" stylesheets="@../css/login.css">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="licenseField" layoutX="223.0" layoutY="324.0" prefHeight="26.0" prefWidth="166.0" promptText="AAAAXXXX" styleClass="user-fields" stylesheets="@../css/login.css">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font></TextField>
             <FontAwesomeIconView glyphName="ID_CARD" layoutX="204.0" layoutY="343.0" size="14" />
             <FontAwesomeIconView glyphName="BOLD" layoutX="310.0" layoutY="218.0" size="14" wrappingWidth="13.0" />
             <FontAwesomeIconView glyphName="USER" layoutX="105.0" layoutY="218.0" size="14" wrappingWidth="13.0" />
