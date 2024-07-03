@@ -71,6 +71,7 @@ public class ManageController extends Controller {
 
   private String imageName;
   private Vehicle selectedVehicle;
+  private boolean isImageUploaded = false;
 
   /**
    * Initializes the controller, setting up the choice boxes, table columns, view button column, and
@@ -283,7 +284,7 @@ public class ManageController extends Controller {
     }
 
     // Check if an image is selected
-    if (vehicleImageView.getImage() == null) {
+    if (!isImageUploaded) {
       AlertManager.showAlert(
           AlertType.WARNING, "Missing Image", "Please import an image before saving.");
       return false;
@@ -414,6 +415,7 @@ public class ManageController extends Controller {
       if (ImageSelect.isValidImage(selectedFile)) {
         imageName = selectedFile.getName();
         vehicleImageView.setImage(new Image("/images and attribution/" + imageName));
+        isImageUploaded = true; 
         System.out.println("Image Path: " + imageName);
       } else {
         System.out.println("Invalid image selected.");
@@ -448,6 +450,7 @@ public class ManageController extends Controller {
     choiceFuel.setValue("Regular");
     txtEconomy.clear();
     vehicleImageView.setImage(new Image("/images and attribution/importcar.png"));
+    isImageUploaded = false;
   }
 
   /**

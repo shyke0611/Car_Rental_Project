@@ -260,7 +260,7 @@ public static boolean isCardNumberValid(String cardNumber) {
             AlertType.WARNING,
             "Registration number Already exists",
             "You must register another Registration number");
-        return false;
+        return true;
       }
     }
 
@@ -274,7 +274,7 @@ public static boolean isCardNumberValid(String cardNumber) {
             AlertType.WARNING,
             "Registration number Already exists",
             "You must register another Registration number");
-        return false;
+        return true;
       }
     }
     return false;
