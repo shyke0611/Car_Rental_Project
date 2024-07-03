@@ -11,6 +11,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -30,6 +32,12 @@ public class SignUpController extends Controller {
   /** Initializes the views and sets the controller for the SignUp scene. */
   public void initialize() {
     SceneManager.setController(Scenes.SIGNUP, this);
+
+    nameField.addEventFilter(KeyEvent.KEY_PRESSED, this::onEnter);
+    passwordField.addEventFilter(KeyEvent.KEY_PRESSED, this::onEnter);
+    usernameField.addEventFilter(KeyEvent.KEY_PRESSED, this::onEnter);
+    phoneField.addEventFilter(KeyEvent.KEY_PRESSED, this::onEnter);
+    licenseField.addEventFilter(KeyEvent.KEY_PRESSED, this::onEnter);
   }
 
   /** Clears all text fields in the sign-up form. */
@@ -78,6 +86,19 @@ public class SignUpController extends Controller {
    */
   @FXML
   public void onCreateAccount(MouseEvent event) {
+    performCreateAccount();
+  }
+
+  /** Handles the key pressed event. */
+  @FXML
+  private void onEnter(KeyEvent event) {
+    if (event.getCode() == KeyCode.ENTER) {
+      performCreateAccount();
+    }
+  }
+
+  /** Performs the create account process. */
+  private void performCreateAccount() {
     if (isUserInputValid()) {
       Client client = createClientFromInput();
       storeClientData(client);
