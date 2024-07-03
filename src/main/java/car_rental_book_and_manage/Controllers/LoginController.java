@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /** Controller class for handling login operations. */
@@ -32,6 +34,9 @@ public class LoginController extends Controller {
   /** Initializes the view and sets the current scene. */
   public void initialize() {
     SceneManager.setController(Scenes.LOGIN, this);
+
+    username.addEventFilter(KeyEvent.KEY_PRESSED, this::onEnter);
+    password.addEventFilter(KeyEvent.KEY_PRESSED, this::onEnter);
   }
 
   /**
@@ -55,12 +60,25 @@ public class LoginController extends Controller {
   }
 
   /**
-   * Handles the login process.
+   * Handles the login process when the login button is clicked.
    *
    * @param event the mouse event
    */
   @FXML
   public void onLogIn(MouseEvent event) {
+    performLogin();
+  }
+
+  /** Handles the key pressed event to perform login when Enter is pressed. */
+  @FXML
+  private void onEnter(KeyEvent event) {
+    if (event.getCode() == KeyCode.ENTER) {
+      performLogin();
+    }
+  }
+
+  /** Performs the login logic. */
+  private void performLogin() {
     String enteredUsername = username.getText();
     String enteredPassword = password.getText();
 
