@@ -16,7 +16,7 @@ public class DataManager {
     HikariConfig config = new HikariConfig();
     config.setJdbcUrl("jdbc:mysql://sql.freedb.tech:3306/freedb_carrentalproject");
     config.setUsername("freedb_hshi270");
-    config.setPassword("qA3e$g%u*YCGJTB");
+    config.setPassword("cE2$PG#9Uw?78h#");
     config.addDataSourceProperty("cachePrepStmts", "true");
     config.addDataSourceProperty("prepStmtCacheSize", "250");
     config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
