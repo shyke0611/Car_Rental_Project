@@ -48,7 +48,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="160.0" prefWidth="200.0" styleClass="block-two" stylesheets="@../css/dashboard.css">
                      <children>
-                        <Label layoutX="21.0" layoutY="96.0" prefHeight="30.0" prefWidth="118.0" text="Available cars" textFill="#514f4f" />
+                        <Label layoutX="21.0" layoutY="96.0" prefHeight="30.0" prefWidth="118.0" text="Total cars" textFill="#514f4f" />
                         <Label fx:id="vehicleLbl" layoutX="21.0" layoutY="70.0" text="12">
                            <font>
                               <Font name="Arial Bold" size="23.0" />
