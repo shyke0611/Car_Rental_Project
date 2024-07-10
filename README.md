@@ -2,6 +2,7 @@
 <a name="readme-top"></a>
 
 <!-- PROJECT SHIELDS -->
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:hyungkenine2003@gmail.com)
 [![LinkedIn][linkedin-shield]][linkedin-url]
 [![Website](https://img.shields.io/badge/Website-Visit-blue?style=for-the-badge)](https://andrewshinportfolio.netlify.app)
 
