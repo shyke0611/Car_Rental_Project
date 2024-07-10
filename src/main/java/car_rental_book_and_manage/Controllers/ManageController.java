@@ -72,6 +72,7 @@ public class ManageController extends Controller {
   private String imageName;
   private Vehicle selectedVehicle;
   private boolean isImageUploaded = false;
+  private boolean isDefaultImage = true;
 
   /**
    * Initializes the controller, setting up the choice boxes, table columns, view button column, and
@@ -283,8 +284,8 @@ public class ManageController extends Controller {
       return false;
     }
 
-    // Check if an image is selected
-    if (!isImageUploaded) {
+    // Check if an image is selected only for "save" action or if the current image is the default one
+    if (action.equals("save") && isDefaultImage) {
       AlertManager.showAlert(
           AlertType.WARNING, "Missing Image", "Please import an image before saving.");
       return false;
@@ -338,6 +339,9 @@ public class ManageController extends Controller {
     deleteVehicleBtn.setVisible(false);
     saveVehicleBtn.setVisible(true);
     clearTextFields();
+    vehicleImageView.setImage(new Image("/images and attribution/importcar.png"));
+    isImageUploaded = false;
+    isDefaultImage = true;
   }
 
   /**
@@ -415,7 +419,8 @@ public class ManageController extends Controller {
       if (ImageSelect.isValidImage(selectedFile)) {
         imageName = selectedFile.getName();
         vehicleImageView.setImage(new Image("/images and attribution/" + imageName));
-        isImageUploaded = true; 
+        isImageUploaded = true;
+        isDefaultImage = false;
         System.out.println("Image Path: " + imageName);
       } else {
         System.out.println("Invalid image selected.");
@@ -451,6 +456,7 @@ public class ManageController extends Controller {
     txtEconomy.clear();
     vehicleImageView.setImage(new Image("/images and attribution/importcar.png"));
     isImageUploaded = false;
+    isDefaultImage = true;
   }
 
   /**
@@ -468,8 +474,16 @@ public class ManageController extends Controller {
     choiceFuel.setValue(vehicle.getFuelType());
     txtEconomy.setText(vehicle.getEconomy());
     imageName = vehicle.getImage();
-    String fullImagePath = "/images and attribution/" + imageName;
-    vehicleImageView.setImage(new Image(fullImagePath));
+    if (imageName != null && !imageName.isEmpty()) {
+      String fullImagePath = "/images and attribution/" + imageName;
+      vehicleImageView.setImage(new Image(fullImagePath));
+      isImageUploaded = true;
+      isDefaultImage = false;
+    } else {
+      vehicleImageView.setImage(new Image("/images and attribution/importcar.png"));
+      isImageUploaded = false;
+      isDefaultImage = true;
+    }
   }
 
   /**
