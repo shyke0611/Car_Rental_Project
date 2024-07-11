@@ -51,22 +51,13 @@
 The Car Rental Booking and Management System is a comprehensive application designed to streamline the management of car rentals, bookings, clients, and insurance options. This system is built using JavaFX and CSS for the user interface, Scene Builder for the frontend, and MySQL for the database backend. 
 
 ## Project Demo
-
-## Project Demo
-
-[![Watch the video](https://github.com/shyke0611/Car_Rental_Project/assets/126353075/03c421c0-c227-4741-8909-2b6132b3d5da)](https://github.com/shyke0611/Car_Rental_Project/assets/126353075/4f454ef4-9088-4b1e-b1be-7fda054f9e8e)
-
-
-
 <!-- booking video -->
 https://github.com/shyke0611/Car_Rental_Project/assets/126353075/4f454ef4-9088-4b1e-b1be-7fda054f9e8e
-<!-- thumbnail -->
-https://github.com/shyke0611/Car_Rental_Project/assets/126353075/c788913f-7112-465f-8563-286000c833d0
+
 
 <!-- admin video -->
 https://github.com/shyke0611/Car_Rental_Project/assets/126353075/ff24764f-4fb2-4e27-a3e7-bb4db5ef543f
-<!-- thumbnail -->
-https://github.com/shyke0611/Car_Rental_Project/assets/126353075/6aef96d8-94ad-4414-9659-66b5cf920404
+
 
 #### Key Features:
 
