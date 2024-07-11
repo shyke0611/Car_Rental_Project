@@ -173,14 +173,6 @@ The goal was to build a comprehensive system for managing car rentals, bookings,
 #### Challenges and Learning Experience
 A major challenge was ensuring thread safety and preventing race conditions, requiring extensive research into synchronization mechanisms for managing concurrent operations. Addressing these issues enhanced my understanding of Java concurrency and improved my problem-solving skills.
 
-
-<!-- CONTACT -->
-## Contact
-
-Email - hyungkenine2003@gmail.com
-
-Project Link - [https://github.com/shyke0611/Car_Rental_Project.git](https://github.com/shyke0611/Car_Rental_Project.git)
-
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
