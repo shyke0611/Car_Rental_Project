@@ -52,10 +52,10 @@ The Car Rental Booking and Management System is a comprehensive application desi
 
 ## Project Demo
 
-[![Watch the video](https://github.com/shyke0611/Car_Rental_Project/assets/126353075/c788913f-7112-465f-8563-286000c833d0)](https://github.com/shyke0611/Car_Rental_Project/assets/126353075/4f454ef4-9088-4b1e-b1be-7fda054f9e8e) 
+## Project Demo
 
+[![Watch the video](https://github.com/shyke0611/Car_Rental_Project/assets/126353075/03c421c0-c227-4741-8909-2b6132b3d5da)](https://github.com/shyke0611/Car_Rental_Project/assets/126353075/4f454ef4-9088-4b1e-b1be-7fda054f9e8e)
 
-<img width="904" alt="bookingThumbnail" src="https://github.com/shyke0611/Car_Rental_Project/assets/126353075/03c421c0-c227-4741-8909-2b6132b3d5da">
 
 
 <!-- booking video -->
