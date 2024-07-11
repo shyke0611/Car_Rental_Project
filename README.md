@@ -69,7 +69,7 @@ https://github.com/shyke0611/Car_Rental_Project/assets/126353075/ff24764f-4fb2-4
   <li>MYSQL Database:  Store and retrieve data reliably with support for transactions.</li>
 
 
-  <li>Management:  Add, update, delete vehicle, client, reservation information.</li>
+  <li>Management:  CRUD operations </li>
 
 
   <li>Signup/Login mechansim:  Validates users with their credentials</li>
