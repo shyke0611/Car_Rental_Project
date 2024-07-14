@@ -26,6 +26,7 @@
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Objects/VehicleDAO.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Controllers/ManageController.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/InsuranceStrategy/PremiumCoverStrategy.java
+/Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Utility/PIIHashManager.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Objects/DataModel.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Controllers/BookingsController.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Objects/VehicleDisplayMaker.java
