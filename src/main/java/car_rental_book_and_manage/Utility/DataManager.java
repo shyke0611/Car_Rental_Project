@@ -2,11 +2,17 @@ package car_rental_book_and_manage.Utility;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Properties;
 import javax.sql.DataSource;
 
-/** Utility class for managing database connections using HikariCP. */
+/**
+ * Utility class for managing database connections using HikariCP. source:
+ * https://www.baeldung.com/hikaricp
+ */
 public class DataManager {
 
   private static final DataSource dataSource;
@@ -14,9 +20,19 @@ public class DataManager {
   // Static block to initialize the data source
   static {
     HikariConfig config = new HikariConfig();
-    config.setJdbcUrl("jdbc:mysql://sql.freedb.tech:3306/freedb_carrentalproject");
-    config.setUsername("freedb_hshi270");
-    config.setPassword("cE2$PG#9Uw?78h#");
+    Properties dbProperties = new Properties();
+    try (InputStream input =
+        DataManager.class.getClassLoader().getResourceAsStream("database.properties")) {
+      if (input == null) {
+        throw new RuntimeException("database.properties not found");
+      }
+      dbProperties.load(input);
+    } catch (IOException e) {
+      throw new RuntimeException("error with loading database.properties", e);
+    }
+    config.setJdbcUrl(dbProperties.getProperty("db.url"));
+    config.setUsername(dbProperties.getProperty("db.username"));
+    config.setPassword(dbProperties.getProperty("db.password"));
     config.addDataSourceProperty("cachePrepStmts", "true");
     config.addDataSourceProperty("prepStmtCacheSize", "250");
     config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
