@@ -121,7 +121,7 @@ public class LoginController extends Controller {
    * @param password the entered password
    */
   private void handleSuccessfulLogin(String username, String password) {
-    Client loggedInClient = clientdb.getClient(username, password);
+    Client loggedInClient = clientdb.getClient(username);
     reservationManager.setLoggedInClient(loggedInClient);
     dataModel.setLoggedClientName(loggedInClient.getFirstName());
     clearLoginFields();

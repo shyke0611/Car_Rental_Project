@@ -3,6 +3,7 @@ package car_rental_book_and_manage.Controllers;
 import car_rental_book_and_manage.App;
 import car_rental_book_and_manage.Objects.Client;
 import car_rental_book_and_manage.Utility.AlertManager;
+import car_rental_book_and_manage.Utility.PIIHashManager;
 import car_rental_book_and_manage.Utility.SceneManager;
 import car_rental_book_and_manage.Utility.SceneManager.Scenes;
 import car_rental_book_and_manage.Utility.ValidationManager;
@@ -117,7 +118,9 @@ public class SignUpController extends Controller {
     String username = usernameField.getText();
     String phoneNo = phoneField.getText();
     String license = licenseField.getText().toUpperCase();
-    return new Client(username, password, name, phoneNo, license);
+    // hash the password
+    String hashedPassword = PIIHashManager.hashPassword(password);
+    return new Client(username, hashedPassword, name, phoneNo, license);
   }
 
   /**
