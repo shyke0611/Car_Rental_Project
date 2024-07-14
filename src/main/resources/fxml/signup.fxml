@@ -70,7 +70,7 @@
                </font></PasswordField>
             <TextField fx:id="phoneField" layoutX="325.0" layoutY="256.0" prefHeight="28.0" prefWidth="174.0" promptText="021XXXXXXX" styleClass="user-fields" stylesheets="@../css/login.css">
                <font>
-                  <Font name="Arial Bold" size="13.0" />
+                  <Font name="Arial" size="13.0" />
                </font></TextField>
             <TextField fx:id="licenseField" layoutX="223.0" layoutY="324.0" prefHeight="26.0" prefWidth="166.0" promptText="AAAAXXXX" styleClass="user-fields" stylesheets="@../css/login.css">
                <font>

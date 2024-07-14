@@ -44,14 +44,13 @@ public interface ClientDAO {
    */
   boolean isLoginCredentialsValid(String username, String password);
 
-  /**
-   * Gets a client by username and password.
+ /**
+   * Gets a client by username.
    *
    * @param username the username of the client
-   * @param password the password of the client
-   * @return the client with the specified username and password, or null if not found
+   * @return the client with the specified username, or null if not found
    */
-  Client getClient(String username, String password);
+  Client getClient(String username);
 
   /** Retrieves the latest saved client from the database and adds it to the model. */
   void retrieveLatestClientToSave();
