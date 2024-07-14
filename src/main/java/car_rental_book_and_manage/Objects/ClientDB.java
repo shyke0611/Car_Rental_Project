@@ -2,6 +2,8 @@ package car_rental_book_and_manage.Objects;
 
 import car_rental_book_and_manage.App;
 import car_rental_book_and_manage.Utility.DataManager;
+import car_rental_book_and_manage.Utility.PIIHashManager;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,8 +25,7 @@ public class ClientDB implements ClientDAO {
     App.clientdbExecutor.execute(
         () -> {
           String query =
-              "INSERT INTO CLIENT (Fname, Username, Pword, Phone_no, License_no) VALUES (?, ?, ?,"
-                  + " ?, ?)";
+              "INSERT INTO CLIENT (Fname, Username, Pword, Phone_no, License_no) VALUES (?, ?, ?, ?, ?)";
           try (Connection connection = DataManager.getConnection()) {
             connection.setAutoCommit(false);
             try (PreparedStatement statement =
@@ -198,34 +199,35 @@ public class ClientDB implements ClientDAO {
    */
   @Override
   public synchronized boolean isLoginCredentialsValid(String username, String password) {
-    String sql = "SELECT * FROM CLIENT WHERE Username = ? AND Pword = ?";
+    String sql = "SELECT Pword FROM CLIENT WHERE Username = ?";
     try (Connection connection = DataManager.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql)) {
       statement.setString(1, username);
-      statement.setString(2, password);
       try (ResultSet resultSet = statement.executeQuery()) {
-        return resultSet.next();
+        if (resultSet.next()) {
+          String storedHashedPassword = resultSet.getString("Pword");
+          // Verify the provided password with the stored hashed password
+          return PIIHashManager.checkPassword(password, storedHashedPassword);
+        }
       }
     } catch (SQLException e) {
       handleSQLException(e);
-      return false;
     }
+    return false;
   }
 
   /**
-   * Gets a client by username and password.
+   * Gets a client by username.
    *
    * @param username the username of the client
-   * @param password the password of the client
-   * @return the client with the specified username and password, or null if not found
+   * @return the client with the specified username, or null if not found
    */
   @Override
-  public synchronized Client getClient(String username, String password) {
-    String sql = "SELECT * FROM CLIENT WHERE Username = ? AND Pword = ?";
+  public synchronized Client getClient(String username) {
+    String sql = "SELECT * FROM CLIENT WHERE Username = ?";
     try (Connection connection = DataManager.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql)) {
       statement.setString(1, username);
-      statement.setString(2, password);
       try (ResultSet resultSet = statement.executeQuery()) {
         if (resultSet.next()) {
           return mapResultSetToClient(resultSet);
@@ -249,7 +251,7 @@ public class ClientDB implements ClientDAO {
     statement.setString(1, client.getFirstName());
     statement.setString(2, client.getUsername());
     statement.setString(3, client.getPassword());
-    statement.setString(4, client.getPhoneNo()); // Changed to setString
+    statement.setString(4, client.getPhoneNo());
     statement.setString(5, client.getLicenseNo());
   }
 
@@ -266,7 +268,7 @@ public class ClientDB implements ClientDAO {
     client.setFirstName(resultSet.getString("Fname"));
     client.setUsername(resultSet.getString("Username"));
     client.setPassword(resultSet.getString("Pword"));
-    client.setPhoneNo(resultSet.getString("Phone_no")); // Changed to getString
+    client.setPhoneNo(resultSet.getString("Phone_no"));
     client.setLicenseNo(resultSet.getString("License_no"));
     return client;
   }
