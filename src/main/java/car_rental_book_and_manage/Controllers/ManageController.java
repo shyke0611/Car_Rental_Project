@@ -71,7 +71,6 @@ public class ManageController extends Controller {
 
   private String imageName;
   private Vehicle selectedVehicle;
-  private boolean isImageUploaded = false;
   private boolean isDefaultImage = true;
 
   /**
@@ -340,7 +339,6 @@ public class ManageController extends Controller {
     saveVehicleBtn.setVisible(true);
     clearTextFields();
     vehicleImageView.setImage(new Image("/images and attribution/importcar.png"));
-    isImageUploaded = false;
     isDefaultImage = true;
   }
 
@@ -419,7 +417,6 @@ public class ManageController extends Controller {
       if (ImageSelect.isValidImage(selectedFile)) {
         imageName = selectedFile.getName();
         vehicleImageView.setImage(new Image("/images and attribution/" + imageName));
-        isImageUploaded = true;
         isDefaultImage = false;
         System.out.println("Image Path: " + imageName);
       } else {
@@ -455,7 +452,6 @@ public class ManageController extends Controller {
     choiceFuel.setValue("Regular");
     txtEconomy.clear();
     vehicleImageView.setImage(new Image("/images and attribution/importcar.png"));
-    isImageUploaded = false;
     isDefaultImage = true;
   }
 
@@ -477,11 +473,9 @@ public class ManageController extends Controller {
     if (imageName != null && !imageName.isEmpty()) {
       String fullImagePath = "/images and attribution/" + imageName;
       vehicleImageView.setImage(new Image(fullImagePath));
-      isImageUploaded = true;
       isDefaultImage = false;
     } else {
       vehicleImageView.setImage(new Image("/images and attribution/importcar.png"));
-      isImageUploaded = false;
       isDefaultImage = true;
     }
   }
