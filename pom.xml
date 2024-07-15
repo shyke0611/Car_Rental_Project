@@ -53,6 +53,14 @@
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jasypt/jasypt -->
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+            <version>1.9.3</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
