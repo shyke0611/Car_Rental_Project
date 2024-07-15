@@ -133,7 +133,7 @@ You will need the following software installed:
 <!-- USAGE EXAMPLES -->
 ## Usage
 Entity-Relation Diagram of How Project was Planned:
-[![Manage Vehicle Page][ERD]](project_images/ERD.png)
+[![ERD][ERD]](project_assets/project_images/ERD.png)
 
 ### Quick Demo of Project Using Custom Runtime ###
 Clone the project repository, move to the project directory, and then run the code below:
@@ -194,7 +194,4 @@ A major challenge was ensuring thread safety and preventing race conditions, req
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/andrew-hk-shin
-[findVehicles]: project_images/findVehicles.png
-[manageVehicles]: project_images/manageVehicles.png
-[payment]: project_images/payment.png
-[ERD]: project_images/ERD.png
+[ERD]: project_assets/project_images/ERD.png
