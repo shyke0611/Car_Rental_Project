@@ -72,7 +72,7 @@ https://github.com/shyke0611/Car_Rental_Project/assets/126353075/ff24764f-4fb2-4
   <li>Management:  CRUD operations </li>
 
 
-  <li>Signup/Login mechansim:  Validates users with their credentials</li>
+  <li>Signup/Login mechansim:  Validates users with their credentials using BCrypt for PII hashing.</li>
 
 
 
