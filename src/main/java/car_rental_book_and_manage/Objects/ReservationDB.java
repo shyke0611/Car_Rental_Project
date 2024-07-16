@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class ReservationDB implements ReservationDAO {
       try (Connection connection = DataManager.getConnection()) {
         connection.setAutoCommit(false);
 
-        try (PreparedStatement reservationStatement = connection.prepareStatement(reservationQuery, PreparedStatement.RETURN_GENERATED_KEYS);
+        try (PreparedStatement reservationStatement = connection.prepareStatement(reservationQuery, Statement.RETURN_GENERATED_KEYS);
              PreparedStatement paymentStatement = connection.prepareStatement(paymentQuery)) {
 
           // Save reservation
@@ -139,6 +140,28 @@ public class ReservationDB implements ReservationDAO {
       }
       System.err.println("Retrieved all reservations");
     });
+  }
+
+  /**
+   * Retrieves a reservation by its ID.
+   *
+   * @param reservationId the ID of the reservation to retrieve
+   * @return the reservation with the specified ID, or null if not found
+   */
+  public synchronized Reservation getReservationById(int reservationId) {
+    String sql = "SELECT * FROM RESERVATION WHERE Rental_Id = ?";
+    try (Connection connection = DataManager.getConnection();
+         PreparedStatement statement = connection.prepareStatement(sql)) {
+      statement.setInt(1, reservationId);
+      try (ResultSet resultSet = statement.executeQuery()) {
+        if (resultSet.next()) {
+          return mapResultSetToReservation(resultSet);
+        }
+      }
+    } catch (SQLException e) {
+      handleSQLException(e);
+    }
+    return null;
   }
 
   /**

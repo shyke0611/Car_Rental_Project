@@ -16,6 +16,7 @@
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Utility/SceneManager.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/InsuranceStrategy/InsuranceStrategy.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Objects/ClientDAO.java
+/Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/server/Server.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Utility/ImageSelect.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Utility/DataManager.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Controllers/AdminController.java
@@ -27,13 +28,16 @@
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Objects/VehicleDAO.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Controllers/ManageController.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/InsuranceStrategy/PremiumCoverStrategy.java
+/Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/rest/ClientController.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Utility/PIIHashManager.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Objects/DataModel.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Controllers/BookingsController.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Objects/VehicleDisplayMaker.java
+/Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/rest/VehicleController.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Controllers/ConfirmationController.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Utility/AlertManager.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Controllers/CustomersController.java
+/Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/rest/ReservationController.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Controllers/FindVehiclesController.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Controllers/MyBookingController.java
 /Users/andrewshin/Downloads/Car_Rental_Project/src/main/java/car_rental_book_and_manage/Controllers/InsuranceController.java

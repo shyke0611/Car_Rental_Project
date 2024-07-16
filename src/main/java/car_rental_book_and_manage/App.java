@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
+import car_rental_book_and_manage.server.Server;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -43,6 +44,7 @@ public class App extends Application {
     model.clearVehicles();
     model.clearClients();
     model.clearReservations();
+    Server.stopServer(); 
   }
 
  /**
@@ -62,6 +64,8 @@ public class App extends Application {
 
   @Override
   public void start(Stage stage) throws IOException {
+
+    Server.startServer();
 
     v.retrieveAllVehicles();
     r.retrieveAllReservations();

@@ -146,6 +146,28 @@ public class ClientDB implements ClientDAO {
   }
 
   /**
+   * Retrieves a client by its ID.
+   *
+   * @param clientId the ID of the client to retrieve
+   * @return the client with the specified ID, or null if not found
+   */
+  public synchronized Client getClientById(int clientId) {
+    String sql = "SELECT * FROM CLIENT WHERE C_Id = ?";
+    try (Connection connection = DataManager.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql)) {
+      statement.setInt(1, clientId);
+      try (ResultSet resultSet = statement.executeQuery()) {
+        if (resultSet.next()) {
+          return mapResultSetToClient(resultSet);
+        }
+      }
+    } catch (SQLException e) {
+      handleSQLException(e);
+    }
+    return null;
+  }
+
+  /**
    * Gets the total number of clients in the database.
    *
    * @return the total number of clients
