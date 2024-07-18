@@ -1,126 +1,71 @@
 package car_rental_book_and_manage.rest;
 
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpExchange;
+import static spark.Spark.*;
+
 import car_rental_book_and_manage.Objects.DataModel;
 import car_rental_book_and_manage.Objects.Vehicle;
 import car_rental_book_and_manage.Objects.VehicleDB;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.List;
+/** REST controller for handling vehicle-related HTTP requests. */
+public class VehicleController {
+  private VehicleDB vehicleDB = new VehicleDB();
+  private ObjectMapper objectMapper = new ObjectMapper();
+  private static final DataModel model = DataModel.getInstance();
 
-/**
- * REST controller for handling vehicle-related HTTP requests.
- */
-public class VehicleController implements HttpHandler {
-    private VehicleDB vehicleDB = new VehicleDB();
-    private ObjectMapper objectMapper = new ObjectMapper();
-    private static final DataModel model = DataModel.getInstance();
+  /** Constructor to set up the vehicle-related endpoints. */
+  public VehicleController() {
+    setupEndpoints();
+  }
 
-    @Override
-    public void handle(HttpExchange exchange) throws IOException {
-        String method = exchange.getRequestMethod();
-        switch (method) {
-            case "GET":
-                handleGet(exchange);
-                break;
-            case "POST":
-                handlePost(exchange);
-                break;
-            case "PUT":
-                handlePut(exchange);
-                break;
-            case "DELETE":
-                handleDelete(exchange);
-                break;
-            default:
-                exchange.sendResponseHeaders(405, -1); // Method Not Allowed
-                break;
-        }
-    }
-
-    /**
-     * Handles HTTP GET requests for retrieving vehicle information.
-     *
-     * @param exchange the HTTP exchange containing the request and response
-     * @throws IOException if an I/O error occurs
-     */
-    private void handleGet(HttpExchange exchange) throws IOException {
-        String query = exchange.getRequestURI().getQuery();
-        if (query != null && query.contains("id=")) {
-            int id = Integer.parseInt(query.split("=")[1]);
-            Vehicle vehicle = vehicleDB.getVehicleById(id);
+  /** Sets up the Spark endpoints for vehicle-related API requests. */
+  private void setupEndpoints() {
+    // Handles GET requests for retrieving vehicles
+    get(
+        "/api/vehicles",
+        (req, res) -> {
+          String idParam = req.queryParams("id");
+          if (idParam != null) {
+            int id = Integer.parseInt(idParam);
+            Vehicle vehicle = model.getVehicle(id);
             if (vehicle != null) {
-                String jsonResponse = objectMapper.writeValueAsString(vehicle);
-                exchange.sendResponseHeaders(200, jsonResponse.getBytes().length);
-                OutputStream os = exchange.getResponseBody();
-                os.write(jsonResponse.getBytes());
-                os.close();
+              return objectMapper.writeValueAsString(vehicle);
             } else {
-                exchange.sendResponseHeaders(404, -1); // Not Found
+              res.status(404);
+              return "";
             }
-        } else {
-            vehicleDB.retrieveAllVehicles(); // Populate the model with vehicles
-            List<Vehicle> vehicles = model.getVehicleList(); // Get vehicles from the model
-            String jsonResponse = objectMapper.writeValueAsString(vehicles);
-            exchange.sendResponseHeaders(200, jsonResponse.getBytes().length);
-            OutputStream os = exchange.getResponseBody();
-            os.write(jsonResponse.getBytes());
-            os.close();
-        }
-    }
+          } else {
+            vehicleDB.retrieveAllVehicles();
+            return objectMapper.writeValueAsString(model.getVehicleList());
+          }
+        });
 
-    /**
-     * Handles HTTP POST requests for saving vehicle information.
-     *
-     * @param exchange the HTTP exchange containing the request and response
-     * @throws IOException if an I/O error occurs
-     */
-    private void handlePost(HttpExchange exchange) throws IOException {
-        InputStream requestBody = exchange.getRequestBody();
-        Vehicle vehicle = objectMapper.readValue(requestBody, Vehicle.class);
-        vehicleDB.saveVehicle(vehicle);
-        String response = "Vehicle saved successfully";
-        exchange.sendResponseHeaders(201, response.getBytes().length);
-        OutputStream os = exchange.getResponseBody();
-        os.write(response.getBytes());
-        os.close();
-    }
+    // Handles POST requests for saving a new vehicle
+    post(
+        "/api/vehicles",
+        (req, res) -> {
+          Vehicle vehicle = objectMapper.readValue(req.body(), Vehicle.class);
+          vehicleDB.saveVehicle(vehicle);
+          res.status(201);
+          return "Vehicle saved successfully";
+        });
 
-    /**
-     * Handles HTTP PUT requests for updating vehicle information.
-     *
-     * @param exchange the HTTP exchange containing the request and response
-     * @throws IOException if an I/O error occurs
-     */
-    private void handlePut(HttpExchange exchange) throws IOException {
-        InputStream requestBody = exchange.getRequestBody();
-        Vehicle vehicle = objectMapper.readValue(requestBody, Vehicle.class);
-        vehicleDB.updateVehicle(vehicle);
-        String response = "Vehicle updated successfully";
-        exchange.sendResponseHeaders(200, response.getBytes().length);
-        OutputStream os = exchange.getResponseBody();
-        os.write(response.getBytes());
-        os.close();
-    }
+    // Handles PUT requests for updating an existing vehicle
+    put(
+        "/api/vehicles",
+        (req, res) -> {
+          Vehicle vehicle = objectMapper.readValue(req.body(), Vehicle.class);
+          vehicleDB.updateVehicle(vehicle);
+          return "Vehicle updated successfully";
+        });
 
-    /**
-     * Handles HTTP DELETE requests for deleting vehicle information.
-     *
-     * @param exchange the HTTP exchange containing the request and response
-     * @throws IOException if an I/O error occurs
-     */
-    private void handleDelete(HttpExchange exchange) throws IOException {
-        InputStream requestBody = exchange.getRequestBody();
-        Vehicle vehicle = objectMapper.readValue(requestBody, Vehicle.class);
-        vehicleDB.deleteVehicle(vehicle);
-        String response = "Vehicle deleted successfully";
-        exchange.sendResponseHeaders(200, response.getBytes().length);
-        OutputStream os = exchange.getResponseBody();
-        os.write(response.getBytes());
-        os.close();
-    }
+    // Handles DELETE requests for removing a vehicle
+    delete(
+        "/api/vehicles",
+        (req, res) -> {
+          Vehicle vehicle = objectMapper.readValue(req.body(), Vehicle.class);
+          vehicleDB.deleteVehicle(vehicle);
+          return "Vehicle deleted successfully";
+        });
+  }
 }

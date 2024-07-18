@@ -1,18 +1,21 @@
 package car_rental_book_and_manage;
 
 import car_rental_book_and_manage.Objects.DataModel;
-import car_rental_book_and_manage.Objects.ReservationDB;
-import car_rental_book_and_manage.Objects.VehicleDB;
+import car_rental_book_and_manage.Objects.Reservation;
+import car_rental_book_and_manage.Objects.Vehicle;
 import car_rental_book_and_manage.Utility.BookingScheduler;
+import car_rental_book_and_manage.Utility.HttpClientUtil;
 import car_rental_book_and_manage.Utility.SceneManager;
 import car_rental_book_and_manage.Utility.SceneManager.Scenes;
+import car_rental_book_and_manage.server.Server;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
-import car_rental_book_and_manage.server.Server;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,16 +27,15 @@ import javafx.stage.Stage;
 public class App extends Application {
 
   private static Scene scene;
- 
+
   public static final ExecutorService vehicledbExecutor = Executors.newFixedThreadPool(5);
   public static final ExecutorService clientdbExecutor = Executors.newFixedThreadPool(5);
   public static final ExecutorService reservationdbExecutor = Executors.newFixedThreadPool(5);
   public static final ExecutorService paymentdbExecutor = Executors.newFixedThreadPool(5);
+  private static final ObjectMapper mapper =
+      new ObjectMapper().registerModule(new JavaTimeModule());
   private static final DataModel model = DataModel.getInstance();
-  private VehicleDB v = new VehicleDB();
-  private ReservationDB r = new ReservationDB();
   private BookingScheduler bookingScheduler = new BookingScheduler();
-
 
   public void shutdown() {
     bookingScheduler.stop();
@@ -44,17 +46,16 @@ public class App extends Application {
     model.clearVehicles();
     model.clearClients();
     model.clearReservations();
-    Server.stopServer(); 
+    Server.stopServer();
   }
 
- /**
-   * Static method to reset all DatePicker fields in the application.
-   */
+  /** Static method to reset all DatePicker fields in the application. */
   public static void resetAllDatePickers() {
     Parent root = scene.getRoot();
-    List<DatePicker> datePickers = root.lookupAll(".date-picker").stream()
-        .map(node -> (DatePicker) node)
-        .collect(Collectors.toList());
+    List<DatePicker> datePickers =
+        root.lookupAll(".date-picker").stream()
+            .map(node -> (DatePicker) node)
+            .collect(Collectors.toList());
 
     for (DatePicker datePicker : datePickers) {
       datePicker.setValue(null);
@@ -67,12 +68,12 @@ public class App extends Application {
 
     Server.startServer();
 
-    v.retrieveAllVehicles();
-    r.retrieveAllReservations();
+    retrieveAllVehicles();
+    retrieveAllReservations();
 
     SceneManager.addController(SceneManager.Scenes.ADMIN, null);
     SceneManager.addUi(SceneManager.Scenes.ADMIN, loadFXML("admin"));
-    
+
     SceneManager.addController(SceneManager.Scenes.LOGIN, null);
     SceneManager.addUi(SceneManager.Scenes.LOGIN, loadFXML("login"));
 
@@ -142,5 +143,28 @@ public class App extends Application {
 
   public static void main(String[] args) {
     launch(args);
+  }
+
+  /** Retrieve all vehicles from the backend server. */
+  private void retrieveAllVehicles() {
+    try {
+      String response = HttpClientUtil.sendGetRequest("http://localhost:8000/api/vehicles");
+      List<Vehicle> vehicles = mapper.readValue(response, new TypeReference<List<Vehicle>>() {});
+      model.getVehicleList().addAll(vehicles);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  /** Retrieve all reservations from the backend server. */
+  private void retrieveAllReservations() {
+    try {
+      String response = HttpClientUtil.sendGetRequest("http://localhost:8000/api/reservations");
+      List<Reservation> reservations =
+          mapper.readValue(response, new TypeReference<List<Reservation>>() {});
+      model.getReservationList().addAll(reservations);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }
