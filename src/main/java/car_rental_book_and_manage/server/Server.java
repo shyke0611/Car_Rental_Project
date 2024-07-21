@@ -1,13 +1,13 @@
-package car_rental_book_and_manage.server;
+package car_rental_book_and_manage.Server;
 
 import static spark.Spark.*;
 
-import car_rental_book_and_manage.rest.ClientController;
-import car_rental_book_and_manage.rest.ReservationController;
-import car_rental_book_and_manage.rest.VehicleController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import car_rental_book_and_manage.Server.RestControllers.ClientController;
+import car_rental_book_and_manage.Server.RestControllers.ReservationController;
+import car_rental_book_and_manage.Server.RestControllers.VehicleController;
 /** Class for starting and stopping the HTTP server to handle REST API requests. */
 public class Server {
   private static final Logger logger = LoggerFactory.getLogger(Server.class);
@@ -23,7 +23,6 @@ public class Server {
 
     init(); // Ensure the server is initialized
     awaitInitialization(); // Wait for the server to be fully initialized
-
     logger.info("Server started on port 8000");
   }
 
