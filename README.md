@@ -62,25 +62,24 @@ https://github.com/shyke0611/Car_Rental_Project/assets/126353075/ff24764f-4fb2-4
 #### Key Features:
 
 
-  <li>User Interface (UI) Applications:  Modern UI with JavaFX, enhanced with CSS for styling and FXML for layout.</li>
+  <li>User Interface (UI) Applications:  UI/UX with JavaFX with CSS for styling and FXML for layout.</li>
 
 
 
   <li>MYSQL Database using JDBC API:  Store and retrieve data reliably with support for transactions.</li>
 
 
-  <li>Management:  CRUD operations </li>
-
-
   <li>Signup/Login mechansim:  Validates users with their credentials using BCrypt for PII hashing.</li>
-
 
 
   <li>Thread Safety:  Synchronized methods, ExecutorService, Transaction management, Scheduled tasks.</li>
 
 
+  <li>Client-Server Communication:  JAX-RS using HTTP and REST API</li>
+  
 
   <li>OOP principles, MVC, DAO, Strategy.</li>
+
 
 
 
