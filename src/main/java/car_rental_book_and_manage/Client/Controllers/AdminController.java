@@ -2,7 +2,7 @@ package car_rental_book_and_manage.Client.Controllers;
 
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
-import car_rental_book_and_manage.Server.Vehicle.Vehicle;
+import car_rental_book_and_manage.SharedObject.Vehicle;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;

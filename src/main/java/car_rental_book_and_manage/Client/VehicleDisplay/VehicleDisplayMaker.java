@@ -5,7 +5,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.util.HashMap;
 import java.util.Map;
 
-import car_rental_book_and_manage.Server.Vehicle.Vehicle;
+import car_rental_book_and_manage.SharedObject.Vehicle;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

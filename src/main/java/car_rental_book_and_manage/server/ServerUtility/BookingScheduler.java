@@ -1,14 +1,14 @@
 package car_rental_book_and_manage.Server.ServerUtility;
 
-import car_rental_book_and_manage.Server.Reservation.Reservation;
-import car_rental_book_and_manage.Server.Reservation.ReservationDB;
-import car_rental_book_and_manage.Server.Vehicle.VehicleDB;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import car_rental_book_and_manage.Server.DAO.ReservationDB;
+import car_rental_book_and_manage.Server.DAO.VehicleDB;
+import car_rental_book_and_manage.SharedObject.Reservation;
 
 /** Class for scheduling and processing booking tasks. */
 public class BookingScheduler {

@@ -1,4 +1,6 @@
-package car_rental_book_and_manage.Server.Client;
+package car_rental_book_and_manage.Server.DAO;
+
+import car_rental_book_and_manage.SharedObject.Client;
 
 /** Interface for client data access operations. */
 public interface ClientDAO {

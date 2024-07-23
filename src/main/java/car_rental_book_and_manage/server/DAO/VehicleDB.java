@@ -1,8 +1,9 @@
-package car_rental_book_and_manage.Server.Vehicle;
+package car_rental_book_and_manage.Server.DAO;
 
 import car_rental_book_and_manage.Client.App;
 import car_rental_book_and_manage.Server.Data.DataModel;
 import car_rental_book_and_manage.Server.ServerUtility.DataManager;
+import car_rental_book_and_manage.SharedObject.Vehicle;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

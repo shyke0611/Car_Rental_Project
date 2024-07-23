@@ -1,9 +1,10 @@
-package car_rental_book_and_manage.Server.Reservation;
+package car_rental_book_and_manage.Server.DAO;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import car_rental_book_and_manage.Server.Payment.CardPayment;
+import car_rental_book_and_manage.SharedObject.Reservation;
 
 /** Interface for reservation data access operations. */
 public interface ReservationDAO {

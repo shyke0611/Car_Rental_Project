@@ -1,4 +1,6 @@
-package car_rental_book_and_manage.Server.Vehicle;
+package car_rental_book_and_manage.Server.DAO;
+
+import car_rental_book_and_manage.SharedObject.Vehicle;
 
 /** Interface for vehicle data access operations. */
 public interface VehicleDAO {

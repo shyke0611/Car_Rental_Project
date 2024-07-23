@@ -2,11 +2,14 @@ package car_rental_book_and_manage.Client.Controllers;
 
 import car_rental_book_and_manage.Client.App;
 import car_rental_book_and_manage.Client.ClientUtility.AlertManager;
+import car_rental_book_and_manage.Client.ClientUtility.HttpClientUtil;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
-import car_rental_book_and_manage.Server.Client.Client;
-import car_rental_book_and_manage.Server.ServerUtility.PIIHashManager;
-import car_rental_book_and_manage.Server.ServerUtility.ValidationManager;
+import car_rental_book_and_manage.SharedObject.Client;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -15,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import java.util.Map;
 
 /**
  * Controller class for the SignUp scene. Handles user interactions and client data storage during
@@ -29,6 +33,8 @@ public class SignUpController extends Controller {
   @FXML private TextField licenseField;
   @FXML private TextField nameField;
   @FXML private TextField phoneField;
+
+  private ObjectMapper objectMapper = new ObjectMapper();
 
   /** Initializes the views and sets the controller for the SignUp scene. */
   public void initialize() {
@@ -56,27 +62,58 @@ public class SignUpController extends Controller {
    * @param client the client to save
    */
   private void storeClientData(Client client) {
-    clientdb.saveClient(client);
-    System.out.println("Client saved successfully: " + client.getFirstName());
-    clearTextFields();
+    try {
+        String jsonPayload = objectMapper.writeValueAsString(client);
+        System.out.println("JSON Payload: " + jsonPayload);
+
+        String response = HttpClientUtil.sendPostRequest("http://localhost:8000/api/clients", client);
+        AlertManager.showAlert(AlertType.CONFIRMATION, "Sign Up", "Account Created Successfully");
+        System.out.println("Client saved successfully: " + client.getFirstName());
+        clearTextFields();
+    } catch (Exception e) {
+        handleServerErrors(e);
+    }
   }
 
   /**
-   * Validates the user input for sign-up.
+   * Handles server errors and displays appropriate messages to the user.
    *
-   * @return true if the input is valid, false otherwise
+   * @param e the exception thrown during the server request
    */
-  private boolean isUserInputValid() {
-    String name = nameField.getText();
-    String password = passwordField.getText();
-    String username = usernameField.getText();
-    String phoneNo = phoneField.getText();
-    String license = licenseField.getText().toUpperCase();
-
-    if (!ValidationManager.validateSignUpUserInput(name, password, username, phoneNo, license, clientdb)) {
-      return false;
+  private void handleServerErrors(Exception e) {
+    try {
+        String errorMessage = e.getMessage();
+        System.err.println("Error Message: " + errorMessage);
+        if (errorMessage.startsWith("{")) {
+            Map<String, String> errors = objectMapper.readValue(errorMessage, new TypeReference<Map<String, String>>() {});
+            for (Map.Entry<String, String> error : errors.entrySet()) {
+                switch (error.getKey()) {
+                    case "name":
+                        AlertManager.showAlert(AlertType.ERROR, "Name Error", error.getValue());
+                        break;
+                    case "password":
+                        AlertManager.showAlert(AlertType.ERROR, "Password Error", error.getValue());
+                        break;
+                    case "username":
+                        AlertManager.showAlert(AlertType.ERROR, "Username Error", error.getValue());
+                        break;
+                    case "phoneNo":
+                        AlertManager.showAlert(AlertType.ERROR, "Phone Number Error", error.getValue());
+                        break;
+                    case "license":
+                        AlertManager.showAlert(AlertType.ERROR, "License Error", error.getValue());
+                        break;
+                    default:
+                        AlertManager.showAlert(AlertType.ERROR, "Sign Up Error", error.getValue());
+                }
+            }
+        } else {
+            AlertManager.showAlert(AlertType.ERROR, "Sign Up Error", errorMessage);
+        }
+    } catch (Exception ex) {
+        AlertManager.showAlert(AlertType.ERROR, "Sign Up", "Account Creation failed");
+        ex.printStackTrace();
     }
-    return true;
   }
 
   /**
@@ -100,11 +137,8 @@ public class SignUpController extends Controller {
 
   /** Performs the create account process. */
   private void performCreateAccount() {
-    if (isUserInputValid()) {
-      Client client = createClientFromInput();
-      storeClientData(client);
-      AlertManager.showAlert(AlertType.CONFIRMATION, "Sign Up", "Account Created Successfully");
-    }
+    Client client = createClientFromInput();
+    storeClientData(client);
   }
 
   /**
@@ -118,9 +152,7 @@ public class SignUpController extends Controller {
     String username = usernameField.getText();
     String phoneNo = phoneField.getText();
     String license = licenseField.getText().toUpperCase();
-    // hash the password
-    String hashedPassword = PIIHashManager.hashPassword(password);
-    return new Client(username, hashedPassword, name, phoneNo, license);
+    return new Client(username, password, name, phoneNo, license);
   }
 
   /**

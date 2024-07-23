@@ -1,9 +1,10 @@
-package car_rental_book_and_manage.Server.Reservation;
+package car_rental_book_and_manage.Server.DAO;
 
 import car_rental_book_and_manage.Client.App;
 import car_rental_book_and_manage.Server.Data.DataModel;
 import car_rental_book_and_manage.Server.Payment.CardPayment;
 import car_rental_book_and_manage.Server.ServerUtility.DataManager;
+import car_rental_book_and_manage.SharedObject.Reservation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

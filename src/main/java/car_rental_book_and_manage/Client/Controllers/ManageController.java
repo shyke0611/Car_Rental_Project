@@ -5,12 +5,13 @@ import car_rental_book_and_manage.Client.ClientUtility.ImageSelect;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
 import car_rental_book_and_manage.Server.ServerUtility.ValidationManager;
-import car_rental_book_and_manage.Server.Vehicle.Vehicle;
+import car_rental_book_and_manage.SharedObject.Vehicle;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.File;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.function.Predicate;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;

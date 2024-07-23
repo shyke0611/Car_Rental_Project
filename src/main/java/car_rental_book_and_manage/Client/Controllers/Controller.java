@@ -2,11 +2,11 @@ package car_rental_book_and_manage.Client.Controllers;
 
 import car_rental_book_and_manage.Client.App;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
-import car_rental_book_and_manage.Server.Client.ClientDB;
+import car_rental_book_and_manage.Server.DAO.ClientDB;
+import car_rental_book_and_manage.Server.DAO.ReservationDB;
+import car_rental_book_and_manage.Server.DAO.VehicleDB;
 import car_rental_book_and_manage.Server.Data.DataModel;
-import car_rental_book_and_manage.Server.Reservation.ReservationDB;
 import car_rental_book_and_manage.Server.ServerUtility.ReservationManager;
-import car_rental_book_and_manage.Server.Vehicle.VehicleDB;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 

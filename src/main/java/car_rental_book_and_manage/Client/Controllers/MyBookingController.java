@@ -1,11 +1,11 @@
 package car_rental_book_and_manage.Client.Controllers;
 
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
-import car_rental_book_and_manage.Server.Client.Client;
 import car_rental_book_and_manage.Server.InsuranceStrategy.InsuranceManager;
 import car_rental_book_and_manage.Server.InsuranceStrategy.InsuranceStrategy;
-import car_rental_book_and_manage.Server.Reservation.Reservation;
-import car_rental_book_and_manage.Server.Vehicle.Vehicle;
+import car_rental_book_and_manage.SharedObject.Client;
+import car_rental_book_and_manage.SharedObject.Reservation;
+import car_rental_book_and_manage.SharedObject.Vehicle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;

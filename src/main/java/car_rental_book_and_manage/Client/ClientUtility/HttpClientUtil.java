@@ -25,15 +25,45 @@ public class HttpClientUtil {
    */
   public static String sendHttpRequest(String method, String endpoint, Object payload)
       throws Exception {
+    HttpURLConnection conn = setupConnection(method, endpoint, payload);
+
+    int responseCode = conn.getResponseCode();
+    String responseMessage = conn.getResponseMessage();
+    System.out.println("Response Code: " + responseCode);
+    System.out.println("Response Message: " + responseMessage);
+
+    if (responseCode >= HttpURLConnection.HTTP_OK
+        && responseCode < HttpURLConnection.HTTP_MULT_CHOICE) {
+      return readResponse(conn);
+    } else {
+      String errorResponse = readErrorResponse(conn);
+      System.err.println("Error Response: " + errorResponse);
+      conn.disconnect();
+      throw new RuntimeException("Failed : HTTP error code : " + responseCode + " - " + errorResponse);
+    }
+  }
+
+  /**
+   * Sets up an HTTP connection with the given method, endpoint, and payload.
+   *
+   * @param method the HTTP method
+   * @param endpoint the URL endpoint
+   * @param payload the JSON payload
+   * @return the configured HttpURLConnection
+   * @throws Exception if an error occurs
+   */
+  private static HttpURLConnection setupConnection(String method, String endpoint, Object payload)
+      throws Exception {
     URL url = new URL(endpoint);
     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
     conn.setRequestMethod(method);
 
-    if ("POST".equals(method) || "PUT".equals(method)) {
+    if ("POST".equalsIgnoreCase(method) || "PUT".equalsIgnoreCase(method)) {
       conn.setDoOutput(true);
       conn.setRequestProperty("Content-Type", "application/json");
       if (payload != null) {
         String jsonInputString = objectMapper.writeValueAsString(payload);
+        System.out.println("JSON Payload: " + jsonInputString);
         try (OutputStream os = conn.getOutputStream()) {
           byte[] input = jsonInputString.getBytes("utf-8");
           os.write(input, 0, input.length);
@@ -41,23 +71,48 @@ public class HttpClientUtil {
       }
     }
 
-    if ("GET".equals(method) || "DELETE".equals(method)) {
+    if ("GET".equalsIgnoreCase(method) || "DELETE".equalsIgnoreCase(method)) {
       conn.setRequestProperty("Accept", "application/json");
     }
 
-    int responseCode = conn.getResponseCode();
-    if (responseCode >= 200 && responseCode < 300) {
-      BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-      StringBuilder sb = new StringBuilder();
-      String output;
-      while ((output = br.readLine()) != null) {
-        sb.append(output);
+    return conn;
+  }
+
+  /**
+   * Reads the response from the HttpURLConnection.
+   *
+   * @param conn the HttpURLConnection
+   * @return the response as a String
+   * @throws Exception if an error occurs
+   */
+  private static String readResponse(HttpURLConnection conn) throws Exception {
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+      StringBuilder response = new StringBuilder();
+      String line;
+      while ((line = br.readLine()) != null) {
+        response.append(line);
       }
+      return response.toString();
+    } finally {
       conn.disconnect();
-      return sb.toString();
-    } else {
-      conn.disconnect();
-      throw new RuntimeException("Failed : HTTP error code : " + responseCode);
+    }
+  }
+
+  /**
+   * Reads the error response from the HttpURLConnection.
+   *
+   * @param conn the HttpURLConnection
+   * @return the error response as a String
+   * @throws Exception if an error occurs
+   */
+  private static String readErrorResponse(HttpURLConnection conn) throws Exception {
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getErrorStream()))) {
+      StringBuilder response = new StringBuilder();
+      String line;
+      while ((line = br.readLine()) != null) {
+        response.append(line);
+      }
+      return response.toString();
     }
   }
 

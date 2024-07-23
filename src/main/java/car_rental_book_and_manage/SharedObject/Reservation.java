@@ -1,4 +1,4 @@
-package car_rental_book_and_manage.Server.Reservation;
+package car_rental_book_and_manage.SharedObject;
 
 import java.time.LocalDate;
 

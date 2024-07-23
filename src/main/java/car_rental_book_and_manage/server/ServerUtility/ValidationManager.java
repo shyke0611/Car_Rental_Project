@@ -1,37 +1,20 @@
 package car_rental_book_and_manage.Server.ServerUtility;
 
 import java.time.Year;
+import java.util.HashMap;
+import java.util.Map;
 
 import car_rental_book_and_manage.Client.ClientUtility.AlertManager;
-import car_rental_book_and_manage.Server.Client.ClientDB;
+import car_rental_book_and_manage.Server.DAO.ClientDB;
+import car_rental_book_and_manage.Server.DAO.VehicleDB;
 import car_rental_book_and_manage.Server.Data.DataModel;
-import car_rental_book_and_manage.Server.Vehicle.Vehicle;
-import car_rental_book_and_manage.Server.Vehicle.VehicleDB;
+import car_rental_book_and_manage.SharedObject.Vehicle;
 import javafx.scene.control.Alert.AlertType;
 
 /** ValidationManager class for validating user and vehicle input. */
 public class ValidationManager {
 
   private static final DataModel dataModel = DataModel.getInstance();
-
-  /**
-   * Checks if all sign-up user input fields are filled out.
-   *
-   * @param name The user's name.
-   * @param password The user's password.
-   * @param username The user's username.
-   * @param phoneNo The user's phone number.
-   * @param LicenceNo The user's license number.
-   * @return true if any field is empty, false otherwise.
-   */
-  public static boolean isSignUpUserInputValid(
-      String name, String password, String username, String phoneNo, String LicenceNo) {
-    return name.isEmpty()
-        || password.isEmpty()
-        || username.isEmpty()
-        || phoneNo.isEmpty()
-        || LicenceNo.isEmpty();
-  }
 
   /**
    * Validates the user's name.
@@ -281,7 +264,7 @@ public static boolean isCardNumberValid(String cardNumber) {
     return false;
   }
 
-    /**
+  /**
    * Validates all sign-up user input fields and checks for existing username.
    *
    * @param name The user's name.
@@ -290,34 +273,45 @@ public static boolean isCardNumberValid(String cardNumber) {
    * @param phoneNo The user's phone number.
    * @param license The user's license number.
    * @param clientdb The client database instance.
-   * @return true if all fields are valid and username doesn't exist, false otherwise.
+   * @return Map of error messages if any field is invalid or username exists, otherwise empty map.
    */
-  public static boolean validateSignUpUserInput(
+  public static Map<String, String> validateSignUpUserInput(
       String name, String password, String username, String phoneNo, String license, ClientDB clientdb) {
-    if (isSignUpUserInputValid(name, password, username, phoneNo, license)) {
-      AlertManager.showAlert(AlertType.WARNING, "Required Fields", "Please Enter All Missing Fields");
-      return false;
+    Map<String, String> errors = new HashMap<>();
+
+    if (name.isEmpty()) {
+      errors.put("name", "Name is required.");
+    } else if (!isNameValid(name)) {
+      errors.put("name", "First name format is invalid.");
     }
-    if (!isNameValid(name)) {
-      AlertManager.showAlert(AlertType.WARNING, "Invalid Name Format", "First Name Format Is Invalid");
-      return false;
+
+    if (password.isEmpty()) {
+      errors.put("password", "Password is required.");
     }
-    if (!isPhoneNoValid(phoneNo)) {
-      AlertManager.showAlert(AlertType.WARNING, "Invalid Phone Number", "Phone Number must be a 10 digit number\nXXXXXXXXXX");
-      return false;
+
+    if (username.isEmpty()) {
+      errors.put("username", "Username is required.");
+    } else if (clientdb.doesUserNameExist(username)) {
+      errors.put("username", "Username already exists.");
     }
-    if (!isLicenseNoValid(license)) {
-      AlertManager.showAlert(AlertType.WARNING, "Invalid License Number", "Format must be xxxx0000");
-      return false;
+
+    if (phoneNo.isEmpty()) {
+      errors.put("phoneNo", "Phone number is required.");
+    } else if (!isPhoneNoValid(phoneNo)) {
+      errors.put("phoneNo", "Phone number must be a 10-digit number (XXXXXXXXXX).");
     }
-    if (clientdb.doesUserNameExist(username)) {
-      AlertManager.showAlert(AlertType.WARNING, "Username Already Exists", "Please Come Up With Another Username");
-      return false;
+
+    if (license.isEmpty()) {
+      errors.put("license", "License number is required.");
+    } else if (!isLicenseNoValid(license)) {
+      errors.put("license", "License number format must be XXXX0000.");
+    } else if (clientdb.doesLicenseNoExist(license)) {
+      errors.put("license", "License number already exists");
     }
-    return true;
+    return errors;
   }
 
-   /**
+  /**
    * Validates the card details input fields.
    *
    * @param cardName The cardholder's name.

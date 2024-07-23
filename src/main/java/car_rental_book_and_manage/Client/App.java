@@ -3,15 +3,16 @@ package car_rental_book_and_manage.Client;
 import car_rental_book_and_manage.Client.ClientUtility.HttpClientUtil;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
-import car_rental_book_and_manage.Server.Server;
 import car_rental_book_and_manage.Server.Data.DataModel;
-import car_rental_book_and_manage.Server.Reservation.Reservation;
+import car_rental_book_and_manage.Server.ServerLauncher;
 import car_rental_book_and_manage.Server.ServerUtility.BookingScheduler;
-import car_rental_book_and_manage.Server.Vehicle.Vehicle;
+import car_rental_book_and_manage.SharedObject.Reservation;
+import car_rental_book_and_manage.SharedObject.Vehicle;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -47,7 +48,7 @@ public class App extends Application {
     model.clearVehicles();
     model.clearClients();
     model.clearReservations();
-    Server.stopServer();
+    ServerLauncher.stopServer();
   }
 
   /** Static method to reset all DatePicker fields in the application. */
@@ -65,12 +66,15 @@ public class App extends Application {
   }
 
   @Override
-  public void start(Stage stage) throws IOException {
+  public void start(Stage stage) throws Exception {
+    try {
+      ServerLauncher.startServer();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
 
-    Server.startServer();
-
-    retrieveAllVehicles();
-    retrieveAllReservations();
+    HttpClientUtil.sendGetRequest("http://localhost:8000/api/vehicles");
+    HttpClientUtil.sendGetRequest("http://localhost:8000/api/reservations");
 
     SceneManager.addController(SceneManager.Scenes.ADMIN, null);
     SceneManager.addUi(SceneManager.Scenes.ADMIN, loadFXML("admin"));
@@ -145,27 +149,6 @@ public class App extends Application {
   public static void main(String[] args) {
     launch(args);
   }
-
-  /** Retrieve all vehicles from the backend server. */
-  private void retrieveAllVehicles() {
-    try {
-      String response = HttpClientUtil.sendGetRequest("http://localhost:8000/api/vehicles");
-      List<Vehicle> vehicles = mapper.readValue(response, new TypeReference<List<Vehicle>>() {});
-      model.getVehicleList().addAll(vehicles);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  /** Retrieve all reservations from the backend server. */
-  private void retrieveAllReservations() {
-    try {
-      String response = HttpClientUtil.sendGetRequest("http://localhost:8000/api/reservations");
-      List<Reservation> reservations =
-          mapper.readValue(response, new TypeReference<List<Reservation>>() {});
-      model.getReservationList().addAll(reservations);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
 }
+
+  

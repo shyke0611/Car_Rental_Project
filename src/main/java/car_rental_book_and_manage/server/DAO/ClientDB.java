@@ -1,9 +1,10 @@
-package car_rental_book_and_manage.Server.Client;
+package car_rental_book_and_manage.Server.DAO;
 
 import car_rental_book_and_manage.Client.App;
 import car_rental_book_and_manage.Server.Data.DataModel;
 import car_rental_book_and_manage.Server.ServerUtility.DataManager;
 import car_rental_book_and_manage.Server.ServerUtility.PIIHashManager;
+import car_rental_book_and_manage.SharedObject.Client;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -202,6 +203,28 @@ public class ClientDB implements ClientDAO {
     try (Connection connection = DataManager.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql)) {
       statement.setString(1, username);
+      try (ResultSet resultSet = statement.executeQuery()) {
+        if (resultSet.next()) {
+          return resultSet.getInt("count") > 0;
+        }
+      }
+    } catch (SQLException e) {
+      handleSQLException(e);
+    }
+    return false;
+  }
+
+  /**
+   * Checks if a license number already exists in the database.
+   *
+   * @param licenseNo the license number to check
+   * @return true if the license number exists, false otherwise
+   */
+  public synchronized boolean doesLicenseNoExist(String licenseNo) {
+    String sql = "SELECT COUNT(*) AS count FROM CLIENT WHERE LICENSE_NO = ?";
+    try (Connection connection = DataManager.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql)) {
+      statement.setString(1, licenseNo);
       try (ResultSet resultSet = statement.executeQuery()) {
         if (resultSet.next()) {
           return resultSet.getInt("count") > 0;

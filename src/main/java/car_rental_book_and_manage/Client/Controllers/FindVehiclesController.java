@@ -5,10 +5,11 @@ import car_rental_book_and_manage.Client.ClientUtility.AlertManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
 import car_rental_book_and_manage.Client.VehicleDisplay.VehicleDisplayMaker;
-import car_rental_book_and_manage.Server.Reservation.Reservation;
-import car_rental_book_and_manage.Server.Vehicle.Vehicle;
+import car_rental_book_and_manage.SharedObject.Reservation;
+import car_rental_book_and_manage.SharedObject.Vehicle;
 
 import java.time.LocalDate;
+
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

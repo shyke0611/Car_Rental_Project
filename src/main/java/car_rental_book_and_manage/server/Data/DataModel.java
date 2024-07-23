@@ -1,8 +1,8 @@
 package car_rental_book_and_manage.Server.Data;
 
-import car_rental_book_and_manage.Server.Client.Client;
-import car_rental_book_and_manage.Server.Reservation.Reservation;
-import car_rental_book_and_manage.Server.Vehicle.Vehicle;
+import car_rental_book_and_manage.SharedObject.Client;
+import car_rental_book_and_manage.SharedObject.Reservation;
+import car_rental_book_and_manage.SharedObject.Vehicle;
 import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;

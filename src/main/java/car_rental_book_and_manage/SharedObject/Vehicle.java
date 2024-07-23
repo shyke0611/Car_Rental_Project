@@ -1,4 +1,4 @@
-package car_rental_book_and_manage.Server.Vehicle;
+package car_rental_book_and_manage.SharedObject;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

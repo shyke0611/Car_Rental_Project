@@ -3,10 +3,11 @@ package car_rental_book_and_manage.Client.Controllers;
 import car_rental_book_and_manage.Client.ClientUtility.AlertManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
-import car_rental_book_and_manage.Server.Client.Client;
 import car_rental_book_and_manage.Server.ServerUtility.ValidationManager;
+import car_rental_book_and_manage.SharedObject.Client;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.util.function.Predicate;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;

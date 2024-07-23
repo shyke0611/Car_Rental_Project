@@ -1,72 +1,85 @@
 package car_rental_book_and_manage.Server.RestControllers;
 
-import static spark.Spark.*;
-
-import car_rental_book_and_manage.Server.Data.DataModel;
-import car_rental_book_and_manage.Server.Vehicle.Vehicle;
-import car_rental_book_and_manage.Server.Vehicle.VehicleDB;
-
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-/** REST controller for handling vehicle-related HTTP requests. */
+import car_rental_book_and_manage.Server.DAO.VehicleDB;
+import car_rental_book_and_manage.Server.Data.DataModel;
+import car_rental_book_and_manage.SharedObject.Vehicle;
+
+/**
+ * VehicleController handles vehicle-related HTTP requests.
+ * It provides endpoints for retrieving, saving, updating, and deleting vehicles.
+ */
+@Path("/vehicles")
 public class VehicleController {
-  private VehicleDB vehicleDB = new VehicleDB();
-  private ObjectMapper objectMapper = new ObjectMapper();
-  private static final DataModel model = DataModel.getInstance();
+    private VehicleDB vehicleDB = new VehicleDB();
+    private ObjectMapper objectMapper = new ObjectMapper();
+    private static final DataModel model = DataModel.getInstance();
 
-  /** Constructor to set up the vehicle-related endpoints. */
-  public VehicleController() {
-    setupEndpoints();
-  }
-
-  /** Sets up the Spark endpoints for vehicle-related API requests. */
-  private void setupEndpoints() {
-    // Handles GET requests for retrieving vehicles
-    get(
-        "/api/vehicles",
-        (req, res) -> {
-          String idParam = req.queryParams("id");
-          if (idParam != null) {
-            int id = Integer.parseInt(idParam);
+    /**
+     * Handles HTTP GET requests for retrieving vehicles.
+     * @param id Optional query parameter to retrieve a specific vehicle by ID.
+     * @return Response containing the vehicle(s) in JSON format.
+     * @throws Exception if an error occurs during processing.
+     */
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getVehicles(@QueryParam("id") Integer id) throws Exception {
+        if (id != null) {
             Vehicle vehicle = model.getVehicle(id);
             if (vehicle != null) {
-              return objectMapper.writeValueAsString(vehicle);
+                return Response.ok(objectMapper.writeValueAsString(vehicle)).build();
             } else {
-              res.status(404);
-              return "";
+                return Response.status(Response.Status.NOT_FOUND).build();
             }
-          } else {
+        } else {
             vehicleDB.retrieveAllVehicles();
-            return objectMapper.writeValueAsString(model.getVehicleList());
-          }
-        });
+            return Response.ok(objectMapper.writeValueAsString(model.getVehicleList())).build();
+        }
+    }
 
-    // Handles POST requests for saving a new vehicle
-    post(
-        "/api/vehicles",
-        (req, res) -> {
-          Vehicle vehicle = objectMapper.readValue(req.body(), Vehicle.class);
-          vehicleDB.saveVehicle(vehicle);
-          res.status(201);
-          return "Vehicle saved successfully";
-        });
+    /**
+     * Handles HTTP POST requests for saving a new vehicle.
+     * @param requestBody JSON payload containing the vehicle information.
+     * @return Response indicating the outcome of the save operation.
+     * @throws Exception if an error occurs during processing.
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response saveVehicle(String requestBody) throws Exception {
+        Vehicle vehicle = objectMapper.readValue(requestBody, Vehicle.class);
+        vehicleDB.saveVehicle(vehicle);
+        return Response.status(Response.Status.CREATED).entity("Vehicle saved successfully").build();
+    }
 
-    // Handles PUT requests for updating an existing vehicle
-    put(
-        "/api/vehicles",
-        (req, res) -> {
-          Vehicle vehicle = objectMapper.readValue(req.body(), Vehicle.class);
-          vehicleDB.updateVehicle(vehicle);
-          return "Vehicle updated successfully";
-        });
+    /**
+     * Handles HTTP PUT requests for updating an existing vehicle.
+     * @param requestBody JSON payload containing the updated vehicle information.
+     * @return Response indicating the outcome of the update operation.
+     * @throws Exception if an error occurs during processing.
+     */
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateVehicle(String requestBody) throws Exception {
+        Vehicle vehicle = objectMapper.readValue(requestBody, Vehicle.class);
+        vehicleDB.updateVehicle(vehicle);
+        return Response.ok("Vehicle updated successfully").build();
+    }
 
-    // Handles DELETE requests for removing a vehicle
-    delete(
-        "/api/vehicles",
-        (req, res) -> {
-          Vehicle vehicle = objectMapper.readValue(req.body(), Vehicle.class);
-          vehicleDB.deleteVehicle(vehicle);
-          return "Vehicle deleted successfully";
-        });
-  }
+    /**
+     * Handles HTTP DELETE requests for removing a vehicle.
+     * @param requestBody JSON payload containing the vehicle information to be deleted.
+     * @return Response indicating the outcome of the delete operation.
+     * @throws Exception if an error occurs during processing.
+     */
+    @DELETE
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteVehicle(String requestBody) throws Exception {
+        Vehicle vehicle = objectMapper.readValue(requestBody, Vehicle.class);
+        vehicleDB.deleteVehicle(vehicle);
+        return Response.ok("Vehicle deleted successfully").build();
+    }
 }

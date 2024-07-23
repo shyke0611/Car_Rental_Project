@@ -2,16 +2,17 @@ package car_rental_book_and_manage.Client.Controllers;
 
 import car_rental_book_and_manage.Client.App;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
-import car_rental_book_and_manage.Server.Client.Client;
+import car_rental_book_and_manage.Server.DAO.ReservationDB;
 import car_rental_book_and_manage.Server.Payment.CardPayment;
 import car_rental_book_and_manage.Server.Payment.CreditCardPayment;
 import car_rental_book_and_manage.Server.Payment.DebitCardPayment;
-import car_rental_book_and_manage.Server.Reservation.Reservation;
-import car_rental_book_and_manage.Server.Reservation.ReservationDB;
 import car_rental_book_and_manage.Server.ServerUtility.ValidationManager;
-import car_rental_book_and_manage.Server.Vehicle.Vehicle;
+import car_rental_book_and_manage.SharedObject.Client;
+import car_rental_book_and_manage.SharedObject.Reservation;
+import car_rental_book_and_manage.SharedObject.Vehicle;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.time.LocalDate;
+
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
