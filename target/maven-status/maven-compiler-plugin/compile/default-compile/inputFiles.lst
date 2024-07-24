@@ -38,6 +38,7 @@
 /Users/andrewshin/Downloads/Car_Rental_Projectt/src/main/java/car_rental_book_and_manage/Server/ServerUtility/BookingScheduler.java
 /Users/andrewshin/Downloads/Car_Rental_Projectt/src/main/java/car_rental_book_and_manage/Client/Controllers/ManageController.java
 /Users/andrewshin/Downloads/Car_Rental_Projectt/src/main/java/car_rental_book_and_manage/Client/Controllers/ConfirmationController.java
+/Users/andrewshin/Downloads/Car_Rental_Projectt/src/main/java/car_rental_book_and_manage/Client/ClientUtility/ErrorHandlingUtil.java
 /Users/andrewshin/Downloads/Car_Rental_Projectt/src/main/java/car_rental_book_and_manage/Server/DAO/ReservationDB.java
 /Users/andrewshin/Downloads/Car_Rental_Projectt/src/main/java/car_rental_book_and_manage/Client/ClientUtility/AlertManager.java
 /Users/andrewshin/Downloads/Car_Rental_Projectt/src/main/java/car_rental_book_and_manage/Client/Controllers/LoginController.java

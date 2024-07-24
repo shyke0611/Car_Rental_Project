@@ -8,6 +8,7 @@ import car_rental_book_and_manage.Client.ClientUtility.AlertManager;
 import car_rental_book_and_manage.Server.DAO.ClientDB;
 import car_rental_book_and_manage.Server.DAO.VehicleDB;
 import car_rental_book_and_manage.Server.Data.DataModel;
+import car_rental_book_and_manage.SharedObject.Client;
 import car_rental_book_and_manage.SharedObject.Vehicle;
 import javafx.scene.control.Alert.AlertType;
 
@@ -86,13 +87,26 @@ public class ValidationManager {
    * @param password The user's password.
    * @return false and shows an alert if any field is empty, true otherwise.
    */
-  public static boolean isLoginInputValid(String username, String password) {
-    if (username.isEmpty() || password.isEmpty()) {
-      AlertManager.showAlert(
-          AlertType.WARNING, "Login Unsuccessful", "Please Enter Your Information");
-      return false;
+  public static Map<String, String> validateLoginInput(String username, String password, ClientDB clientDB) {
+    Map<String, String> errors = new HashMap<>();
+
+    if (username.isEmpty()) {
+      errors.put("username", "Username is required.");
+      return errors;
     }
-    return true;
+
+    if (password.isEmpty()) {
+      errors.put("password", "Password is required.");
+      return errors;
+    } else {
+      Client client = clientDB.getClient(username);
+      if (client == null || !PIIHashManager.checkPassword(password, client.getPassword())) {
+        errors.put("credentials", "Invalid username or password.");
+        return errors;
+      }
+    }
+
+    return errors;
   }
 
   /**
@@ -281,33 +295,44 @@ public static boolean isCardNumberValid(String cardNumber) {
 
     if (name.isEmpty()) {
       errors.put("name", "Name is required.");
+      return errors;
     } else if (!isNameValid(name)) {
       errors.put("name", "First name format is invalid.");
-    }
+      return errors;
+    } 
 
     if (password.isEmpty()) {
       errors.put("password", "Password is required.");
+      return errors;
     }
 
     if (username.isEmpty()) {
       errors.put("username", "Username is required.");
+      return errors;
     } else if (clientdb.doesUserNameExist(username)) {
       errors.put("username", "Username already exists.");
-    }
-
-    if (phoneNo.isEmpty()) {
-      errors.put("phoneNo", "Phone number is required.");
-    } else if (!isPhoneNoValid(phoneNo)) {
-      errors.put("phoneNo", "Phone number must be a 10-digit number (XXXXXXXXXX).");
+      return errors;
     }
 
     if (license.isEmpty()) {
       errors.put("license", "License number is required.");
+      return errors;
     } else if (!isLicenseNoValid(license)) {
       errors.put("license", "License number format must be XXXX0000.");
+      return errors;
     } else if (clientdb.doesLicenseNoExist(license)) {
       errors.put("license", "License number already exists");
+      return errors;
     }
+
+    if (phoneNo.isEmpty()) {
+      errors.put("phoneNo", "Phone number is required.");
+      return errors;
+    } else if (!isPhoneNoValid(phoneNo)) {
+      errors.put("phoneNo", "Phone number must be a 10-digit number (XXXXXXXXXX).");
+      return errors;
+    }
+
     return errors;
   }
 

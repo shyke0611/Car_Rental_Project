@@ -3,6 +3,8 @@ package car_rental_book_and_manage.Server.RestControllers;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import car_rental_book_and_manage.Server.DAO.ClientDB;
 import car_rental_book_and_manage.Server.Data.DataModel;
@@ -77,5 +79,30 @@ public class ClientController {
         Client client = objectMapper.readValue(requestBody, Client.class);
         clientDB.updateClient(client);
         return Response.ok("Client updated successfully").build();
+    }
+
+    /**
+     * Handles HTTP POST requests for validating login credentials.
+     * @param requestBody JSON payload containing the login credentials.
+     * @return Response indicating the outcome of the login validation.
+     * @throws Exception if an error occurs during processing.
+     */
+    @POST
+    @Path("/login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response validateLogin(String requestBody) throws Exception {
+        Map<String, String> loginRequest = objectMapper.readValue(requestBody, new TypeReference<Map<String, String>>() {});
+        String username = loginRequest.get("username");
+        String password = loginRequest.get("password");
+
+        Map<String, String> errors = ValidationManager.validateLoginInput(username, password, clientDB);
+
+        if (!errors.isEmpty()) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(objectMapper.writeValueAsString(errors)).build();
+        }
+
+        Client client = clientDB.getClient(username);
+        return Response.ok(objectMapper.writeValueAsString(client)).build();
     }
 }

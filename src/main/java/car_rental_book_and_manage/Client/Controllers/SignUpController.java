@@ -2,13 +2,11 @@ package car_rental_book_and_manage.Client.Controllers;
 
 import car_rental_book_and_manage.Client.App;
 import car_rental_book_and_manage.Client.ClientUtility.AlertManager;
+import car_rental_book_and_manage.Client.ClientUtility.ErrorHandlingUtil;
 import car_rental_book_and_manage.Client.ClientUtility.HttpClientUtil;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
 import car_rental_book_and_manage.SharedObject.Client;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
@@ -18,7 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import java.util.Map;
 
 /**
  * Controller class for the SignUp scene. Handles user interactions and client data storage during
@@ -66,53 +63,12 @@ public class SignUpController extends Controller {
         String jsonPayload = objectMapper.writeValueAsString(client);
         System.out.println("JSON Payload: " + jsonPayload);
 
-        String response = HttpClientUtil.sendPostRequest("http://localhost:8000/api/clients", client);
+        HttpClientUtil.sendPostRequest("http://localhost:8000/api/clients", client);
         AlertManager.showAlert(AlertType.CONFIRMATION, "Sign Up", "Account Created Successfully");
         System.out.println("Client saved successfully: " + client.getFirstName());
         clearTextFields();
     } catch (Exception e) {
-        handleServerErrors(e);
-    }
-  }
-
-  /**
-   * Handles server errors and displays appropriate messages to the user.
-   *
-   * @param e the exception thrown during the server request
-   */
-  private void handleServerErrors(Exception e) {
-    try {
-        String errorMessage = e.getMessage();
-        System.err.println("Error Message: " + errorMessage);
-        if (errorMessage.startsWith("{")) {
-            Map<String, String> errors = objectMapper.readValue(errorMessage, new TypeReference<Map<String, String>>() {});
-            for (Map.Entry<String, String> error : errors.entrySet()) {
-                switch (error.getKey()) {
-                    case "name":
-                        AlertManager.showAlert(AlertType.ERROR, "Name Error", error.getValue());
-                        break;
-                    case "password":
-                        AlertManager.showAlert(AlertType.ERROR, "Password Error", error.getValue());
-                        break;
-                    case "username":
-                        AlertManager.showAlert(AlertType.ERROR, "Username Error", error.getValue());
-                        break;
-                    case "phoneNo":
-                        AlertManager.showAlert(AlertType.ERROR, "Phone Number Error", error.getValue());
-                        break;
-                    case "license":
-                        AlertManager.showAlert(AlertType.ERROR, "License Error", error.getValue());
-                        break;
-                    default:
-                        AlertManager.showAlert(AlertType.ERROR, "Sign Up Error", error.getValue());
-                }
-            }
-        } else {
-            AlertManager.showAlert(AlertType.ERROR, "Sign Up Error", errorMessage);
-        }
-    } catch (Exception ex) {
-        AlertManager.showAlert(AlertType.ERROR, "Sign Up", "Account Creation failed");
-        ex.printStackTrace();
+        ErrorHandlingUtil.handleServerErrors(e.getMessage(), "Sign Up Error", AlertType.ERROR);
     }
   }
 

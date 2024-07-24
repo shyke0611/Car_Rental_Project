@@ -2,14 +2,17 @@ package car_rental_book_and_manage.Client.Controllers;
 
 import car_rental_book_and_manage.Client.App;
 import car_rental_book_and_manage.Client.ClientUtility.AlertManager;
+import car_rental_book_and_manage.Client.ClientUtility.ErrorHandlingUtil;
+import car_rental_book_and_manage.Client.ClientUtility.HttpClientUtil;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
-import car_rental_book_and_manage.Server.ServerUtility.ValidationManager;
 import car_rental_book_and_manage.SharedObject.Client;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -24,7 +27,8 @@ public class LoginController extends Controller {
   @FXML private Button signUpBtn;
   @FXML private Button adminBtn;
   @FXML private TextField username;
-  @FXML private Label authenticationLbl;
+
+  private ObjectMapper objectMapper = new ObjectMapper();
 
   /** Constructor for initializing the controller. */
   public LoginController() {
@@ -82,50 +86,30 @@ public class LoginController extends Controller {
     String enteredUsername = username.getText();
     String enteredPassword = password.getText();
 
-    if (isLoginInputValid(enteredUsername, enteredPassword)) {
-      if (authenticateUser(enteredUsername, enteredPassword)) {
-        handleSuccessfulLogin(enteredUsername, enteredPassword);
-      } else {
-        AlertManager.showAlert(
-            AlertType.WARNING, "Login Unsuccessful", "Wrong Username or Password");
-      }
+    try {
+      Map<String, String> loginRequest = new HashMap<>();
+      loginRequest.put("username", enteredUsername);
+      loginRequest.put("password", enteredPassword);
+
+      String jsonResponse =
+          HttpClientUtil.sendPostRequest("http://localhost:8000/api/clients/login", loginRequest);
+      Client client = objectMapper.readValue(jsonResponse, Client.class);
+      handleSuccessfulLogin(client);
+    } catch (Exception e) {
+      ErrorHandlingUtil.handleServerErrors(e.getMessage(), "Login Error", AlertType.ERROR);
     }
-  }
-
-  /**
-   * Validates the login input.
-   *
-   * @param username the entered username
-   * @param password the entered password
-   * @return true if the input is valid, false otherwise
-   */
-  private boolean isLoginInputValid(String username, String password) {
-    return ValidationManager.isLoginInputValid(username, password);
-  }
-
-  /**
-   * Authenticates the user with the given credentials.
-   *
-   * @param username the entered username
-   * @param password the entered password
-   * @return true if the credentials are valid, false otherwise
-   */
-  private boolean authenticateUser(String username, String password) {
-    return clientdb.isLoginCredentialsValid(username, password);
   }
 
   /**
    * Handles the successful login process.
    *
-   * @param username the entered username
-   * @param password the entered password
+   * @param client the logged-in client
    */
-  private void handleSuccessfulLogin(String username, String password) {
-    Client loggedInClient = clientdb.getClient(username);
-    reservationManager.setLoggedInClient(loggedInClient);
-    dataModel.setLoggedClientName(loggedInClient.getFirstName());
+  private void handleSuccessfulLogin(Client client) {
+    reservationManager.setLoggedInClient(client);
+    dataModel.setLoggedClientName(client.getFirstName());
     clearLoginFields();
-    AlertManager.showAlert(AlertType.CONFIRMATION, "Login Successful", "You Are Now Logging In");
+    AlertManager.showAlert(AlertType.CONFIRMATION, "Login Successful", "You are now logging in.");
     App.setUi(Scenes.FINDVEHICLES);
   }
 

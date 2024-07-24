@@ -1,9 +1,7 @@
 package car_rental_book_and_manage.SharedObject;
 
-import java.io.Serializable;
-
 /** Represents a client in the car rental system. */
-public class Client implements Serializable{
+public class Client {
 
   private String username, password, firstName, licenseNo, phoneNo;
   private int clientId;
