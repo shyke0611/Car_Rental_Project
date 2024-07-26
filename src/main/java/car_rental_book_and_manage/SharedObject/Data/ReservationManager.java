@@ -1,11 +1,10 @@
-package car_rental_book_and_manage.Server.ServerUtility;
-
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+package car_rental_book_and_manage.SharedObject.Data;
 
 import car_rental_book_and_manage.SharedObject.Client;
 import car_rental_book_and_manage.SharedObject.Reservation;
 import car_rental_book_and_manage.SharedObject.Vehicle;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import javafx.beans.property.*;
 import javafx.scene.image.Image;
 

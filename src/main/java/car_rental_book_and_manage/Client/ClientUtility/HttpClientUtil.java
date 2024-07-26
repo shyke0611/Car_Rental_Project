@@ -39,7 +39,8 @@ public class HttpClientUtil {
       String errorResponse = readErrorResponse(conn);
       System.err.println("Error Response: " + errorResponse);
       conn.disconnect();
-      throw new RuntimeException("Failed : HTTP error code : " + responseCode + " - " + errorResponse);
+      throw new RuntimeException(
+          "Failed : HTTP error code : " + responseCode + " - " + errorResponse);
     }
   }
 
@@ -58,12 +59,13 @@ public class HttpClientUtil {
     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
     conn.setRequestMethod(method);
 
-    if ("POST".equalsIgnoreCase(method) || "PUT".equalsIgnoreCase(method)) {
+    if ("POST".equalsIgnoreCase(method)
+        || "PUT".equalsIgnoreCase(method)
+        || "DELETE".equalsIgnoreCase(method)) {
       conn.setDoOutput(true);
       conn.setRequestProperty("Content-Type", "application/json");
       if (payload != null) {
         String jsonInputString = objectMapper.writeValueAsString(payload);
-        System.out.println("JSON Payload: " + jsonInputString);
         try (OutputStream os = conn.getOutputStream()) {
           byte[] input = jsonInputString.getBytes("utf-8");
           os.write(input, 0, input.length);
@@ -71,7 +73,7 @@ public class HttpClientUtil {
       }
     }
 
-    if ("GET".equalsIgnoreCase(method) || "DELETE".equalsIgnoreCase(method)) {
+    if ("GET".equalsIgnoreCase(method)) {
       conn.setRequestProperty("Accept", "application/json");
     }
 
@@ -151,14 +153,7 @@ public class HttpClientUtil {
     return sendHttpRequest("PUT", endpoint, payload);
   }
 
-  /**
-   * Makes an HTTP DELETE request.
-   *
-   * @param endpoint the URL endpoint
-   * @return the response as a String
-   * @throws Exception if an error occurs
-   */
-  public static String sendDeleteRequest(String endpoint) throws Exception {
-    return sendHttpRequest("DELETE", endpoint, null);
+  public static String sendDeleteRequest(String endpoint, Object payload) throws Exception {
+    return sendHttpRequest("DELETE", endpoint, payload);
   }
 }

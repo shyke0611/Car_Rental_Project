@@ -1,14 +1,19 @@
 package car_rental_book_and_manage.Client.Controllers;
 
+import car_rental_book_and_manage.Client.ClientUtility.ErrorHandlingUtil;
+import car_rental_book_and_manage.Client.ClientUtility.HttpClientUtil;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
-import car_rental_book_and_manage.Server.InsuranceStrategy.InsuranceManager;
-import car_rental_book_and_manage.Server.InsuranceStrategy.InsuranceStrategy;
 import car_rental_book_and_manage.SharedObject.Client;
 import car_rental_book_and_manage.SharedObject.Reservation;
 import car_rental_book_and_manage.SharedObject.Vehicle;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import java.util.Map;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -40,10 +45,12 @@ public class MyBookingController extends Controller {
   @FXML private Pane noResBox;
   @FXML private ImageView vehicleImage;
 
-  private InsuranceManager insuranceManage = new InsuranceManager();
+  private ObjectMapper objectMapper = new ObjectMapper();
 
   /** Initializes the controller, setting up bindings and listeners for reservation details. */
   public void initialize() {
+    objectMapper.registerModule(new JavaTimeModule());
+
     SceneManager.setController(SceneManager.Scenes.MYBOOKING, this);
     clientNameLbl.textProperty().bind(dataModel.loggedInClientName());
 
@@ -88,20 +95,30 @@ public class MyBookingController extends Controller {
             });
   }
 
-  /**
-   * Loads the reservation details for the given client.
-   *
-   * @param client the logged-in client
-   */
   private void loadReservationDetails(Client client) {
-    Reservation reservation = reservationdb.getReservationForClient(client.getClientId());
-    if (reservation != null) {
-      Vehicle vehicle = vehicledb.getVehicleById(reservation.getVehicleId());
-      reservationManager.setSelectedVehicle(vehicle);
-      reservationManager.setCurrentReservation(reservation);
-      displayReservationDetails(reservation);
-    } else {
-      clearReservationDetails();
+    try {
+      String jsonResponse =
+          HttpClientUtil.sendGetRequest(
+              "http://localhost:8000/api/reservations/client/" + client.getClientId());
+      Reservation reservation = objectMapper.readValue(jsonResponse, Reservation.class);
+      if (reservation != null) {
+        String vehicleResponse =
+            HttpClientUtil.sendGetRequest(
+                "http://localhost:8000/api/vehicles/" + reservation.getVehicleId());
+        Vehicle vehicle = objectMapper.readValue(vehicleResponse, Vehicle.class);
+        reservationManager.setSelectedVehicle(vehicle);
+        reservationManager.setCurrentReservation(reservation);
+        displayReservationDetails(reservation);
+      } else {
+        clearReservationDetails();
+      }
+    } catch (Exception e) {
+      if (e.getMessage().contains("404")) {
+        clearReservationDetails();
+      } else {
+        ErrorHandlingUtil.handleServerErrors(
+            e.getMessage(), "Reservation Fetch Error", AlertType.WARNING);
+      }
     }
   }
 
@@ -147,9 +164,31 @@ public class MyBookingController extends Controller {
     pickUpLbl.setText(reservation.getStartDate().toString());
     returnLbl.setText(reservation.getReturnDate().toString());
     insuranceTypeLbl.setText(reservation.getInsuranceType());
-    InsuranceStrategy strategy = insuranceManage.getStrategyByType(reservation.getInsuranceType());
-    insuranceDetailsLbl.setText(strategy.getDescription());
+    fetchInsuranceDetails(reservation.getInsuranceType());
     totalAmountLbl.setText(String.format("$%.2f", reservation.getTotalRate()));
+  }
+
+  /**
+   * Fetches the insurance details from the REST API and updates the UI.
+   *
+   * @param insuranceType the type of insurance
+   */
+  private void fetchInsuranceDetails(String insuranceType) {
+    try {
+      String jsonResponse =
+          HttpClientUtil.sendGetRequest(
+              "http://localhost:8000/api/insurance/" + insuranceType.replace(" ", "%20"));
+      Map<String, Object> insuranceDetails =
+          objectMapper.readValue(jsonResponse, new TypeReference<Map<String, Object>>() {});
+      insuranceDetailsLbl.setText((String) insuranceDetails.get("description"));
+    } catch (Exception e) {
+      if (e.getMessage().contains("404")) {
+        clearReservationDetails();
+      } else {
+        ErrorHandlingUtil.handleServerErrors(
+            e.getMessage(), "Insurance Fetch Error", AlertType.WARNING);
+      }
+    }
   }
 
   /** Clears the reservation details from the UI. */

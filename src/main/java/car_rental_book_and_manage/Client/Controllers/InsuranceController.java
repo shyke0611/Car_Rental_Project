@@ -1,19 +1,22 @@
 package car_rental_book_and_manage.Client.Controllers;
 
 import car_rental_book_and_manage.Client.App;
+import car_rental_book_and_manage.Client.ClientUtility.ErrorHandlingUtil;
+import car_rental_book_and_manage.Client.ClientUtility.HttpClientUtil;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
-import car_rental_book_and_manage.Server.InsuranceStrategy.BasicCoverStrategy;
-import car_rental_book_and_manage.Server.InsuranceStrategy.InsuranceManager;
-import car_rental_book_and_manage.Server.InsuranceStrategy.LimitedCoverStrategy;
-import car_rental_book_and_manage.Server.InsuranceStrategy.PremiumCoverStrategy;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+
+import java.util.Map;
 
 /**
  * Controller class for the Insurance scene. Manages user interaction with insurance options and
@@ -42,7 +45,7 @@ public class InsuranceController extends Controller {
   @FXML private Pane limitedCoverPane;
   @FXML private Pane premiumCoverPane;
 
-  private InsuranceManager insuranceManage = new InsuranceManager();
+  private ObjectMapper objectMapper = new ObjectMapper();
 
   /**
    * Initializes the InsuranceController. Sets up bindings for UI elements and initializes default
@@ -99,7 +102,7 @@ public class InsuranceController extends Controller {
 
   /** Sets the insurance details in the reservation manager. */
   private void setInsuranceDetails() {
-    updateInsuranceDetails();
+    reservationManager.updateTotalAmount();
   }
 
   /**
@@ -109,9 +112,7 @@ public class InsuranceController extends Controller {
    */
   @FXML
   void onSelectBasic(MouseEvent event) {
-    insuranceManage.setStrategy(new BasicCoverStrategy());
-    updateInsuranceDetails();
-    setSelectedButton(BasicBtn);
+    fetchInsuranceDetails("Basic Cover", BasicBtn);
   }
 
   /**
@@ -121,9 +122,7 @@ public class InsuranceController extends Controller {
    */
   @FXML
   void onSelectPremium(MouseEvent event) {
-    insuranceManage.setStrategy(new PremiumCoverStrategy());
-    updateInsuranceDetails();
-    setSelectedButton(PremiumBtn);
+    fetchInsuranceDetails("Premium Cover", PremiumBtn);
   }
 
   /**
@@ -133,17 +132,40 @@ public class InsuranceController extends Controller {
    */
   @FXML
   void onSelectLimited(MouseEvent event) {
-    insuranceManage.setStrategy(new LimitedCoverStrategy());
-    updateInsuranceDetails();
-    setSelectedButton(limitedBtn);
+    fetchInsuranceDetails("Limited Cover", limitedBtn);
   }
 
-  /** Updates the insurance details displayed in the UI. */
-  private void updateInsuranceDetails() {
-    reservationManager.setInsuranceType(insuranceManage.getStrategy().getInsuranceTypeName());
-    reservationManager.setInsuranceCost(insuranceManage.getDailyCost());
+  /**
+   * Fetches the insurance details from the REST API and updates the UI.
+   *
+   * @param insuranceType the type of insurance
+   * @param selectedButton the button that was selected
+   */
+  private void fetchInsuranceDetails(String insuranceType, Button selectedButton) {
+    try {
+        // Encode the insuranceType to handle spaces and other special characters
+        String encodedInsuranceType = java.net.URLEncoder.encode(insuranceType, "UTF-8");
+        String jsonResponse = HttpClientUtil.sendGetRequest("http://localhost:8000/api/insurance/" + encodedInsuranceType);
+        Map<String, Object> insuranceDetails =
+            objectMapper.readValue(jsonResponse, new TypeReference<Map<String, Object>>() {});
+        handleInsuranceDetails(insuranceDetails, selectedButton);
+    } catch (Exception e) {
+        ErrorHandlingUtil.handleServerErrors(e.getMessage(), "Fetch Insurance Details Error", AlertType.WARNING);
+    }
+}
+
+  /**
+   * Handles the successful retrieval of insurance details.
+   *
+   * @param insuranceDetails the insurance details retrieved from the REST API
+   * @param selectedButton the button that was selected
+   */
+  private void handleInsuranceDetails(Map<String, Object> insuranceDetails, Button selectedButton) {
+    reservationManager.setInsuranceType((String) insuranceDetails.get("insuranceTypeName"));
+    reservationManager.setInsuranceCost((Double) insuranceDetails.get("dailyCost"));
     reservationManager.updateTotalAmount();
-    insuranceDetailsLbl.setText(insuranceManage.getDescription());
+    insuranceDetailsLbl.setText((String) insuranceDetails.get("description"));
+    setSelectedButton(selectedButton);
   }
 
   /**

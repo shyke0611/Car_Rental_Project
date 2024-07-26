@@ -1,20 +1,24 @@
 package car_rental_book_and_manage.Client.Controllers;
 
 import car_rental_book_and_manage.Client.App;
+import car_rental_book_and_manage.Client.ClientUtility.AlertManager;
+import car_rental_book_and_manage.Client.ClientUtility.ErrorHandlingUtil;
+import car_rental_book_and_manage.Client.ClientUtility.HttpClientUtil;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
-import car_rental_book_and_manage.Server.DAO.ReservationDB;
-import car_rental_book_and_manage.Server.Payment.CardPayment;
-import car_rental_book_and_manage.Server.Payment.CreditCardPayment;
-import car_rental_book_and_manage.Server.Payment.DebitCardPayment;
-import car_rental_book_and_manage.Server.ServerUtility.ValidationManager;
 import car_rental_book_and_manage.SharedObject.Client;
+import car_rental_book_and_manage.SharedObject.Payment.CardPayment;
+import car_rental_book_and_manage.SharedObject.Payment.CreditCardPayment;
+import car_rental_book_and_manage.SharedObject.Payment.DebitCardPayment;
 import car_rental_book_and_manage.SharedObject.Reservation;
 import car_rental_book_and_manage.SharedObject.Vehicle;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.time.LocalDate;
-
+import java.util.HashMap;
+import java.util.Map;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -39,6 +43,8 @@ public class PaymentController extends Controller {
 
   private AnchorPane selectedBlock;
   private String selectedPaymentType;
+
+  private ObjectMapper objectMapper = new ObjectMapper();
 
   /** Initializes the controller by setting up necessary bindings and listeners. */
   @FXML
@@ -127,20 +133,17 @@ public class PaymentController extends Controller {
    */
   @FXML
   void onProceed(MouseEvent event) {
-    if (!ValidationManager.validateCardDetails(
-        cardNameLbl.getText(), cardNoLbl.getText(), cvvLbl.getText(), expiryDateLbl.getText())) {
-      return;
-    }
-
     Reservation newReservation = createReservationObject();
     CardPayment payment = createPaymentObject(newReservation);
 
-    saveReservationAndPayment(newReservation, payment);
-    updateVehicleAvailability();
-    resetFields();
+    boolean isSuccess = saveReservationAndPayment(newReservation, payment);
 
-    App.resetAllDatePickers();
-    App.setUi(Scenes.CONFIRMATION);
+    if (isSuccess) {
+      updateVehicleAvailability(newReservation.getVehicleId(), false);
+      resetFields();
+      App.resetAllDatePickers();
+      App.setUi(Scenes.CONFIRMATION);
+    }
   }
 
   /**
@@ -173,11 +176,31 @@ public class PaymentController extends Controller {
    *
    * @param reservation the reservation to save
    * @param payment the payment to save
+   * @return boolean indicating success or failure
    */
-  private void saveReservationAndPayment(Reservation reservation, CardPayment payment) {
-    ReservationDB reservationdb = new ReservationDB();
-    reservationdb.saveReservationAndPayment(reservation, payment);
-    reservationManager.setCurrentReservation(reservation);
+  private boolean saveReservationAndPayment(Reservation reservation, CardPayment payment) {
+    Map<String, Object> requestBody = new HashMap<>();
+    requestBody.put("reservation", reservation);
+    requestBody.put("payment", payment);
+
+    try {
+      HttpClientUtil.sendPostRequest("http://localhost:8000/api/reservations", requestBody);
+      reservationManager.setCurrentReservation(reservation);
+
+      // Fetch the vehicle details from the server
+      String vehicleResponse =
+          HttpClientUtil.sendGetRequest(
+              "http://localhost:8000/api/vehicles/" + reservation.getVehicleId());
+      Vehicle vehicle = objectMapper.readValue(vehicleResponse, Vehicle.class);
+      reservationManager.setSelectedVehicle(vehicle);
+
+      AlertManager.showAlert(
+          AlertType.CONFIRMATION, "Reservation", "Reservation saved successfully");
+      return true;
+    } catch (Exception e) {
+      ErrorHandlingUtil.handleServerErrors(e.getMessage(), "Reservation Error", AlertType.WARNING);
+      return false;
+    }
   }
 
   /**
@@ -204,10 +227,25 @@ public class PaymentController extends Controller {
         insuranceType);
   }
 
-  /** Updates the availability status of the selected vehicle. */
-  private void updateVehicleAvailability() {
-    Vehicle selectedVehicle = reservationManager.getSelectedVehicle();
-    vehicledb.setVehicleAvailability(selectedVehicle.getVehicleId(), false);
+  /**
+   * Updates the availability status of the selected vehicle.
+   *
+   * @param vehicleId the ID of the vehicle to update
+   * @param available the new availability status
+   */
+  private void updateVehicleAvailability(int vehicleId, boolean available) {
+    try {
+      String url =
+          "http://localhost:8000/api/vehicles/"
+              + vehicleId
+              + "/availability?available="
+              + available;
+      HttpClientUtil.sendPutRequest(url, null);
+      System.out.println("Vehicle availability updated on the server.");
+    } catch (Exception e) {
+      ErrorHandlingUtil.handleServerErrors(
+          e.getMessage(), "Vehicle Availability Error", AlertType.WARNING);
+    }
   }
 
   /** Resets all input fields and state variables. */

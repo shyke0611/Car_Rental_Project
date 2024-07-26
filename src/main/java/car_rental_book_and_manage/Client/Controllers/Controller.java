@@ -2,28 +2,19 @@ package car_rental_book_and_manage.Client.Controllers;
 
 import car_rental_book_and_manage.Client.App;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
-import car_rental_book_and_manage.Server.DAO.ClientDB;
-import car_rental_book_and_manage.Server.DAO.ReservationDB;
-import car_rental_book_and_manage.Server.DAO.VehicleDB;
-import car_rental_book_and_manage.Server.Data.DataModel;
-import car_rental_book_and_manage.Server.ServerUtility.ReservationManager;
+import car_rental_book_and_manage.SharedObject.Data.DataModel;
+import car_rental_book_and_manage.SharedObject.Data.ReservationManager;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
 /** Abstract base controller class that provides common functionality for all controllers. */
 public abstract class Controller {
 
-  protected ClientDB clientdb;
-  protected VehicleDB vehicledb;
-  protected ReservationDB reservationdb;
   protected final DataModel dataModel;
   protected final ReservationManager reservationManager;
 
   /** Constructor for initializing the controller with necessary database and model instances. */
   public Controller() {
-    clientdb = new ClientDB();
-    vehicledb = new VehicleDB();
-    reservationdb = new ReservationDB();
     dataModel = DataModel.getInstance();
     reservationManager = ReservationManager.getInstance();
   }

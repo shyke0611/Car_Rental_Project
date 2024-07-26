@@ -3,16 +3,9 @@ package car_rental_book_and_manage.Client;
 import car_rental_book_and_manage.Client.ClientUtility.HttpClientUtil;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
-import car_rental_book_and_manage.Server.Data.DataModel;
 import car_rental_book_and_manage.Server.ServerLauncher;
 import car_rental_book_and_manage.Server.ServerUtility.BookingScheduler;
-import car_rental_book_and_manage.SharedObject.Reservation;
-import car_rental_book_and_manage.SharedObject.Vehicle;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-
+import car_rental_book_and_manage.SharedObject.Data.DataModel;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -34,8 +27,6 @@ public class App extends Application {
   public static final ExecutorService clientdbExecutor = Executors.newFixedThreadPool(5);
   public static final ExecutorService reservationdbExecutor = Executors.newFixedThreadPool(5);
   public static final ExecutorService paymentdbExecutor = Executors.newFixedThreadPool(5);
-  private static final ObjectMapper mapper =
-      new ObjectMapper().registerModule(new JavaTimeModule());
   private static final DataModel model = DataModel.getInstance();
   private BookingScheduler bookingScheduler = new BookingScheduler();
 
@@ -75,6 +66,7 @@ public class App extends Application {
 
     HttpClientUtil.sendGetRequest("http://localhost:8000/api/vehicles");
     HttpClientUtil.sendGetRequest("http://localhost:8000/api/reservations");
+    HttpClientUtil.sendGetRequest("http://localhost:8000/api/clients");
 
     SceneManager.addController(SceneManager.Scenes.ADMIN, null);
     SceneManager.addUi(SceneManager.Scenes.ADMIN, loadFXML("admin"));
@@ -150,5 +142,3 @@ public class App extends Application {
     launch(args);
   }
 }
-
-  

@@ -1,12 +1,10 @@
 package car_rental_book_and_manage.Server.DAO;
 
 import car_rental_book_and_manage.Client.App;
-import car_rental_book_and_manage.Server.Data.DataModel;
 import car_rental_book_and_manage.Server.ServerUtility.DataManager;
+import car_rental_book_and_manage.SharedObject.Data.DataModel;
 import car_rental_book_and_manage.SharedObject.Vehicle;
-
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -293,12 +291,12 @@ public class VehicleDB implements VehicleDAO {
       throws SQLException {
     statement.setString(1, vehicle.getBrand());
     statement.setString(2, vehicle.getModel());
-    statement.setInt(3, vehicle.getMakeYear());
+    statement.setInt(3, Integer.parseInt(vehicle.getMakeYear()));
     statement.setString(4, vehicle.getLicensePlate());
     statement.setString(5, vehicle.getColour());
     statement.setString(6, vehicle.getFuelType());
     statement.setString(7, vehicle.getEconomy());
-    statement.setBigDecimal(8, vehicle.getPricePerDay());
+    statement.setBigDecimal(8, new BigDecimal(vehicle.getPricePerDay()));
     statement.setString(9, vehicle.getImage());
   }
 
@@ -310,12 +308,12 @@ public class VehicleDB implements VehicleDAO {
    * @throws SQLException if a database access error occurs
    */
   private Vehicle mapResultSetToVehicle(ResultSet resultSet) throws SQLException {
-    BigDecimal dailyRate = resultSet.getBigDecimal("Daily_rate").setScale(2, RoundingMode.HALF_UP);
+    String dailyRate = resultSet.getBigDecimal("Daily_rate").toPlainString();
     Vehicle vehicle = new Vehicle();
     vehicle.setVehicleId(resultSet.getInt("V_Id"));
     vehicle.setBrand(resultSet.getString("Brand"));
     vehicle.setModel(resultSet.getString("Model"));
-    vehicle.setMakeYear(resultSet.getInt("Make_year"));
+    vehicle.setMakeYear(resultSet.getString("Make_year").split("-")[0]);
     vehicle.setLicensePlate(resultSet.getString("Reg_no"));
     vehicle.setColour(resultSet.getString("Colour"));
     vehicle.setFuelType(resultSet.getString("Fuel_option"));

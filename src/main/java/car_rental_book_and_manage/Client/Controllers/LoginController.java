@@ -96,7 +96,7 @@ public class LoginController extends Controller {
       Client client = objectMapper.readValue(jsonResponse, Client.class);
       handleSuccessfulLogin(client);
     } catch (Exception e) {
-      ErrorHandlingUtil.handleServerErrors(e.getMessage(), "Login Error", AlertType.ERROR);
+      ErrorHandlingUtil.handleServerErrors(e.getMessage(), "Login Error", AlertType.WARNING);
     }
   }
 

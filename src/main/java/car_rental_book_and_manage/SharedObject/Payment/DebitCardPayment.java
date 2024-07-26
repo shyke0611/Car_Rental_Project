@@ -1,9 +1,15 @@
-package car_rental_book_and_manage.Server.Payment;
+package car_rental_book_and_manage.SharedObject.Payment;
 
 import java.time.LocalDate;
 
 /** Class representing a debit card payment. */
 public class DebitCardPayment extends CardPayment {
+
+  /** Default Constructor */
+  public DebitCardPayment() {
+    super();
+    setPaymentType("Debit Card"); // Ensure paymentType is set in the default constructor
+  }
 
   /**
    * Constructs a DebitCardPayment instance.

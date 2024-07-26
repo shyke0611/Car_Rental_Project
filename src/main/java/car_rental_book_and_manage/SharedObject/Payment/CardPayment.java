@@ -1,6 +1,17 @@
-package car_rental_book_and_manage.Server.Payment;
+package car_rental_book_and_manage.SharedObject.Payment;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.time.LocalDate;
+
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "paymentType")
+@JsonSubTypes({
+  @JsonSubTypes.Type(value = CreditCardPayment.class, name = "Credit Card"),
+  @JsonSubTypes.Type(value = DebitCardPayment.class, name = "Debit Card")
+})
 
 /** Abstract class representing a card payment. */
 public abstract class CardPayment {
@@ -46,6 +57,11 @@ public abstract class CardPayment {
     this.rentalId = rentalId;
     this.clientId = clientId;
     this.paymentDate = paymentDate;
+  }
+
+  /** Default Constructor */
+  public CardPayment() {
+    // TODO Auto-generated constructor stub
   }
 
   public String getCardNumber() {

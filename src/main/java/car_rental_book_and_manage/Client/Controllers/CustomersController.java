@@ -1,13 +1,16 @@
 package car_rental_book_and_manage.Client.Controllers;
 
 import car_rental_book_and_manage.Client.ClientUtility.AlertManager;
+import car_rental_book_and_manage.Client.ClientUtility.ErrorHandlingUtil;
+import car_rental_book_and_manage.Client.ClientUtility.HttpClientUtil;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
-import car_rental_book_and_manage.Server.ServerUtility.ValidationManager;
 import car_rental_book_and_manage.SharedObject.Client;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Predicate;
-
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
@@ -48,12 +51,13 @@ public class CustomersController extends Controller {
   @FXML private TextField txtPhone;
   @FXML private Label clientNoLbl;
 
+  private ObjectMapper objectMapper = new ObjectMapper();
+
   /** Initializes the controller and sets up the table columns, choice box, and search listener. */
   public void initialize() {
     SceneManager.setController(Scenes.CUSTOMERS, this);
     setUpTableColumns();
     setUpUpdateButtonCol();
-    clientdb.retrieveAllClients();
     setUpSearchChoiceBox();
     addSearchListener();
     pane2.getStylesheets().add(getClass().getResource("/css/customcol.css").toExternalForm());
@@ -204,7 +208,7 @@ public class CustomersController extends Controller {
     clientNoLbl.setText(String.valueOf(client.getClientId()));
     txtID.setText(String.valueOf(client.getClientId()));
     txtName.setText(client.getFirstName());
-    txtPhone.setText(String.valueOf(client.getPhoneNo()));
+    txtPhone.setText(client.getPhoneNo());
     txtLicense.setText(client.getLicenseNo());
   }
 
@@ -220,42 +224,57 @@ public class CustomersController extends Controller {
   }
 
   /**
-   * Handles the update of a client with the given information.
-   *
-   * @param clientId the client ID
-   * @param firstName the first name
-   * @param phone the phone number
-   * @param license the license number
-   */
-  private void handleUpdateClient(int clientId, String firstName, String phone, String license) {
-    Client updatedClient = new Client(clientId, firstName, phone, license);
-    clientdb.updateClient(updatedClient);
-    showUpdatePane(false);
-  }
-
-  /**
    * Handles the update client button action.
    *
    * @param event the mouse event
    */
   @FXML
   void onUpdateClient(MouseEvent event) {
-    String firstName = txtName.getText();
-    String phoneNo = txtPhone.getText();
-    if (!ValidationManager.isNameValid(firstName)) {
-      AlertManager.showAlert(
-          AlertType.WARNING, "Invalid Name Format", "First Name Format Is Invalid");
-      return;
-    }
-    if (!ValidationManager.isPhoneNoValid(phoneNo)) {
-      AlertManager.showAlert(
-          AlertType.WARNING, "Invalid Phone Number", "Phone Number must be a 7 digit number");
-      return;
-    }
+    performUpdateClient();
+  }
 
-    int clientId = Integer.parseInt(txtID.getText());
-    String licenseNo = txtLicense.getText();
-    handleUpdateClient(clientId, firstName, phoneNo, licenseNo);
+  /** Performs the update client process. */
+  private void performUpdateClient() {
+    try {
+      int clientId = Integer.parseInt(txtID.getText());
+      String firstName = txtName.getText();
+      String phoneNo = txtPhone.getText();
+      String licenseNo = txtLicense.getText();
+
+      Map<String, String> updateRequest = new HashMap<>();
+      updateRequest.put("clientId", String.valueOf(clientId));
+      updateRequest.put("firstName", firstName);
+      updateRequest.put("phoneNo", phoneNo);
+      updateRequest.put("licenseNo", licenseNo);
+
+      String jsonResponse =
+          HttpClientUtil.sendPutRequest("http://localhost:8000/api/clients", updateRequest);
+      Client updatedClient = objectMapper.readValue(jsonResponse, Client.class);
+      handleSuccessfulUpdate(updatedClient);
+    } catch (Exception e) {
+      ErrorHandlingUtil.handleServerErrors(e.getMessage(), "Update Error", AlertType.WARNING);
+    }
+  }
+
+  /**
+   * Handles the successful update process.
+   *
+   * @param client the updated client
+   */
+  private void handleSuccessfulUpdate(Client client) {
+    dataModel.updateClient(client);
+    AlertManager.showAlert(
+        AlertType.CONFIRMATION, "Update Successful", "Client information updated successfully.");
+    clearUpdateFields();
+    showUpdatePane(false);
+  }
+
+  /** Clears the update input fields. */
+  private void clearUpdateFields() {
+    txtID.clear();
+    txtName.clear();
+    txtPhone.clear();
+    txtLicense.clear();
   }
 
   /**
@@ -266,5 +285,6 @@ public class CustomersController extends Controller {
   @FXML
   void onCancelUpdate(MouseEvent event) {
     showUpdatePane(false);
+    clearUpdateFields();
   }
 }

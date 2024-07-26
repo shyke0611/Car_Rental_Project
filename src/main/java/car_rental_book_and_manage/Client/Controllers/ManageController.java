@@ -1,17 +1,15 @@
 package car_rental_book_and_manage.Client.Controllers;
 
 import car_rental_book_and_manage.Client.ClientUtility.AlertManager;
+import car_rental_book_and_manage.Client.ClientUtility.ErrorHandlingUtil;
+import car_rental_book_and_manage.Client.ClientUtility.HttpClientUtil;
 import car_rental_book_and_manage.Client.ClientUtility.ImageSelect;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
-import car_rental_book_and_manage.Server.ServerUtility.ValidationManager;
 import car_rental_book_and_manage.SharedObject.Vehicle;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.File;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.function.Predicate;
-
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
@@ -270,39 +268,10 @@ public class ManageController extends Controller {
    * @return true if the fields are valid, false otherwise
    */
   private boolean validateVehicleFields(String action) {
-    String id = idLbl.getText();
-    String brand = txtBrand.getText();
-    String model = txtModel.getText();
-    String dailyRate = txtDailyRate.getText();
-    String regNo = txtRegNumber.getText();
-    String year = txtYear.getText();
-    String colour = txtColour.getText();
-    String fuel = choiceFuel.getValue();
-    String econ = txtEconomy.getText();
-
-    if (!ValidationManager.validateVehicleFields(brand, model, year, colour, dailyRate, regNo, fuel, econ)) {
-      return false;
-    }
-
-    // Check if an image is selected only for "save" action or if the current image is the default one
     if (action.equals("save") && isDefaultImage) {
       AlertManager.showAlert(
           AlertType.WARNING, "Missing Image", "Please import an image before saving.");
       return false;
-    }
-
-    // Additional validation for save action
-    if (action.equals("save")) {
-      if (ValidationManager.checkRegistrationNoExists(regNo, action, vehicledb, id)) {
-        return false;
-      }
-    }
-
-    // Additional validation for update action
-    if (action.equals("update")) {
-      if (ValidationManager.checkRegistrationNoExists(regNo, action, vehicledb, id)) {
-        return false;
-      }
     }
 
     return true;
@@ -361,8 +330,12 @@ public class ManageController extends Controller {
   @FXML
   void onSaveVehicle(MouseEvent event) {
     if (validateVehicleFields("save")) {
-      Vehicle vehicle = createVehicleFromFields();
-      storeOrUpdateVehicle(vehicle);
+      try {
+        Vehicle vehicle = createVehicleFromFields();
+        storeVehicle(vehicle, "save");
+      } catch (NumberFormatException e) {
+        AlertManager.showAlert(AlertType.WARNING, "Invalid Input", e.getMessage());
+      }
     }
   }
 
@@ -374,9 +347,13 @@ public class ManageController extends Controller {
   @FXML
   void onUpdateVehicle(MouseEvent event) {
     if (validateVehicleFields("update")) {
-      Vehicle vehicle = createVehicleFromFields();
-      vehicle.setVehicleId(Integer.parseInt(idLbl.getText()));
-      storeOrUpdateVehicle(vehicle);
+      try {
+        Vehicle vehicle = createVehicleFromFields();
+        vehicle.setVehicleId(Integer.parseInt(idLbl.getText()));
+        storeVehicle(vehicle, "update");
+      } catch (NumberFormatException e) {
+        AlertManager.showAlert(AlertType.WARNING, "Invalid Input", e.getMessage());
+      }
     }
   }
 
@@ -387,10 +364,17 @@ public class ManageController extends Controller {
    */
   @FXML
   void onDeleteVehicle(MouseEvent event) {
-    vehicledb.deleteVehicle(selectedVehicle);
-    AlertManager.showAlert(AlertType.CONFIRMATION, "", "Vehicle Deleted Successfully");
-    clearTextFields();
-    showVehiclePane(false);
+    try {
+      String endpoint = "http://localhost:8000/api/vehicles";
+      HttpClientUtil.sendDeleteRequest(endpoint, selectedVehicle);
+      AlertManager.showAlert(
+          AlertType.CONFIRMATION, "Delete Vehicle", "Vehicle Deleted Successfully");
+      clearTextFields();
+      showVehiclePane(false);
+    } catch (Exception e) {
+      ErrorHandlingUtil.handleServerErrors(
+          e.getMessage(), "Delete Vehicle Error", AlertType.WARNING);
+    }
   }
 
   /**
@@ -486,7 +470,7 @@ public class ManageController extends Controller {
    *
    * @return the created vehicle
    */
-  private Vehicle createVehicleFromFields() {
+  private Vehicle createVehicleFromFields() throws NumberFormatException {
     String brand = txtBrand.getText();
     String model = txtModel.getText();
     String dailyRate = txtDailyRate.getText();
@@ -496,34 +480,31 @@ public class ManageController extends Controller {
     String fuel = choiceFuel.getValue();
     String econ = txtEconomy.getText();
 
-    BigDecimal pricePerDay = new BigDecimal(dailyRate).setScale(2, RoundingMode.HALF_UP);
-
-    return new Vehicle(
-        Integer.parseInt(year),
-        model,
-        regNo,
-        pricePerDay,
-        brand,
-        fuel,
-        colour,
-        imageName,
-        econ);
+    return new Vehicle(year, model, regNo, dailyRate, brand, fuel, colour, imageName, econ);
   }
 
   /**
-   * Stores or updates the vehicle in the database.
+   * Stores the vehicle by making a REST call.
    *
    * @param vehicle the vehicle to be stored or updated
+   * @param action the action being performed ("save" or "update")
    */
-  private void storeOrUpdateVehicle(Vehicle vehicle) {
-    if (vehicle.getVehicleId() == 0) {
-      vehicledb.saveVehicle(vehicle);
-      AlertManager.showAlert(AlertType.CONFIRMATION, "", "Vehicle Added Successfully");
-    } else {
-      vehicledb.updateVehicle(vehicle);
-      AlertManager.showAlert(AlertType.CONFIRMATION, "", "Vehicle Updated Successfully");
+  private void storeVehicle(Vehicle vehicle, String action) {
+    try {
+      if ("save".equals(action)) {
+        HttpClientUtil.sendPostRequest("http://localhost:8000/api/vehicles", vehicle);
+        AlertManager.showAlert(
+            AlertType.CONFIRMATION, "Vehicle Created", "Vehicle Added Successfully");
+      } else if ("update".equals(action)) {
+        HttpClientUtil.sendPutRequest("http://localhost:8000/api/vehicles", vehicle);
+        AlertManager.showAlert(
+            AlertType.CONFIRMATION, "Vehicle Update", "Vehicle Updated Successfully");
+      }
+      clearTextFields();
+      showVehiclePane(false);
+    } catch (Exception e) {
+      ErrorHandlingUtil.handleServerErrors(
+          e.getMessage(), "Save/Update Vehicle Error", AlertType.WARNING);
     }
-    clearTextFields();
-    showVehiclePane(false);
   }
 }

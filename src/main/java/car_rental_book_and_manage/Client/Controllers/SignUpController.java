@@ -60,15 +60,15 @@ public class SignUpController extends Controller {
    */
   private void storeClientData(Client client) {
     try {
-        String jsonPayload = objectMapper.writeValueAsString(client);
-        System.out.println("JSON Payload: " + jsonPayload);
+      String jsonPayload = objectMapper.writeValueAsString(client);
+      System.out.println("JSON Payload: " + jsonPayload);
 
-        HttpClientUtil.sendPostRequest("http://localhost:8000/api/clients", client);
-        AlertManager.showAlert(AlertType.CONFIRMATION, "Sign Up", "Account Created Successfully");
-        System.out.println("Client saved successfully: " + client.getFirstName());
-        clearTextFields();
+      HttpClientUtil.sendPostRequest("http://localhost:8000/api/clients", client);
+      AlertManager.showAlert(AlertType.CONFIRMATION, "Sign Up", "Account Created Successfully");
+      System.out.println("Client saved successfully: " + client.getFirstName());
+      clearTextFields();
     } catch (Exception e) {
-        ErrorHandlingUtil.handleServerErrors(e.getMessage(), "Sign Up Error", AlertType.ERROR);
+      ErrorHandlingUtil.handleServerErrors(e.getMessage(), "Sign Up Error", AlertType.WARNING);
     }
   }
 

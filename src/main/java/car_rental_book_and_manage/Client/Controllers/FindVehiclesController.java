@@ -2,14 +2,13 @@ package car_rental_book_and_manage.Client.Controllers;
 
 import car_rental_book_and_manage.Client.App;
 import car_rental_book_and_manage.Client.ClientUtility.AlertManager;
+import car_rental_book_and_manage.Client.ClientUtility.ErrorHandlingUtil;
+import car_rental_book_and_manage.Client.ClientUtility.HttpClientUtil;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager;
 import car_rental_book_and_manage.Client.ClientUtility.SceneManager.Scenes;
 import car_rental_book_and_manage.Client.VehicleDisplay.VehicleDisplayMaker;
-import car_rental_book_and_manage.SharedObject.Reservation;
 import car_rental_book_and_manage.SharedObject.Vehicle;
-
 import java.time.LocalDate;
-
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,14 +29,12 @@ import javafx.util.Callback;
 /** Controller class for the Find Vehicles view. */
 public class FindVehiclesController extends Controller {
 
-  // FXML components
   @FXML private Label clientNameLbl;
   @FXML private ScrollPane scrollPane;
   @FXML private GridPane contentGrid;
   @FXML private DatePicker pickUpDate;
   @FXML private DatePicker returnDate;
 
-  // Constants
   private final int COLUMNS = 2;
   private final VehicleDisplayMaker vehicleImageFactory = new VehicleDisplayMaker();
 
@@ -126,14 +123,14 @@ public class FindVehiclesController extends Controller {
   private void clearGridPane() {
     contentGrid.getColumnConstraints().clear();
     contentGrid.getRowConstraints().clear();
-    contentGrid.getChildren().clear(); // Clear previous content
+    contentGrid.getChildren().clear();
   }
 
   /** Sets the properties of the GridPane. */
   private void setGridPaneProperties(int columns, int rows) {
-    contentGrid.setHgap(20); // Set horizontal gap (spacing between columns)
-    contentGrid.setVgap(20); // Set vertical gap (spacing between rows)
-    contentGrid.setPadding(new Insets(20)); // Set padding around the edges of the GridPane
+    contentGrid.setHgap(20);
+    contentGrid.setVgap(20);
+    contentGrid.setPadding(new Insets(20));
   }
 
   /** Sets up the columns of the GridPane. */
@@ -149,7 +146,7 @@ public class FindVehiclesController extends Controller {
   private void setupGridRows(int rows) {
     for (int row = 0; row < rows; row++) {
       RowConstraints rowConstraints = new RowConstraints();
-      rowConstraints.setPrefHeight(400); // Set a preferred height for rows
+      rowConstraints.setPrefHeight(400);
       contentGrid.getRowConstraints().add(rowConstraints);
     }
   }
@@ -170,8 +167,8 @@ public class FindVehiclesController extends Controller {
         Vehicle vehicle = vehicles.get(itemIndex);
         Pane pane = vehicleImageFactory.createVehiclePane(vehicle, event -> handleBookNow(vehicle));
         contentGrid.add(pane, col, row);
-        GridPane.setHalignment(pane, HPos.CENTER); // Center horizontally
-        GridPane.setValignment(pane, VPos.CENTER); // Center vertically
+        GridPane.setHalignment(pane, HPos.CENTER);
+        GridPane.setValignment(pane, VPos.CENTER);
         itemIndex++;
       }
     }
@@ -194,14 +191,12 @@ public class FindVehiclesController extends Controller {
     }
 
     int clientId = reservationManager.getLoggedInClient().getClientId();
-    Reservation existingReservation = reservationdb.getReservationForClient(clientId);
-    System.out.println(existingReservation);
 
-    if (existingReservation != null) {
+    if (getReservationForClient(clientId)) {
       AlertManager.showAlert(
           AlertType.WARNING,
           "Already Booked",
-          "You already have a booking. You can not make a new booking.");
+          "You already have a booking. You cannot make a new booking.");
       return;
     }
 
@@ -210,5 +205,26 @@ public class FindVehiclesController extends Controller {
     reservationManager.updateTotalAmount();
 
     App.setUi(Scenes.INSURANCE);
+  }
+
+  /**
+   * Fetches the reservation for a client using the REST API.
+   *
+   * @param clientId the ID of the client
+   * @return true if the reservation exists, false otherwise
+   */
+  private Boolean getReservationForClient(int clientId) {
+    try {
+      HttpClientUtil.sendGetRequest("http://localhost:8000/api/reservations/client/" + clientId);
+      return true;
+    } catch (Exception e) {
+      if (e.getMessage().contains("404")) {
+        return false;
+      } else {
+        ErrorHandlingUtil.handleServerErrors(
+            e.getMessage(), "Reservation Fetch Error", AlertType.WARNING);
+        return false;
+      }
+    }
   }
 }

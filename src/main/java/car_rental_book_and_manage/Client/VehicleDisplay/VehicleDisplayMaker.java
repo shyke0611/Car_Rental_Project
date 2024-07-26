@@ -2,6 +2,8 @@ package car_rental_book_and_manage.Client.VehicleDisplay;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -126,14 +128,15 @@ public class VehicleDisplayMaker {
     return brandModelYearBox;
   }
 
-  /**
+   /**
    * Creates an HBox containing the price per day of the vehicle.
    *
    * @param vehicle the vehicle to display
    * @return the HBox containing the price per day
    */
   private HBox createPriceBox(Vehicle vehicle) {
-    String formattedPrice = String.format("$ %.2f", vehicle.getPricePerDay());
+    BigDecimal price = new BigDecimal(vehicle.getPricePerDay());
+    String formattedPrice = String.format("$ %.2f", price);
     Label priceLabel = new Label(formattedPrice);
     priceLabel.getStyleClass().add("vehicle-price-label");
     Label priceText = new Label("/ DAY");

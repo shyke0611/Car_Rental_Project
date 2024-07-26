@@ -1,4 +1,4 @@
-package car_rental_book_and_manage.Server.Data;
+package car_rental_book_and_manage.SharedObject.Data;
 
 import car_rental_book_and_manage.SharedObject.Client;
 import car_rental_book_and_manage.SharedObject.Reservation;
