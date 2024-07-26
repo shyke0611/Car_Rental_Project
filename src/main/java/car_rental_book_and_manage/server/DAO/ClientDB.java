@@ -5,7 +5,6 @@ import car_rental_book_and_manage.Server.ServerUtility.DataManager;
 import car_rental_book_and_manage.Server.ServerUtility.PIIHashManager;
 import car_rental_book_and_manage.SharedObject.Client;
 import car_rental_book_and_manage.SharedObject.Data.DataModel;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,7 +26,8 @@ public class ClientDB implements ClientDAO {
     App.clientdbExecutor.execute(
         () -> {
           String query =
-              "INSERT INTO CLIENT (Fname, Username, Pword, Phone_no, License_no) VALUES (?, ?, ?, ?, ?)";
+              "INSERT INTO CLIENT (Fname, Username, Pword, Phone_no, License_no) VALUES (?, ?, ?,"
+                  + " ?, ?)";
           try (Connection connection = DataManager.getConnection()) {
             connection.setAutoCommit(false);
             try (PreparedStatement statement =
@@ -60,15 +60,19 @@ public class ClientDB implements ClientDAO {
           String query = "UPDATE CLIENT SET Fname = ?, Phone_no = ?, License_no = ? WHERE C_Id = ?";
           try (Connection connection = DataManager.getConnection()) {
             connection.setAutoCommit(false);
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-              statement.setString(1, client.getFirstName());
-              statement.setString(2, client.getPhoneNo());
-              statement.setString(3, client.getLicenseNo());
-              statement.setInt(4, client.getClientId());
-              statement.executeUpdate();
-              connection.commit();
-              retrieveClientByIdToUpdate(client.getClientId());
-              System.out.println("Updated client data");
+            try {
+              // Lock the row to be updated
+              lockClientRow(connection, client.getClientId());
+              try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, client.getFirstName());
+                statement.setString(2, client.getPhoneNo());
+                statement.setString(3, client.getLicenseNo());
+                statement.setInt(4, client.getClientId());
+                statement.executeUpdate();
+                connection.commit();
+                retrieveClientByIdToUpdate(client.getClientId());
+                System.out.println("Updated client data");
+              }
             } catch (SQLException e) {
               connection.rollback();
               handleSQLException(e);
@@ -326,5 +330,13 @@ public class ClientDB implements ClientDAO {
    */
   private void handleSQLException(SQLException e) {
     System.err.println("Database error: " + e.getMessage());
+  }
+
+  private void lockClientRow(Connection connection, int clientId) throws SQLException {
+    String lockQuery = "SELECT * FROM CLIENT WHERE C_Id = ? FOR UPDATE";
+    try (PreparedStatement lockStatement = connection.prepareStatement(lockQuery)) {
+      lockStatement.setInt(1, clientId);
+      lockStatement.executeQuery();
+    }
   }
 }

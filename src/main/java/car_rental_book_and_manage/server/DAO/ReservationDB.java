@@ -2,10 +2,9 @@ package car_rental_book_and_manage.Server.DAO;
 
 import car_rental_book_and_manage.Client.App;
 import car_rental_book_and_manage.Server.ServerUtility.DataManager;
-import car_rental_book_and_manage.SharedObject.Reservation;
 import car_rental_book_and_manage.SharedObject.Data.DataModel;
 import car_rental_book_and_manage.SharedObject.Payment.CardPayment;
-
+import car_rental_book_and_manage.SharedObject.Reservation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,43 +27,48 @@ public class ReservationDB implements ReservationDAO {
    */
   @Override
   public synchronized void saveReservationAndPayment(Reservation reservation, CardPayment payment) {
-    App.reservationdbExecutor.execute(() -> {
-      String reservationQuery = "INSERT INTO RESERVATION (Client_Id, Vehicle_Id, Total_rate, Vehicle_reg, License_no, Start_date, Return_date, Insurance_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-      String paymentQuery = "INSERT INTO PAYMENT (Rental_Id, Client_Id, Payment_Date, Amount, Payment_Method) VALUES (?, ?, ?, ?, ?)";
+    App.reservationdbExecutor.execute(
+        () -> {
+          String reservationQuery =
+              "INSERT INTO RESERVATION (Client_Id, Vehicle_Id, Total_rate, Vehicle_reg, License_no,"
+                  + " Start_date, Return_date, Insurance_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+          String paymentQuery =
+              "INSERT INTO PAYMENT (Rental_Id, Client_Id, Payment_Date, Amount, Payment_Method)"
+                  + " VALUES (?, ?, ?, ?, ?)";
 
-      try (Connection connection = DataManager.getConnection()) {
-        connection.setAutoCommit(false);
+          try (Connection connection = DataManager.getConnection()) {
+            connection.setAutoCommit(false);
+            try (PreparedStatement reservationStatement =
+                    connection.prepareStatement(reservationQuery, Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement paymentStatement = connection.prepareStatement(paymentQuery)) {
 
-        try (PreparedStatement reservationStatement = connection.prepareStatement(reservationQuery, Statement.RETURN_GENERATED_KEYS);
-             PreparedStatement paymentStatement = connection.prepareStatement(paymentQuery)) {
+              // Save reservation
+              setReservationStatementParams(reservationStatement, reservation);
+              reservationStatement.executeUpdate();
 
-          // Save reservation
-          setReservationStatementParams(reservationStatement, reservation);
-          reservationStatement.executeUpdate();
+              // Get generated Rental_Id
+              ResultSet generatedKeys = reservationStatement.getGeneratedKeys();
+              if (generatedKeys.next()) {
+                int rentalId = generatedKeys.getInt(1);
+                reservation.setReservationId(rentalId);
+                payment.setRentalId(rentalId);
+              }
 
-          // Get generated Rental_Id
-          ResultSet generatedKeys = reservationStatement.getGeneratedKeys();
-          if (generatedKeys.next()) {
-            int rentalId = generatedKeys.getInt(1);
-            reservation.setReservationId(rentalId);
-            payment.setRentalId(rentalId);
+              // Save payment
+              setPaymentStatementParams(paymentStatement, payment);
+              paymentStatement.executeUpdate();
+
+              connection.commit();
+              retrieveLatestReservationToSave();
+              System.out.println("Reservation and payment saved");
+            } catch (SQLException e) {
+              connection.rollback();
+              handleSQLException(e);
+            }
+          } catch (SQLException e) {
+            handleSQLException(e);
           }
-
-          // Save payment
-          setPaymentStatementParams(paymentStatement, payment);
-          paymentStatement.executeUpdate();
-
-          connection.commit();
-          retrieveLatestReservationToSave();
-          System.out.println("Reservation and payment saved");
-        } catch (SQLException e) {
-          connection.rollback();
-          handleSQLException(e);
-        }
-      } catch (SQLException e) {
-        handleSQLException(e);
-      }
-    });
+        });
   }
 
   /**
@@ -74,75 +78,82 @@ public class ReservationDB implements ReservationDAO {
    */
   @Override
   public synchronized void deleteReservationAndPayment(int reservationId) {
-    App.reservationdbExecutor.execute(() -> {
-      String reservationQuery = "DELETE FROM RESERVATION WHERE Rental_Id = ?";
-      String paymentQuery = "DELETE FROM PAYMENT WHERE Rental_Id = ?";
+    App.reservationdbExecutor.execute(
+        () -> {
+          String reservationQuery = "DELETE FROM RESERVATION WHERE Rental_Id = ?";
+          String paymentQuery = "DELETE FROM PAYMENT WHERE Rental_Id = ?";
 
-      try (Connection connection = DataManager.getConnection()) {
-        connection.setAutoCommit(false);
+          try (Connection connection = DataManager.getConnection()) {
+            connection.setAutoCommit(false);
+            try {
+              // Lock the row to be deleted
+              lockReservationRow(connection, reservationId);
+              try (PreparedStatement reservationStatement =
+                      connection.prepareStatement(reservationQuery);
+                  PreparedStatement paymentStatement = connection.prepareStatement(paymentQuery)) {
 
-        try (PreparedStatement reservationStatement = connection.prepareStatement(reservationQuery);
-             PreparedStatement paymentStatement = connection.prepareStatement(paymentQuery)) {
+                // Delete payment
+                paymentStatement.setInt(1, reservationId);
+                paymentStatement.executeUpdate();
 
-          // Delete payment
-          paymentStatement.setInt(1, reservationId);
-          paymentStatement.executeUpdate();
+                // Delete reservation
+                reservationStatement.setInt(1, reservationId);
+                reservationStatement.executeUpdate();
 
-          // Delete reservation
-          reservationStatement.setInt(1, reservationId);
-          reservationStatement.executeUpdate();
-
-          connection.commit();
-          model.removeReservation(model.getReservation(reservationId));
-          System.out.println("Reservation and payment deleted");
-        } catch (SQLException e) {
-          connection.rollback();
-          handleSQLException(e);
-        }
-      } catch (SQLException e) {
-        handleSQLException(e);
-      }
-    });
+                connection.commit();
+                model.removeReservation(model.getReservation(reservationId));
+                System.out.println("Reservation and payment deleted");
+              }
+            } catch (SQLException e) {
+              connection.rollback();
+              handleSQLException(e);
+            }
+          } catch (SQLException e) {
+            handleSQLException(e);
+          }
+        });
   }
 
   /** Retrieves the latest saved reservation from the database and adds it to the model. */
   @Override
   public synchronized void retrieveLatestReservationToSave() {
-    App.reservationdbExecutor.execute(() -> {
-      String sql = "SELECT * FROM RESERVATION ORDER BY Rental_Id DESC LIMIT 1";
-      try (Connection connection = DataManager.getConnection();
-           PreparedStatement statement = connection.prepareStatement(sql);
-           ResultSet resultSet = statement.executeQuery()) {
+    App.reservationdbExecutor.execute(
+        () -> {
+          String sql = "SELECT * FROM RESERVATION ORDER BY Rental_Id DESC LIMIT 1";
+          try (Connection connection = DataManager.getConnection();
+              PreparedStatement statement = connection.prepareStatement(sql);
+              ResultSet resultSet = statement.executeQuery()) {
 
-        if (resultSet.next()) {
-          Reservation reservation = mapResultSetToReservation(resultSet);
-          model.addReservation(reservation);
-        }
-      } catch (SQLException e) {
-        handleSQLException(e);
-      }
-      System.err.println("Retrieved latest reservation");
-    });
+            if (resultSet.next()) {
+              Reservation reservation = mapResultSetToReservation(resultSet);
+              model.addReservation(reservation);
+            }
+          } catch (SQLException e) {
+            handleSQLException(e);
+          }
+          System.err.println("Retrieved latest reservation");
+        });
   }
 
   /** Retrieves all reservations from the database and adds them to the model. */
   @Override
   public synchronized void retrieveAllReservations() {
-    App.reservationdbExecutor.execute(() -> {
-      String sql = "SELECT * FROM RESERVATION";
-      try (Connection connection = DataManager.getConnection();
-           PreparedStatement statement = connection.prepareStatement(sql);
-           ResultSet resultSet = statement.executeQuery()) {
+    App.reservationdbExecutor.execute(
+        () -> {
+          String sql = "SELECT * FROM RESERVATION";
+          try (Connection connection = DataManager.getConnection();
+              PreparedStatement statement = connection.prepareStatement(sql);
+              ResultSet resultSet = statement.executeQuery()) {
 
-        while (resultSet.next()) {
-          Reservation reservation = mapResultSetToReservation(resultSet);
-          model.addReservation(reservation);
-        }
-      } catch (SQLException e) {
-        handleSQLException(e);
-      }
-      System.err.println("Retrieved all reservations");
-    });
+            while (resultSet.next()) {
+              Reservation reservation = mapResultSetToReservation(resultSet);
+              model.addReservation(reservation);
+            }
+          } catch (SQLException e) {
+            handleSQLException(e);
+          }
+          System.err.println("Retrieved all reservations");
+        });
   }
 
   /**
@@ -154,7 +165,7 @@ public class ReservationDB implements ReservationDAO {
   public synchronized Reservation getReservationById(int reservationId) {
     String sql = "SELECT * FROM RESERVATION WHERE Rental_Id = ?";
     try (Connection connection = DataManager.getConnection();
-         PreparedStatement statement = connection.prepareStatement(sql)) {
+        PreparedStatement statement = connection.prepareStatement(sql)) {
       statement.setInt(1, reservationId);
       try (ResultSet resultSet = statement.executeQuery()) {
         if (resultSet.next()) {
@@ -177,7 +188,7 @@ public class ReservationDB implements ReservationDAO {
   public synchronized Reservation getReservationForClient(int clientId) {
     String sql = "SELECT * FROM RESERVATION WHERE Client_Id = ?";
     try (Connection connection = DataManager.getConnection();
-         PreparedStatement statement = connection.prepareStatement(sql)) {
+        PreparedStatement statement = connection.prepareStatement(sql)) {
       statement.setInt(1, clientId);
       try (ResultSet resultSet = statement.executeQuery()) {
         if (resultSet.next()) {
@@ -202,7 +213,7 @@ public class ReservationDB implements ReservationDAO {
     List<Reservation> reservationsToDrop = new ArrayList<>();
     String sql = "SELECT * FROM RESERVATION WHERE Return_date <= ?";
     try (Connection connection = DataManager.getConnection();
-         PreparedStatement statement = connection.prepareStatement(sql)) {
+        PreparedStatement statement = connection.prepareStatement(sql)) {
       statement.setDate(1, java.sql.Date.valueOf(date));
       try (ResultSet resultSet = statement.executeQuery()) {
         while (resultSet.next()) {
@@ -223,7 +234,8 @@ public class ReservationDB implements ReservationDAO {
    * @param reservation the reservation to set the parameters for
    * @throws SQLException if a database access error occurs
    */
-  private void setReservationStatementParams(PreparedStatement statement, Reservation reservation) throws SQLException {
+  private void setReservationStatementParams(PreparedStatement statement, Reservation reservation)
+      throws SQLException {
     statement.setInt(1, reservation.getClientId());
     statement.setInt(2, reservation.getVehicleId());
     statement.setDouble(3, reservation.getTotalRate());
@@ -241,7 +253,8 @@ public class ReservationDB implements ReservationDAO {
    * @param payment the payment to set the parameters for
    * @throws SQLException if a database access error occurs
    */
-  private void setPaymentStatementParams(PreparedStatement statement, CardPayment payment) throws SQLException {
+  private void setPaymentStatementParams(PreparedStatement statement, CardPayment payment)
+      throws SQLException {
     statement.setInt(1, payment.getRentalId());
     statement.setInt(2, payment.getClientId());
     statement.setDate(3, java.sql.Date.valueOf(payment.getPaymentDate()));
@@ -277,5 +290,20 @@ public class ReservationDB implements ReservationDAO {
    */
   private void handleSQLException(SQLException e) {
     System.err.println("Database error: " + e.getMessage());
+  }
+
+  /**
+   * Locks a specific row in the RESERVATION table for update.
+   *
+   * @param connection the database connection
+   * @param reservationId the ID of the reservation row to lock
+   * @throws SQLException if a database access error occurs
+   */
+  private void lockReservationRow(Connection connection, int reservationId) throws SQLException {
+    String lockQuery = "SELECT * FROM RESERVATION WHERE Rental_Id = ? FOR UPDATE";
+    try (PreparedStatement lockStatement = connection.prepareStatement(lockQuery)) {
+      lockStatement.setInt(1, reservationId);
+      lockStatement.executeQuery();
+    }
   }
 }

@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.application.Platform;
 
 /** Class for managing vehicle database operations. */
 public class VehicleDB implements VehicleDAO {
@@ -61,13 +62,17 @@ public class VehicleDB implements VehicleDAO {
                   + " = ?";
           try (Connection connection = DataManager.getConnection()) {
             connection.setAutoCommit(false);
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-              setVehicleStatementParams(statement, vehicle);
-              statement.setInt(10, vehicle.getVehicleId());
-              statement.executeUpdate();
-              connection.commit();
-              retrieveVehicleByIdToUpdate(vehicle.getVehicleId());
-              System.out.println("Vehicle updated");
+            try {
+              // Lock the row to be updated
+              lockVehicleRow(connection, vehicle.getVehicleId());
+              try (PreparedStatement statement = connection.prepareStatement(query)) {
+                setVehicleStatementParams(statement, vehicle);
+                statement.setInt(10, vehicle.getVehicleId());
+                statement.executeUpdate();
+                connection.commit();
+                retrieveVehicleByIdToUpdate(vehicle.getVehicleId());
+                System.out.println("Vehicle updated");
+              }
             } catch (SQLException e) {
               connection.rollback();
               handleSQLException(e);
@@ -90,13 +95,17 @@ public class VehicleDB implements VehicleDAO {
           String query = "DELETE FROM VEHICLE WHERE V_Id = ?";
           try (Connection connection = DataManager.getConnection()) {
             connection.setAutoCommit(false);
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-              statement.setInt(1, vehicle.getVehicleId());
-              statement.executeUpdate();
-              connection.commit();
-              model.removeVehicle(vehicle);
-              model.setNumOfVehicles(String.valueOf(getNumOfVehicles()));
-              System.out.println("Vehicle deleted");
+            try {
+              // Lock the row to be deleted
+              lockVehicleRow(connection, vehicle.getVehicleId());
+              try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, vehicle.getVehicleId());
+                statement.executeUpdate();
+                connection.commit();
+                Platform.runLater(() -> model.removeVehicle(vehicle));
+                Platform.runLater(() -> model.setNumOfVehicles(String.valueOf(getNumOfVehicles())));
+                System.out.println("Vehicle deleted");
+              }
             } catch (SQLException e) {
               connection.rollback();
               handleSQLException(e);
@@ -211,19 +220,23 @@ public class VehicleDB implements VehicleDAO {
           String query = "UPDATE VEHICLE SET Availability = ? WHERE V_Id = ?";
           try (Connection connection = DataManager.getConnection()) {
             connection.setAutoCommit(false);
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-              statement.setBoolean(1, availability);
-              statement.setInt(2, vehicleId);
-              statement.executeUpdate();
-              connection.commit();
+            try {
+              // Lock the row to be updated
+              lockVehicleRow(connection, vehicleId);
+              try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setBoolean(1, availability);
+                statement.setInt(2, vehicleId);
+                statement.executeUpdate();
+                connection.commit();
 
-              Vehicle vehicle = model.getVehicle(vehicleId);
-              if (vehicle != null) {
-                vehicle.setAvailability(availability);
-                model.updateVehicle(vehicle);
+                Vehicle vehicle = model.getVehicle(vehicleId);
+                if (vehicle != null) {
+                  vehicle.setAvailability(availability);
+                  model.updateVehicle(vehicle);
+                }
+
+                System.out.println("Vehicle availability updated");
               }
-
-              System.out.println("Vehicle availability updated");
             } catch (SQLException e) {
               connection.rollback();
               handleSQLException(e);
@@ -331,5 +344,20 @@ public class VehicleDB implements VehicleDAO {
    */
   private void handleSQLException(SQLException e) {
     System.err.println("Database error: " + e.getMessage());
+  }
+
+  /**
+   * Locks a specific row in the VEHICLE table for update.
+   *
+   * @param connection the database connection
+   * @param vehicleId the ID of the vehicle row to lock
+   * @throws SQLException if a database access error occurs
+   */
+  private void lockVehicleRow(Connection connection, int vehicleId) throws SQLException {
+    String lockQuery = "SELECT * FROM VEHICLE WHERE V_Id = ? FOR UPDATE";
+    try (PreparedStatement lockStatement = connection.prepareStatement(lockQuery)) {
+      lockStatement.setInt(1, vehicleId);
+      lockStatement.executeQuery();
+    }
   }
 }
